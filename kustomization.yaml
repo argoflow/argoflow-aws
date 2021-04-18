@@ -31,4 +31,5 @@ resources:
 # - argocd-applications/experimental-pvcviewer-controller.yaml
 # - argocd-applications/experimental-volumes-web-app.yaml
 # AWS specific
-# - aws-node-termination-handler.yaml
+# - argocd-applications/aws-node-termination-handler.yaml
+# - argocd-applications/aws-cluster-autoscaler.yaml
