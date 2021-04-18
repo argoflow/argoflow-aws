@@ -5,11 +5,6 @@ generic repository found [here](https://github.com/argoflow/argoflow).
 Contributions to improve the integration with AWS and document
 these integrations are much appreciated.
 
-**WARNING**
-The script to setup the Argo CD application specs to point to your fork
-does not take Helm applications into account yet. As such,
-running the script will break the AWS integrations installed with helm.
-
 # Deploying Kubeflow with ArgoCD
 
 This repository contains Kustomize manifests that point to the upstream
