@@ -1,3 +1,10 @@
+# Notice
+
+This repository is still a work in progress and is based on the
+generic repository found [here](https://github.com/argoflow/argoflow).
+Contributions to improve the integration with AWS and document
+these integrations are much appreciated.
+
 # Deploying Kubeflow with ArgoCD
 
 This repository contains Kustomize manifests that point to the upstream
