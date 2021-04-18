@@ -30,3 +30,5 @@ resources:
 - argocd-applications/user-namespace.yaml
 # - argocd-applications/experimental-pvcviewer-controller.yaml
 # - argocd-applications/experimental-volumes-web-app.yaml
+# AWS specific
+# - aws-node-termination-handler.yaml

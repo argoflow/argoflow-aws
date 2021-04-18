@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-node-termination-handler
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://aws.github.io/eks-charts
+    targetRevision: 0.15.0
+    chart: aws-node-termination-handler
+    helm:
+     parameters:
+      - name : "enableSpotInterruptionDraining"
+        value : "true"
+      - name : "enableScheduledEventDraining"
+        value : "true"
+      - name : "nodeSelector.lifecycle"
+        value : Ec2Spot
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
