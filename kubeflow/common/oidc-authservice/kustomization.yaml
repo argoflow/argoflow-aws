@@ -4,6 +4,9 @@ kind: Kustomization
 resources:
 - github.com/kubeflow/manifests/common/oidc-authservice/base
 
+patchesStrategicMerge:
+- oidc-authservice-parameters-patch.yaml
+
 images:
 - name: gcr.io/arrikto/kubeflow/oidc-authservice
   newName: gcr.io/arrikto/kubeflow/oidc-authservice
