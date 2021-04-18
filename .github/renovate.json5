@@ -1,4 +1,3 @@
-
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
@@ -19,6 +18,18 @@
         "major"
       ],
       "enabled": true
+    },
+    {
+      "description": "Group Cert Manager update",
+      "matchPackagePatterns": ["^.*cert-manager.*"],
+      "groupName": "cert-manager",
+      "additionalBranchPrefix": ""
+    },
+    {
+      "description": "Group Argo CD update",
+      "matchPackagePatterns": ["^.*argo[-]?cd.*"],
+      "groupName": "argo-cd",
+      "additionalBranchPrefix": ""
     },
     //{
     //  "matchDatasources": [
@@ -52,6 +63,13 @@
       "fileMatch": ["(^|/)kustomization.yaml$"],
       "matchStrings": [
           "- github\\.com\\/(?<depName>[^/]+?\\/[^/]*?)\\/.*\\?ref=(?<currentDigest>[a-f0-9]{40}) # tag=(?<currentValue>.*)"
+        ],
+      "datasourceTemplate": "github-tags"
+    },
+    {
+      "fileMatch": ["(^|/)kustomization.yaml$"],
+      "matchStrings": [
+          "- https:\/\/github\.com\/(?<depName>[^\/]+?\/[^\/]*?)\/releases\/download\/(?<currentValue>.*)\/.*.yaml"
         ],
       "datasourceTemplate": "github-tags"
     }
