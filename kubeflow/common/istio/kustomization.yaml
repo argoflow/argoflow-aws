@@ -7,12 +7,11 @@ resources:
 - github.com/kubeflow/manifests/common/istio-1-9-0/istio-install/base
 - github.com/kubeflow/manifests/common/istio-1-9-0/cluster-local-gateway/base
 - github.com/kubeflow/manifests/common/istio-1-9-0/kubeflow-istio-resources/base
-- ingress-certificate.yaml
+- cognito-ingress.yaml
 
 patchesStrategicMerge:
 - gateway-service.yaml
 - sidecar-configmap-patch.yaml
-- https-gateway.yaml
 
 images:
 - name: docker.io/istio/proxyv2
