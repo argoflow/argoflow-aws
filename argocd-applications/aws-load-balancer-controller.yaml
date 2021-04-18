@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-load-balancer-controller
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://aws.github.io/eks-charts
+    targetRevision: 1.1.6
+    chart: aws-load-balancer-controller
+    helm:
+     parameters:
+      - name: "rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+        value: "arn:aws:iam::863518836478:role/my-eks-cluster_aws-alb-ingress-controller"
+      - name: clusterName
+        value: my-eks-cluster
+      - name: vpcId
+        value: vpc-038b1e8ba71bdbecf
+      - name: region
+        value: eu-central-1
+      - name: resources.limits.cpu
+        value: 100m
+      - name: resources.limits.memory
+        value: 300Mi
+      - name: resources.requests.cpu
+        value: 100m
+      - name: resources.requests.memory
+        value: 300Mi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
