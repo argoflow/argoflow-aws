@@ -7,17 +7,17 @@ spec:
     # You must replace this email address with your own.
     # Let's Encrypt will use this to contact you about expiring
     # certificates, and issues related to your account.
-    email: user@example.com
+    email: matthew.king@octoconsulting.com
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       # Secret resource that will be used to store the account's private key.
-      name: example-issuer-account-key
+      name: letsencrypt-staging
     # Add a single challenge solver, HTTP01 using nginx
     solvers:
     - dns01:
         route53:
-          hostedZoneID: ""
-          region: ""
+          hostedZoneID: "Z04826843GRR3J1QBY4GV"
+          region: "us-west-2"
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -28,14 +28,14 @@ spec:
     # You must replace this email address with your own.
     # Let's Encrypt will use this to contact you about expiring
     # certificates, and issues related to your account.
-    email: user@example.com
+    email: matthew.king@octoconsulting.com
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       # Secret resource that will be used to store the account's private key.
-      name: example-issuer-account-key
+      name: letsencrypt-prod
     # Add a single challenge solver, HTTP01 using nginx
     solvers:
     - dns01:
         route53:
-          hostedZoneID: ""
-          region: ""
+          hostedZoneID: "Z04826843GRR3J1QBY4GV"
+          region: "us-west-2"
