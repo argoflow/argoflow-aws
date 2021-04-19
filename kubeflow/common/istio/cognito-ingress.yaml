@@ -8,7 +8,7 @@ metadata:
     name: istio-ingress
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/target-type: instance
     alb.ingress.kubernetes.io/service: NodePort
     alb.ingress.kubernetes.io/backend-protocol: HTTPS
     alb.ingress.kubernetes.io/scheme: internet-facing
