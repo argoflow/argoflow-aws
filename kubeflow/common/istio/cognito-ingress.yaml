@@ -25,21 +25,21 @@ spec:
         paths:
           - backend:
               serviceName: istio-ingressgateway
-              servicePort: 80
+              servicePort: 443
             path: "/*"
     - host: serving.octo-hatteras.com
       http:
         paths:
           - backend:
               serviceName: istio-ingressgateway
-              servicePort: 80
+              servicePort: 443
             path: "/*"
     - host: "*.serving.octo-hatteras.com"
       http:
         paths:
           - backend:
               serviceName: istio-ingressgateway
-              servicePort: 80
+              servicePort: 443
             path: "/*"
   tls:
     - hosts:
