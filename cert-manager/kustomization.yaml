@@ -8,7 +8,7 @@ resources:
 # edit the `letsencrypt-cluster-issuer.yaml` with your details
 # see: https://cert-manager.io/docs/configuration/acme/#configuration
 # and uncomment the following line
-# - letsencrypt-cluster-issuer.yaml
+- letsencrypt-cluster-issuer.yaml
 
 images:
 - name: quay.io/jetstack/cert-manager-controller
