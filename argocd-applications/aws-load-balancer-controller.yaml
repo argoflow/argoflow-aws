@@ -12,13 +12,13 @@ spec:
     helm:
      parameters:
       - name: "rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-        value: "arn:aws:iam::863518836478:role/my-eks-cluster_aws-alb-ingress-controller"
+        value: "arn:aws:iam::363152542207:role/kf-dev-eks-alb-ingress-controller"
       - name: clusterName
-        value: my-eks-cluster
+        value: kf-dev
       - name: vpcId
-        value: vpc-038b1e8ba71bdbecf
+        value: vpc-08216641510711e5b
       - name: region
-        value: eu-central-1
+        value: us-west-2
       - name: resources.limits.cpu
         value: 100m
       - name: resources.limits.memory
