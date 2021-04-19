@@ -46,4 +46,4 @@ spec:
         - "kubeflow.my-eks-cluster.my-domain.com"
         - "serving.my-eks-cluster.my-domain.com"
         - "*.serving.my-eks-cluster.my-domain.com"
-      secretName: kubeflow-tls-certs
+      secretName: istio-ingressgateway-certs

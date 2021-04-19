@@ -8,6 +8,7 @@ resources:
 - github.com/kubeflow/manifests/common/istio-1-9-0/cluster-local-gateway/base
 - github.com/kubeflow/manifests/common/istio-1-9-0/kubeflow-istio-resources/base
 - cognito-ingress.yaml
+- ingress-certificate.yaml
 
 patchesStrategicMerge:
 - gateway-service.yaml
