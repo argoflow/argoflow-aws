@@ -8,7 +8,7 @@ metadata:
     name: istio-ingress
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/service: NodePort
     alb.ingress.kubernetes.io/backend-protocol: HTTPS
     alb.ingress.kubernetes.io/scheme: internet-facing
@@ -22,6 +22,7 @@ metadata:
     # ACM certificate ARN for your SSL domain
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:363152542207:certificate/1e19ee1a-7aa9-4ca8-966e-87aa8b735c28
 spec:
+  type: NodePort
   rules:
     - host: kf-dev.octo-hatteras.com
       http:
