@@ -2,6 +2,12 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-staging
+  annotations: 
+    certmanager.k8s.io/acme-challenge-type: "dns01"
+    certmanager.k8s.io/acme-dns01-provider: "route53"
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-production"
+    kubernetes.io/ingress.class: "external-ingress"
+    kubernetes.io/tls-acme: true
 spec:
   acme:
     # You must replace this email address with your own.
