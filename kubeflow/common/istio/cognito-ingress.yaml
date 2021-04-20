@@ -9,7 +9,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/service: NodePort
+    alb.ingress.kubernetes.io/service: LoadBalancer
     alb.ingress.kubernetes.io/backend-protocol: HTTPS
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
