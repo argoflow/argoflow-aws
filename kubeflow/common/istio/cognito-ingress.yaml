@@ -22,7 +22,6 @@ metadata:
     # ACM certificate ARN for your SSL domain
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:363152542207:certificate/1e19ee1a-7aa9-4ca8-966e-87aa8b735c28
 spec:
-  type: NodePort
   rules:
     - host: kf-dev.octo-hatteras.com
       http:
