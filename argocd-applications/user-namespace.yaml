@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/OctoConsulting/argoflow-aws
+    repoURL: https://github.com/OctoConsulting/argoflow-aws.git
     targetRevision: HEAD
     path: kubeflow/common/user-namespace
     kustomize:
