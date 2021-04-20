@@ -10,9 +10,9 @@ spec:
         args:
         - --source=service
         - --source=ingress
-        - --domain-filter=kf-dev.octo-hatteras.com
+        #- --domain-filter=kf-dev.octo-hatteras.com
         - --provider=aws
-        - --policy=upsert-only
+        #- --policy=upsert-only
         - --aws-zone-type=public
         - --registry=txt
-        - --txt-owner-id=my-identifier
+        - --txt-owner-id=kf-dev.octo-hatteras.com
