@@ -7,7 +7,6 @@ spec:
     spec:
       containers:
       - name: external-dns
-        image: k8s.gcr.io/external-dns/external-dns:latest 
         args:
         - --source=service
         - --source=ingress
