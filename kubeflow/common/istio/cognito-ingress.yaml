@@ -8,9 +8,6 @@ metadata:
     name: istio-ingress
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/service: LoadBalancer
-    alb.ingress.kubernetes.io/backend-protocol: HTTPS
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
     alb.ingress.kubernetes.io/auth-type: cognito
@@ -18,7 +15,7 @@ metadata:
     # Cognito parameters required for creation of authentication rules
     # The subdomain name only is sufficient for `UserPoolDomain`
     # e.g. if `FQDN=app.auth.ap-northeast-1.amazoncognito.com` then `UserPoolDomain=app`
-    alb.ingress.kubernetes.io/auth-idp-cognito: '{"UserPoolArn": "arn:aws:cognito-idp:us-west-2:363152542207:userpool/us-west-2_zLeJz6FCU","UserPoolClientId":"us-west-2_zLeJz6FCU","UserPoolDomain":"auth.octo-hatteras.com"}'
+    alb.ingress.kubernetes.io/auth-idp-cognito: '{"UserPoolArn": " arn:aws:cognito-idp:us-west-2:363152542207:userpool/us-west-2_zLeJz6FCU","UserPoolClientId":"us-west-2_zLeJz6FCU","UserPoolDomain":"auth.cognito.octo-hatteras.com"}'
     # ACM certificate ARN for your SSL domain
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:363152542207:certificate/1e19ee1a-7aa9-4ca8-966e-87aa8b735c28
 spec:
@@ -28,32 +25,25 @@ spec:
         paths:
           - backend:
               serviceName: istio-ingressgateway
-              servicePort: 443
+              servicePort: 80
             path: "/*"
     - host: serving.octo-hatteras.com
       http:
         paths:
           - backend:
               serviceName: istio-ingressgateway
-              servicePort: 443
+              servicePort: 80
             path: "/*"
     - host: "*.serving.octo-hatteras.com"
       http:
         paths:
           - backend:
               serviceName: istio-ingressgateway
-              servicePort: 443
+              servicePort: 80
             path: "/*"
   tls:
     - hosts:
-<<<<<<< HEAD
-        - "kubeflow.my-eks-cluster.my-domain.com"
-        - "serving.my-eks-cluster.my-domain.com"
-        - "*.serving.my-eks-cluster.my-domain.com"
-      secretName: istio-ingressgateway-certs
-=======
         - "kf-dev.octo-hatteras.com"
         - "serving.octo-hatteras.com"
         - "*.serving.octo-hatteras.com"
       secretName: istio-ingressgateway-certs
->>>>>>> 2563be3 (fix cognito strings in cognito-ingress.yaml)
