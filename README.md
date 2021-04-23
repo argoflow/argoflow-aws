@@ -267,12 +267,17 @@ and other related setting such as allowing custom images,
 edit the [spawner_ui_config.yaml](./distibution/kubeflow/notebooks/jupyter-web-app/spawner_ui_config.yaml)
 file.
 
-### Change ArgoCD application specs and commit
+### Setting up
 
-To simplify the process of telling ArgoCD to use your fork
-of this repo, a script is provided that updates the
-`spec.source.repoURL` of all the ArgoCD application specs.
-Simply run:
+This repo uses a simplified setup script (setup_repo.sh) that will perform initial variable substitution. In order to configure two things:
+1. The configuration variables that should be injected into your YAML specifications
+2. The repository (`spec.source.repoURL`) and branch from which ArgoCD should perform syncing
+
+Alter the values in [setup.conf](./setup.conf) to be in line with your AWS setup.
+
+Now simply run [setup_repo.sh](./setup_repo.sh) with the following paramaters:
+
+In order to set the repo URL and use HEAD:
 
 ```bash
 ./setup_repo.sh <your_repo_fork_url>
