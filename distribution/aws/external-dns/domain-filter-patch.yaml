@@ -1,3 +1,4 @@
+# TODO, if we want to replace the helm chart with this, then we have to manually set up the ServiceAccount and attach the appropriate role to it.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,13 +7,13 @@ spec:
   template:
     spec:
       containers:
-      - name: external-dns
-        args:
-        - --source=service
-        - --source=ingress
-        - --domain-filter=test.my-org.com
-        - --provider=aws
-        - --policy=upsert-only
-        - --aws-zone-type=public
-        - --registry=txt
-        - --txt-owner-id=my-identifier
+        - name: external-dns
+          args:
+            - --source=service
+            - --source=ingress
+            - --domain-filter=SETUP_CONF.DOMAIN
+            - --provider=aws
+            - --policy=upsert-only
+            - --aws-zone-type=public
+            - --registry=txt
+            - --txt-owner-id=my-identifier

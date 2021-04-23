@@ -1,19 +1,35 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aws-external-dns
+  name: external-dns
   namespace: argocd
 spec:
+  destination:
+    namespace: kube-system
+    server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://github.com/argoflow/argoflow-aws
-    targetRevision: HEAD
-    path: aws/external-dns
-    kustomize:
-      version: v4.0.5
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: kube-system
+    chart: external-dns
+    helm:
+      parameters:
+        - name: aws.region
+          value: SETUP_CONF.AWS_REGION
+        - name: domainFilters[0]
+          value: SETUP_CONF.DOMAIN
+        - name: rbac.create
+          value: "true"
+        - name: resources.limits.cpu
+          value: 100m
+        - name: resources.limits.memory
+          value: 300Mi
+        - name: resources.requests.cpu
+          value: 100m
+        - name: resources.requests.memory
+          value: 300Mi
+        - name: serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn
+          value: SETUP_CONF.ROLE_ARN_EXTERNAL_DNS
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 3.4.1
   syncPolicy:
     automated:
       prune: true
