@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/argoflow/argoflow-aws
     targetRevision: HEAD
-    path: mlflow
+    path: distribution/mlflow
   syncPolicy:
     automated:
       prune: true
