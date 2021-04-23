@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/argoflow/argoflow-aws
     targetRevision: HEAD
-    path: kubeflow/notebooks/experimental-pvcviewer-controller
+    path: distribution/kubeflow/notebooks/experimental-pvcviewer-controller
     kustomize:
       version: v4.0.5
   destination:

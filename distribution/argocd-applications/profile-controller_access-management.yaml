@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/argoflow/argoflow-aws
     targetRevision: HEAD
-    path: kubeflow/notebooks/profile-controller_access-management
+    path: distribution/kubeflow/notebooks/profile-controller_access-management
     kustomize:
       version: v4.0.5
   destination:

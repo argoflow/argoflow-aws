@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/argoflow/argoflow-aws
     targetRevision: HEAD
-    path: kubeflow/operators/xgboost
+    path: distribution/kubeflow/operators/xgboost
     kustomize:
       version: v4.0.5
   destination:

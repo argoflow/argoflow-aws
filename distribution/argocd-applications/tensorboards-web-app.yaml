@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/argoflow/argoflow-aws
     targetRevision: HEAD
-    path: kubeflow/notebooks/tensorboards-web-app
+    path: distribution/kubeflow/notebooks/tensorboards-web-app
     kustomize:
       version: v4.0.5
   destination:

@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/argoflow/argoflow-aws
     targetRevision: HEAD
-    path: kubeflow/operators/mxnet
+    path: distribution/kubeflow/operators/mxnet
     kustomize:
       version: v4.0.5
   destination:

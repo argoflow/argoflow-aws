@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/argoflow/argoflow-aws
     targetRevision: HEAD
-    path: kubeflow/notebooks/central-dashboard
+    path: distribution/kubeflow/notebooks/central-dashboard
     kustomize:
       version: v4.0.5
   destination:
