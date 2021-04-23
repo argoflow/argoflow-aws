@@ -7,8 +7,9 @@ export DISTRIBUTION_PATH=./distribution # folder where the distributions YAML fi
 
 while IFS="=" read PLACEHOLDER VALUE # While look that will perform simple parsing. On each line MY_VAR=123 will be read into PLACEHOLDER=MY_VAR, VALUE=123
 do
-  # recursive look for $PLACEHOLDER in all files in the $DISTRIBUTION_PATH and replace it with $VALUE
-  grep -rli "${PLACEHOLDER}" ${DISTRIBUTION_PATH}/* | xargs -i@ sed -i "s/${PLACEHOLDER}/${VALUE}/g" @
+  # recursively look for $PLACEHOLDER in all files in the $DISTRIBUTION_PATH and replace it with $VALUE
+  VALUE=$(echo "${VALUE////$'\/'}") #escape forward slashes (need for sed to work correctly)
+  grep -rli ${PLACEHOLDER} ${DISTRIBUTION_PATH}/* | xargs -i@ sed -i "s/${PLACEHOLDER}/${VALUE}/g" @ #perform recursive replace
 done <${SETUP_CONF_PATH} # pass the setup config into the while look
 
 
@@ -43,3 +44,4 @@ if [ -z "$2" ]
             fi
         done
 fi
+
