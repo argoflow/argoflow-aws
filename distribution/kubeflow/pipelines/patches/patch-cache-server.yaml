@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cache-server
+spec:
+  template:
+    spec:
+      containers:
+        - name: server
+          env:
+          - name: DBCONFIG_DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: pipelines-rds-config
+                key: DB_NAME_CACHE
+          - name: DBCONFIG_HOST_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: pipelines-rds-config
+                key: RDS_HOST
+          - name: DBCONFIG_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: pipelines-rds-config
+                key: RDS_PORT
+          - name: DBCONFIG_USER
+            valueFrom:
+              secretKeyRef:
+                name: pipelines-rds-secret
+                key: RDS_USERNAME
+          - name: DBCONFIG_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: pipelines-rds-secret
+                key: RDS_PASSWORD

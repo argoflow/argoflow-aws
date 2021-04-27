@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: pipelines-rds-config
+  namespace: kubeflow
+data:
+  DB_NAME_PIPELINES: <SETUP_CONF.RDS.DB_NAME.PIPELINES>
+  DB_NAME_CACHE: <SETUP_CONF.RDS.DB_NAME.CACHE>
+  RDS_HOST: <SETUP_CONF.RDS.HOST>
+  RDS_PORT: "<SETUP_CONF.RDS.PORT>"

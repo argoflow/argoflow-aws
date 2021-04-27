@@ -9,7 +9,8 @@ resources:
 - database-creation-job.yaml
 
 patchesStrategicMerge:
-- patches/remove-resources-patch.yaml
+- patches/remove-mysql-resources.yaml
+- patches/patch-db-manager.yaml
 
 images:
 - name: docker.io/kubeflowkatib/katib-controller

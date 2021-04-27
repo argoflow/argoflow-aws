@@ -1,0 +1,85 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-cache-database
+  namespace: kubeflow
+spec:
+  template:
+    metadata:
+      annotations:
+        "sidecar.istio.io/inject": "false"
+    spec:
+      containers:
+        - name: create-cache-database
+          image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
+          env:
+            - name: HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: rds-config
+                  key: RDS_HOST
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: rds-config
+                  key: RDS_PORT
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: rds-secret
+                  key: RDS_USERNAME
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rds-secret
+                  key: RDS_PASSWORD
+            - name: DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: rds-config
+                  key: DB_NAME_cache
+      restartPolicy: Never
+  backoffLimit: 5
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-cache-database
+  namespace: kubeflow
+spec:
+  template:
+    metadata:
+      annotations:
+        "sidecar.istio.io/inject": "false"
+    spec:
+      containers:
+        - name: create-cache-database
+          image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
+          env:
+            - name: HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: rds-config
+                  key: RDS_HOST
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: rds-config
+                  key: RDS_PORT
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: rds-secret
+                  key: RDS_USERNAME
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rds-secret
+                  key: RDS_PASSWORD
+            - name: DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: rds-config
+                  key: DB_NAME_CACHE
+      restartPolicy: Never
+  backoffLimit: 5
