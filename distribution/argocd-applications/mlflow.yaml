@@ -9,12 +9,12 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://github.com/argoflow/argoflow-aws
-    targetRevision: HEAD
+    repoURL: <SETUP_CONF.GIT_REPO.URL>
+    targetRevision: <SETUP_CONF.GIT_REPO.TARGET_REVISION>
     path: distribution/mlflow
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=false
+      - CreateNamespace=false

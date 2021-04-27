@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/argoflow/argoflow-aws
-    targetRevision: HEAD
+    repoURL: <SETUP_CONF.GIT_REPO.URL>
+    targetRevision: <SETUP_CONF.GIT_REPO.TARGET_REVISION>
     path: distribution/kubeflow/notebooks/experimental-pvcviewer-controller
     kustomize:
       version: v4.0.5

@@ -23,3 +23,11 @@ data:
       ignoreDifferences: |
         jsonPointers:
         - /spec/scope
+  repositories: |
+    - url: https://github.com/argoproj/my-private-repository
+      passwordSecret:
+        name: git-repo-secret
+        key: HTTPS_PASSWORD
+      usernameSecret:
+        name: git-repo-secret
+        key: HTTPS_USERNAME
