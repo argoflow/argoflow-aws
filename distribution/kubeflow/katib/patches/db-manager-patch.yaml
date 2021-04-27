@@ -1,0 +1,39 @@
+# This patches the katib-db-manager to use katib-rds-secret and katib-rds-config parameters needed to connect to the RDS database
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: katib-db-manager
+  namespace: kubeflow
+spec:
+  template:
+    spec:
+      containers:
+        - name: katib-db-manager
+          env:
+            - name: DB_NAME
+              value: mysql
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: katib-rds-secret
+                  key: RDS_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: katib-rds-secret
+                  key: RDS_PASSWORD
+            - name: KATIB_MYSQL_DB_DATABASE
+              valueFrom:
+                configMapRef:
+                  name: katib-rds-config
+                  key: DB_NAME
+            - name: KATIB_MYSQL_DB_HOST
+              valueFrom:
+                configMapRef:
+                  name: katib-rds-config
+                  key: RDS_HOST
+            - name: KATIB_MYSQL_DB_PORT
+              valueFrom:
+                configMapRef:
+                  name: katib-rds-config
+                  key: RDS_PORT

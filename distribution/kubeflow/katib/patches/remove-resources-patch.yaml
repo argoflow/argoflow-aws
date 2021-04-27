@@ -1,0 +1,36 @@
+#this will remove all resources related to on-cluster MySQL
+$patch: delete
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: katib-mysql
+  namespace: kubeflow
+---
+$patch: delete
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: katib-mysql
+  namespace: kubeflow
+---
+$patch: delete
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: katib-mysql-secrets
+  namespace: kubeflow
+---
+$patch: delete
+apiVersion: v1
+kind: Service
+metadata:
+  name: katib-mysql
+  namespace: kubeflow
+---
+$patch: delete
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: katib-mysql
+  namespace: kubeflow
