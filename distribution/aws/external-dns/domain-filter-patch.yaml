@@ -11,7 +11,7 @@ spec:
           args:
             - --source=service
             - --source=ingress
-            - --domain-filter=<SETUP_CONF.DOMAIN>
+            - --domain-filter=<<domain>>
             - --provider=aws
             - --policy=upsert-only
             - --aws-zone-type=public

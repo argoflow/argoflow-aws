@@ -3,7 +3,7 @@ apiVersion: v1
 metadata:
   name: mlflow-config
 data:
-  DB_NAME: <SETUP_CONF.RDS.DB_NAME.MLFLOW>
-  RDS_HOST: <SETUP_CONF.RDS.HOST>
-  RDS_PORT: "<SETUP_CONF.RDS.PORT>"
-  ARTIFACT_S3_BUCKET: <SETUP_CONF.ARTIFACT_S3_BUCKET>
+  DB_NAME: << rds.db_name.mlflow >>
+  RDS_HOST: << rds.host >>
+  RDS_PORT: "<< rds.port >>"
+  ARTIFACT_S3_BUCKET: << artifact_s3_bucket >>

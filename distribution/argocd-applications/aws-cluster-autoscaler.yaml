@@ -12,7 +12,7 @@ spec:
     helm:
       parameters:
         - name: "rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-          value: <SETUP_CONF.ROLE_ARN.CLUSTER_AUTOSCALER>
+          value: <<role_arn.cluster_autoscaler>>
         - name: cloudProvider
           value: aws
         - name: image.repository
@@ -20,11 +20,11 @@ spec:
         - name: image.tag
           value: v1.20.0
         - name: autoDiscovery.clusterName
-          value: <SETUP_CONF.CLUSTER_NAME>
+          value: <<cluster_name>>
         - name: autoDiscovery.enabled
           value: "true"
         - name: awsRegion
-          value: <SETUP_CONF.AWS_REGION>
+          value: <<aws_region>>
         - name: extraArgs.balance-similar-node-groups
           value: "true"
         - name: extraArgs.scale-down-enabled
