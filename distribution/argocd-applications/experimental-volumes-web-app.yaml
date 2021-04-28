@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: <<git_repo.url>>
-    targetRevision: <<git_repo.target_revision>>
+    repoURL: << git_repo.url >>
+    targetRevision: << git_repo.target_revision >>
     path: distribution/kubeflow/notebooks/experimental-volumes-web-app
     kustomize:
       version: v4.0.5

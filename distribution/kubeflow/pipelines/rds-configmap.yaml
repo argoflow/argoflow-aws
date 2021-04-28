@@ -4,7 +4,7 @@ metadata:
   name: pipelines-rds-config
   namespace: kubeflow
 data:
-  DB_NAME_PIPELINES:<<  rds.db_name.pipelines >>
-  DB_NAME_CACHE:<<  rds.db_name.cache >>
-  RDS_HOST:<<  rds.host >>
+  DB_NAME_PIPELINES: <<  rds.db_name.pipelines >>
+  DB_NAME_CACHE: <<  rds.db_name.cache >>
+  RDS_HOST: <<  rds.host >>
   RDS_PORT: "<<  rds.port >>"

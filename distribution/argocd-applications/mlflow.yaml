@@ -9,8 +9,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: <<git_repo.url>>
-    targetRevision: <<git_repo.target_revision>>
+    repoURL: << git_repo.url >>
+    targetRevision: << git_repo.target_revision >>
     path: distribution/mlflow
   syncPolicy:
     automated:
