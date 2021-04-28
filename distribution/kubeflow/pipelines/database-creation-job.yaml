@@ -44,7 +44,7 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: create-cache-database
+  name: create-pipelines-database
   namespace: kubeflow
 spec:
   template:
@@ -53,7 +53,7 @@ spec:
         "sidecar.istio.io/inject": "false"
     spec:
       containers:
-        - name: create-cache-database
+        - name: create-pipelines-database
           image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
           env:
             - name: HOST
@@ -80,6 +80,49 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: rds-config
-                  key: DB_NAME_CACHE
+                  key: DB_NAME_PIPELINES
+      restartPolicy: Never
+  backoffLimit: 5
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-metadata-database
+  namespace: kubeflow
+spec:
+  template:
+    metadata:
+      annotations:
+        "sidecar.istio.io/inject": "false"
+    spec:
+      containers:
+        - name: create-metadata-database
+          image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
+          env:
+            - name: HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: rds-config
+                  key: RDS_HOST
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: rds-config
+                  key: RDS_PORT
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: rds-secret
+                  key: RDS_USERNAME
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rds-secret
+                  key: RDS_PASSWORD
+            - name: DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: rds-config
+                  key: DB_NAME_METADATA
       restartPolicy: Never
   backoffLimit: 5
