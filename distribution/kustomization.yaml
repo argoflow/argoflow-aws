@@ -11,7 +11,7 @@ resources:
 # - argocd-applications/oidc-authservice.yaml
 # - argocd-applications/dex-istio.yaml
 # - argocd-applications/knative.yaml
-# - argocd-applications/pipelines.yaml
+- argocd-applications/pipelines.yaml
 # - argocd-applications/kfserving.yaml
 - argocd-applications/katib.yaml
 # - argocd-applications/central-dashboard.yaml
