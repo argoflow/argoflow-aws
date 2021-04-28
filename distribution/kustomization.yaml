@@ -6,7 +6,7 @@ resources:
 # - argocd-applications/metallb.yaml
 - argocd-applications/argocd.yaml
 # - argocd-applications/kubeflow-roles-namespaces.yaml
-# - argocd-applications/cert-manager.yaml
+- argocd-applications/cert-manager.yaml
 - argocd-applications/istio.yaml
 # - argocd-applications/oidc-authservice.yaml
 # - argocd-applications/dex-istio.yaml
