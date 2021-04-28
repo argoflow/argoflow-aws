@@ -24,11 +24,11 @@ metadata:
   name: mysql
   namespace: kubeflow
 ---
-$patch: delete
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: mysql
+# $patch: delete
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#   name: mysql
 ---
 $patch: delete
 apiVersion: "networking.istio.io/v1alpha3"
