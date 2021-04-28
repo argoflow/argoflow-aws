@@ -24,7 +24,7 @@ data:
         jsonPointers:
         - /spec/scope
   repositories: |
-    - url: https://github.com/argoproj/my-private-repository
+    - url: <SETUP_CONF.GIT_REPO.URL>
       passwordSecret:
         name: git-repo-secret
         key: HTTPS_PASSWORD
