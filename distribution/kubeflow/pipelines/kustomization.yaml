@@ -8,7 +8,7 @@ resources:
 - database-creation-job.yaml
 
 patchesStrategicMerge:
-#- patches/remove-mysql-resources.yaml
+- patches/remove-mysql-resources.yaml
 - patches/patch-cache-server.yaml
 - patches/patch-metadata-grpc-deployment.yaml
 - patches/patch-ml-pipeline.yaml

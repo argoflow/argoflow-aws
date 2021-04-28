@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: kubeflow
 
 resources:
-- github.com/kubeflow/katib/manifests/v1beta1/installs/katib-external-db?ref=release-0.11
+- github.com/kubeflow/katib/manifests/v1beta1/installs/katib-with-kubeflow?ref=release-0.11
 - rds-secret.yaml
 - rds-configmap.yaml
 - database-creation-job.yaml
