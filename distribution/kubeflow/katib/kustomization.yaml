@@ -9,7 +9,7 @@ resources:
 - database-creation-job.yaml
 
 patchesStrategicMerge:
-# - patches/remove-mysql-resources.yaml
+- patches/remove-mysql-resources.yaml
 - patches/patch-db-manager.yaml
 
 images:
