@@ -4,7 +4,7 @@ namespace: kube-system
 
 resources:
 - cluster-role-binding-auth.yaml
-- cluster-roling-binding.yaml
+- cluster-role-binding.yaml
 - cluster-role.yaml
 - deployment.yaml
 - service-account.yaml
