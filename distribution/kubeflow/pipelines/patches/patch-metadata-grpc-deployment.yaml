@@ -12,24 +12,24 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: pipelines-rds-secret
-                key: username
+                key: RDS_USERNAME
           - name: DBCONFIG_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: pipelines-rds-secret
-                key: password
+                key: RDS_PASSWORD
           - name: MYSQL_DATABASE
             valueFrom:
               configMapKeyRef:
                 name: pipelines-rds-config
-                key: mlmdDb
+                key: DB_NAME_METADATA
           - name: MYSQL_HOST
             valueFrom:
               configMapKeyRef:
                 name: pipelines-rds-config
-                key: dbHost
+                key: RDS_HOST
           - name: MYSQL_PORT
             valueFrom:
               configMapKeyRef:
                 name: pipelines-rds-config
-                key: dbPort
+                key: RDS_PORT

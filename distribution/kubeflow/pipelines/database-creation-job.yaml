@@ -37,7 +37,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: pipelines-rds-config
-                  key: DB_NAME_cache
+                  key: DB_NAME_CACHE
       restartPolicy: Never
   backoffLimit: 5
 ---
