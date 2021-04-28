@@ -6,5 +6,6 @@ metadata:
 data:
   DB_NAME_PIPELINES: <<conf.rds.db_name.pipelines.conf>>
   DB_NAME_CACHE: <<conf.rds.db_name.cache.conf>>
+  DB_NAME_METADATA: <<conf.rds.db_name.metadata.conf>>
   RDS_HOST: <<conf.rds.host.conf>>
   RDS_PORT: "<<conf.rds.port.conf>>"
