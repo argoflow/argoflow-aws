@@ -22,80 +22,21 @@ spec:
                 secretKeyRef:
                   name: katib-rds-secret
                   key: RDS_PASSWORD
-            - name: KATIB_MYSQL_DB_DATABASE
+            - $patch: replace
+              name: KATIB_MYSQL_DB_DATABASE
               valueFrom:
                 configMapKeyRef:
                   name: katib-rds-config
                   key: DB_NAME
-            - name: KATIB_MYSQL_DB_HOST
+            - $patch: replace
+              name: KATIB_MYSQL_DB_HOST
               valueFrom:
                 configMapKeyRef:
                   name: katib-rds-config
                   key: RDS_HOST
-            - name: KATIB_MYSQL_DB_PORT
+            - $patch: replace
+              name: KATIB_MYSQL_DB_PORT
               valueFrom:
                 configMapKeyRef:
                   name: katib-rds-config
                   key: RDS_PORT
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: katib-db-manager
-    app.kubernetes.io/instance: katib
-  name: katib-db-manager
-  namespace: kubeflow
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: katib-db-manager
-  template:
-    metadata:
-      annotations:
-        sidecar.istio.io/inject: 'false'
-      labels:
-        app: katib-db-manager
-    spec:
-      containers:
-        - command:
-            - ./katib-db-manager
-          env:
-            - name: DB_NAME
-              value: mysql
-            - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  key: RDS_USERNAME
-                  name: katib-rds-secret
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: RDS_PASSWORD
-                  name: katib-rds-secret
-            - name: KATIB_MYSQL_DB_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  key: DB_NAME
-                  name: katib-rds-config
-                secretKeyRef:
-                  key: KATIB_MYSQL_DB_DATABASE
-                  name: katib-mysql-secrets-th9dkf48dg
-            - name: KATIB_MYSQL_DB_HOST
-              valueFrom:
-                configMapKeyRef:
-                  key: RDS_HOST
-                  name: katib-rds-config
-                secretKeyRef:
-                  key: KATIB_MYSQL_DB_HOST
-                  name: katib-mysql-secrets-th9dkf48dg
-            - name: KATIB_MYSQL_DB_PORT
-              valueFrom:
-                configMapKeyRef:
-                  key: RDS_PORT
-                  name: katib-rds-config
-                secretKeyRef:
-                  key: KATIB_MYSQL_DB_PORT
-                  name: katib-mysql-secrets-th9dkf48dg
-
