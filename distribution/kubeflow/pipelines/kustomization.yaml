@@ -9,11 +9,10 @@ resources:
 
 patchesStrategicMerge:
 - patches/remove-mysql-resources.yaml
-- patches/remove-mysql-resources.yaml
 - patches/patch-cache-server.yaml
 - patches/patch-metadata-grpc-deployment.yaml
 - patches/patch-ml-pipeline.yaml
-# - patches/remove-minio-resources-patch.yaml #TODO add this back in once S3 patches have been implemented
+# - patches/remove-minio-resources.yaml #TODO add this back in once S3 patches have been implemented
 
 images:
 - name: gcr.io/ml-pipeline/cache-deployer
