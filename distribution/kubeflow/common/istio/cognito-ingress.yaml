@@ -15,26 +15,26 @@ metadata:
     # Cognito parameters required for creation of authentication rules
     # The subdomain name only is sufficient for `UserPoolDomain`
     # e.g. if `FQDN=app.auth.ap-northeast-1.amazoncognito.com` then `UserPoolDomain=app`
-    alb.ingress.kubernetes.io/auth-idp-cognito: '{"UserPoolArn": << cognito_user_pool.arn >>	,"UserPoolClientId": << cognito_user_pool.client_id >>,"UserPoolDomain": << cognito_user_pool.domain >>}'
+    alb.ingress.kubernetes.io/auth-idp-cognito: '{"UserPoolArn": <<conf.cognito_user_pool.arn.conf>>	,"UserPoolClientId": <<conf.cognito_user_pool.client_id.conf>>,"UserPoolDomain": <<conf.cognito_user_pool.domain.conf>>}'
     # ACM certificate ARN for your SSL domain
-    alb.ingress.kubernetes.io/certificate-arn: << acm_certificate_arn >>
+    alb.ingress.kubernetes.io/certificate-arn: <<conf.acm_certificate_arn.conf>>
 spec:
   rules:
-    - host: "<< subdomain_dashboard >>.<< domain >>"
+    - host: "<<conf.subdomain_dashboard.conf>>.<<conf.domain.conf>>"
       http:
         paths:
           - backend:
               serviceName: istio-ingressgateway
               servicePort: 80
             path: "/*"
-    - host: "<< subdomain_serving >>.<< domain >>"
+    - host: "<<conf.subdomain_serving.conf>>.<<conf.domain.conf>>"
       http:
         paths:
           - backend:
               serviceName: istio-ingressgateway
               servicePort: 80
             path: "/*"
-    - host: "*.<< subdomain_serving >>.<< domain >>"
+    - host: "*.<<conf.subdomain_serving.conf>>.<<conf.domain.conf>>"
       http:
         paths:
           - backend:
@@ -43,7 +43,7 @@ spec:
             path: "/*"
   tls:
     - hosts:
-        - "<< subdomain_dashboard >>.<< domain >>"
-        - "<< subdomain_serving >>.<< domain >>"
-        - "*.<< subdomain_serving >>.<< domain >>"
+        - "<<conf.subdomain_dashboard.conf>>.<<conf.domain.conf>>"
+        - "<<conf.subdomain_serving.conf>>.<<conf.domain.conf>>"
+        - "*.<<conf.subdomain_serving.conf>>.<<conf.domain.conf>>"
       secretName: istio-ingressgateway-certs

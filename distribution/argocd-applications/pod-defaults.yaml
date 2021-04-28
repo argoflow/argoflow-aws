@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: << git_repo.url >>
-    targetRevision: << git_repo.target_revision >>
+    repoURL: <<conf.git_repo.url.conf>>
+    targetRevision: <<conf.git_repo.target_revision.conf>>
     path: distribution/kubeflow/notebooks/pod-defaults
     kustomize:
       version: v4.0.5

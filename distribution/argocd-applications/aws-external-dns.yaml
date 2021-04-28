@@ -13,9 +13,9 @@ spec:
     helm:
       parameters:
         - name: aws.region
-          value: << aws_region >>
+          value: <<conf.aws_region.conf>>
         - name: domainFilters[0]
-          value: << domain >>
+          value: <<conf.domain.conf>>
         - name: rbac.create
           value: "true"
         - name: resources.limits.cpu
@@ -27,7 +27,7 @@ spec:
         - name: resources.requests.memory
           value: 300Mi
         - name: serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn
-          value: << role_arn.external_dns >>
+          value: <<conf.role_arn.external_dns.conf>>
     repoURL: https://charts.bitnami.com/bitnami
     targetRevision: 3.4.1
   syncPolicy:

@@ -24,7 +24,7 @@ data:
         jsonPointers:
         - /spec/scope
   repositories: |
-    - url: << git_repo.url >>
+    - url: <<conf.git_repo.url.conf>>
       passwordSecret:
         name: git-repo-secret
         key: HTTPS_PASSWORD
