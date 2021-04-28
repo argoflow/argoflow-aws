@@ -22,7 +22,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: pipelines-rds-config
-                  key: DBNAME_PIPELINES
+                  key: DB_NAME_PIPELINES
             - name: DBCONFIG_HOST
               valueFrom:
                 configMapKeyRef:
