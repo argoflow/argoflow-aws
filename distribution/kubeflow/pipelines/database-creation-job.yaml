@@ -16,27 +16,27 @@ spec:
             - name: HOST
               valueFrom:
                 configMapKeyRef:
-                  name: rds-config
+                  name: pipelines-rds-config
                   key: RDS_HOST
             - name: PORT
               valueFrom:
                 configMapKeyRef:
-                  name: rds-config
+                  name: pipelines-rds-config
                   key: RDS_PORT
             - name: USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: rds-secret
+                  name: pipelines-rds-secret
                   key: RDS_USERNAME
             - name: PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: rds-secret
+                  name: pipelines-rds-secret
                   key: RDS_PASSWORD
             - name: DATABASE
               valueFrom:
                 configMapKeyRef:
-                  name: rds-config
+                  name: pipelines-rds-config
                   key: DB_NAME_cache
       restartPolicy: Never
   backoffLimit: 5
@@ -59,27 +59,27 @@ spec:
             - name: HOST
               valueFrom:
                 configMapKeyRef:
-                  name: rds-config
+                  name: pipelines-rds-config
                   key: RDS_HOST
             - name: PORT
               valueFrom:
                 configMapKeyRef:
-                  name: rds-config
+                  name: pipelines-rds-config
                   key: RDS_PORT
             - name: USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: rds-secret
+                  name: pipelines-rds-secret
                   key: RDS_USERNAME
             - name: PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: rds-secret
+                  name: pipelines-rds-secret
                   key: RDS_PASSWORD
             - name: DATABASE
               valueFrom:
                 configMapKeyRef:
-                  name: rds-config
+                  name: pipelines-rds-config
                   key: DB_NAME_PIPELINES
       restartPolicy: Never
   backoffLimit: 5
@@ -102,27 +102,27 @@ spec:
             - name: HOST
               valueFrom:
                 configMapKeyRef:
-                  name: rds-config
+                  name: pipelines-rds-config
                   key: RDS_HOST
             - name: PORT
               valueFrom:
                 configMapKeyRef:
-                  name: rds-config
+                  name: pipelines-rds-config
                   key: RDS_PORT
             - name: USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: rds-secret
+                  name: pipelines-rds-secret
                   key: RDS_USERNAME
             - name: PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: rds-secret
+                  name: pipelines-rds-secret
                   key: RDS_PASSWORD
             - name: DATABASE
               valueFrom:
                 configMapKeyRef:
-                  name: rds-config
+                  name: pipelines-rds-config
                   key: DB_NAME_METADATA
       restartPolicy: Never
   backoffLimit: 5
