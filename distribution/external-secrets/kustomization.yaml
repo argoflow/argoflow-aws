@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: kube-system
 
 resources:
-- external-secrets.yaml
+- ./base
