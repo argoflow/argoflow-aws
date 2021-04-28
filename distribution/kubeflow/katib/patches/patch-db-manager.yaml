@@ -24,16 +24,16 @@ spec:
                   key: RDS_PASSWORD
             - name: KATIB_MYSQL_DB_DATABASE
               valueFrom:
-                configMapRef:
+                configMapKeyRef:
                   name: katib-rds-config
                   key: DB_NAME
             - name: KATIB_MYSQL_DB_HOST
               valueFrom:
-                configMapRef:
+                configMapKeyRef:
                   name: katib-rds-config
                   key: RDS_HOST
             - name: KATIB_MYSQL_DB_PORT
               valueFrom:
-                configMapRef:
+                configMapKeyRef:
                   name: katib-rds-config
                   key: RDS_PORT

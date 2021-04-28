@@ -30,7 +30,7 @@ spec:
           envFrom:
             - secretRef:
                 name: mlflow-secret
-            - configMapRef:
+            - configMapKeyRef:
                 name: mlflow-config
           ports:
             - name: http
