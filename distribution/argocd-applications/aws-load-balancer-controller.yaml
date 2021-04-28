@@ -12,13 +12,13 @@ spec:
     helm:
       parameters:
         - name: "rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-          value: <<conf.role_arn.loadbalancer_controller.conf>>
+          value: <<__role_arn.loadbalancer_controller__>>
         - name: clusterName
-          value: <<conf.cluster_name.conf>>
+          value: <<__cluster_name__>>
         - name: vpcId
-          value: <<conf.vpc_id.conf>>
+          value: <<__vpc_id__>>
         - name: region
-          value: <<conf.aws_region.conf>>
+          value: <<__aws_region__>>
         - name: resources.limits.cpu
           value: 100m
         - name: resources.limits.memory

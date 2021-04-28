@@ -4,6 +4,6 @@ metadata:
   name: katib-rds-config
   namespace: kubeflow
 data:
-  DB_NAME: <<conf.rds.db_name.katib.conf>>
-  RDS_HOST: <<conf.rds.host.conf>>
-  RDS_PORT: "<<conf.rds.port.conf>>"
+  DB_NAME: <<__rds.db_name.katib__>>
+  RDS_HOST: <<__rds.host__>>
+  RDS_PORT: "<<__rds.port__>>"
