@@ -9,7 +9,14 @@ spec:
     spec:
       containers:
         - name: katib-db-manager
-          env:
+          env:          
+            - $patch: delete
+              name: DB_NAME          
+            - $patch: delete
+              name: KATIB_MYSQL_DB_HOST  
+            - $patch: delete
+              name: KATIB_MYSQL_DB_PORT  
+              
             - name: DB_NAME
               value: mysql
             - name: DB_USER
@@ -22,20 +29,17 @@ spec:
                 secretKeyRef:
                   name: katib-rds-secret
                   key: RDS_PASSWORD
-            - $patch: replace
-              name: KATIB_MYSQL_DB_DATABASE
+            - name: KATIB_MYSQL_DB_DATABASE
               valueFrom:
                 configMapKeyRef:
                   name: katib-rds-config
                   key: DB_NAME
-            - $patch: replace
-              name: KATIB_MYSQL_DB_HOST
+            - name: KATIB_MYSQL_DB_HOST
               valueFrom:
                 configMapKeyRef:
                   name: katib-rds-config
                   key: RDS_HOST
-            - $patch: replace
-              name: KATIB_MYSQL_DB_PORT
+            - name: KATIB_MYSQL_DB_PORT
               valueFrom:
                 configMapKeyRef:
                   name: katib-rds-config
