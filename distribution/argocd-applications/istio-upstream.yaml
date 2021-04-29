@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/DavidSpek/argoflow
-    targetRevision: HEAD
-    path: istio
+    repoURL: <<__git_repo.url__>>
+    targetRevision: <<__git_repo.target_revision__>>
+    path: distribution/istio
     kustomize:
       version: v4.0.5
   destination:
