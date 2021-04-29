@@ -1,0 +1,24 @@
+#this will remove all resources related to on-cluster MySQL
+$patch: delete
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+---
+$patch: delete
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minio-pvc
+---
+$patch: delete
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio-service
+---
+$patch: delete
+kind: Secret
+apiVersion: v1
+metadata:
+  name: mlpipeline-minio-artifact

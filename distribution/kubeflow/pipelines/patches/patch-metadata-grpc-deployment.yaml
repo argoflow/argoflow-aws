@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metadata-grpc-deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: container
+          env:
+          - name: DBCONFIG_USER
+            valueFrom:
+              secretKeyRef:
+                name: pipelines-rds-secret
+                key: RDS_USERNAME
+          - name: DBCONFIG_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: pipelines-rds-secret
+                key: RDS_PASSWORD
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: pipelines-rds-config
+                key: DB_NAME_METADATA
+          - name: MYSQL_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: pipelines-rds-config
+                key: RDS_HOST
+          - name: MYSQL_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: pipelines-rds-config
+                key: RDS_PORT

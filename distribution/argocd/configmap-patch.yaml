@@ -23,3 +23,11 @@ data:
       ignoreDifferences: |
         jsonPointers:
         - /spec/scope
+  repositories: |
+    - url: <<__git_repo.url__>>
+      passwordSecret:
+        name: git-repo-secret
+        key: HTTPS_PASSWORD
+      usernameSecret:
+        name: git-repo-secret
+        key: HTTPS_USERNAME

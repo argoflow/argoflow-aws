@@ -1,0 +1,9 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: katib-rds-config
+  namespace: kubeflow
+data:
+  DB_NAME: <<__rds.db_name.katib__>>
+  RDS_HOST: <<__rds.host__>>
+  RDS_PORT: "<<__rds.port__>>"

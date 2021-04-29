@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/argoflow/argoflow-aws
-    targetRevision: HEAD
+    repoURL: <<__git_repo.url__>>
+    targetRevision: <<__git_repo.target_revision__>>
     path: distribution/kubeflow/pipelines
     kustomize:
       version: v4.0.5

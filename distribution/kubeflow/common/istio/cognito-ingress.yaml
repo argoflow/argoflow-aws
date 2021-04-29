@@ -15,26 +15,26 @@ metadata:
     # Cognito parameters required for creation of authentication rules
     # The subdomain name only is sufficient for `UserPoolDomain`
     # e.g. if `FQDN=app.auth.ap-northeast-1.amazoncognito.com` then `UserPoolDomain=app`
-    alb.ingress.kubernetes.io/auth-idp-cognito: '{"UserPoolArn": <SETUP_CONF.COGNITO_USER_POOL.ARN>,"UserPoolClientId": <SETUP_CONF.COGNITO_USER_POOL.CLIENT_ID>,"UserPoolDomain": <SETUP_CONF.COGNITO_USER_POOL.DOMAIN>}'
+    alb.ingress.kubernetes.io/auth-idp-cognito: '{"UserPoolArn": <<__cognito_user_pool.arn__>>	,"UserPoolClientId": <<__cognito_user_pool.client_id__>>,"UserPoolDomain": <<__cognito_user_pool.domain__>>}'
     # ACM certificate ARN for your SSL domain
-    alb.ingress.kubernetes.io/certificate-arn: <SETUP_CONF.ACM_CERTIFICATE_ARN>
+    alb.ingress.kubernetes.io/certificate-arn: <<__acm_certificate_arn__>>
 spec:
   rules:
-    - host: "<SETUP_CONF.SUBDOMAIN_DASHBOARD>.<SETUP_CONF.DOMAIN>"
+    - host: "<<__subdomain_dashboard__>>.<<__domain__>>"
       http:
         paths:
           - backend:
               serviceName: istio-ingressgateway
               servicePort: 80
             path: "/*"
-    - host: "<SETUP_CONF.SUBDOMAIN_SERVING>.<SETUP_CONF.DOMAIN>"
+    - host: "<<__subdomain_serving__>>.<<__domain__>>"
       http:
         paths:
           - backend:
               serviceName: istio-ingressgateway
               servicePort: 80
             path: "/*"
-    - host: "*.<SETUP_CONF.SUBDOMAIN_SERVING>.<SETUP_CONF.DOMAIN>"
+    - host: "*.<<__subdomain_serving__>>.<<__domain__>>"
       http:
         paths:
           - backend:
@@ -43,7 +43,7 @@ spec:
             path: "/*"
   tls:
     - hosts:
-        - "<SETUP_CONF.SUBDOMAIN_DASHBOARD>.<SETUP_CONF.DOMAIN>"
-        - "<SETUP_CONF.SUBDOMAIN_SERVING>.<SETUP_CONF.DOMAIN>"
-        - "*.<SETUP_CONF.SUBDOMAIN_SERVING>.<SETUP_CONF.DOMAIN>"
+        - "<<__subdomain_dashboard__>>.<<__domain__>>"
+        - "<<__subdomain_serving__>>.<<__domain__>>"
+        - "*.<<__subdomain_serving__>>.<<__domain__>>"
       secretName: istio-ingressgateway-certs
