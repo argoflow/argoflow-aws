@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aws-cluster-autoscaler
+  name: cluster-autoscaler
   namespace: argocd
 spec:
   project: default
@@ -11,8 +11,14 @@ spec:
     chart: cluster-autoscaler
     helm:
       parameters:
-        - name: "rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+        - name: rbac.serviceAccount.annotations.eks\.amazonaws\.com/role-arn
           value: <<__role_arn.cluster_autoscaler__>>
+        - name: rbac.serviceAccount.create
+          value: "true"
+        - name: rbac.create
+          value: "true"
+        - name: fullnameOverride
+          value: cluster-autoscaler
         - name: cloudProvider
           value: aws
         - name: image.repository

@@ -11,7 +11,7 @@ spec:
     chart: aws-load-balancer-controller
     helm:
       parameters:
-        - name: "rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+        - name: serviceAccount.annotations.eks\.amazonaws\.com/role-arn
           value: <<__role_arn.loadbalancer_controller__>>
         - name: clusterName
           value: <<__cluster_name__>>
@@ -19,6 +19,10 @@ spec:
           value: <<__vpc_id__>>
         - name: region
           value: <<__aws_region__>>
+        - name: serviceAccount.create
+          value: "true"
+        - name: rbac.create
+          value: "true"
         - name: resources.limits.cpu
           value: 100m
         - name: resources.limits.memory
