@@ -6,7 +6,17 @@ metadata:
 spec:
   profile: default
   tag: 1.9.4 # istio/operator
-  hub: docker.io/istio
+  hub: gcr.io/istio-release  #ocker.io/istio
   meshConfig:
     accessLogFile: /dev/stdout
     enablePrometheusMerge: true
+  components:
+    ingressGateways:
+    - name: istio-ingressgateway
+      k8s:
+        serviceAnnotations:
+          service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
+          service.beta.kubernetes.io/aws-load-balancer-target-group-attributes: proxy_protocol_v2.enabled=true
+          service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+          proxy.istio.io/config: '{"gatewayTopology" : { "numTrustedProxies": 2 } }'
+          external-dns.alpha.kubernetes.io/hostname: <<__subdomain_dashboard__>>.<<__domain__>>, <<__subdomain_auth__>>.<<__domain__>>, <<__subdomain_serving__>>.<<__domain__>>, *.<<__subdomain_serving__>>.<<__domain__>>
