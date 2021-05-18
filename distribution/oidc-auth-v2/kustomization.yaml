@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- dex/
+- istio-configuration/
+- oauth2-proxy/
+
+images:
+- name: quay.io/oauth2-proxy/oauth2-proxy
+  newName: quay.io/oauth2-proxy/oauth2-proxy
+  newTag: v7.1.3
+- name: ghcr.io/dexidp/dex
+  newName: ghcr.io/dexidp/dex
+  newTag: v2.28.1

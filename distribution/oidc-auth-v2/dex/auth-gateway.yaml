@@ -1,13 +1,14 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: kubeflow-gateway
+  name: auth
+  namespace: auth
 spec:
   selector:
     istio: ingressgateway
   servers:
   - hosts:
-    - <<__subdomain_dashboard__>>.<<__domain__>>
+    - <<__subdomain_auth__>>.<<__domain__>>
     port:
       name: http
       number: 80
@@ -16,11 +17,11 @@ spec:
     tls:
       httpsRedirect: true
   - hosts:
-    - <<__subdomain_dashboard__>>.<<__domain__>>
+    - <<__subdomain_auth__>>.<<__domain__>>
     port:
       name: https
       number: 443
       protocol: HTTPS
     tls:
       mode: SIMPLE
-      credentialName: kubeflow-ingressgateway-certs
+      credentialName: auth-ingressgateway-certs

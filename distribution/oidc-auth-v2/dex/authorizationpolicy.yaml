@@ -1,0 +1,37 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-auth-gateway-access
+  namespace: istio-system
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+      istio: ingressgateway
+  rules:
+  - to:
+    - operation:
+        hosts:
+        - <<__subdomain_auth__>>.<<__domain__>>
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: dex-allow-access
+  namespace: auth
+spec:
+  action: ALLOW
+  rules:
+  ## selector wasn't working for some reason
+  ## allow all is used until it is fixed
+  - {}
+  # selector:
+  #   matchLabels:
+  #     app: dex
+  # rules:
+  # - to:
+  #   - operation:
+  #       hosts:
+  #       - <<__subdomain_auth__>>.<<__domain__>>
+  #       - "dex.auth.svc.cluster.local"

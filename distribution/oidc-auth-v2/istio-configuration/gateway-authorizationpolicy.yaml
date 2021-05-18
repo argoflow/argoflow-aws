@@ -1,0 +1,37 @@
+# Allow all traffic to the istio-ingressgateway
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: istio-ingressgateway
+  namespace: istio-system
+spec:
+  action: CUSTOM
+  selector:
+    # Same as the istio-ingressgateway Service selector
+    matchLabels:
+      app: istio-ingressgateway
+      istio: ingressgateway
+  provider:
+    name: "oauth2-proxy"
+  rules:
+  - to:
+    - operation:
+        hosts:
+        - <<__subdomain_dashboard__>>.<<__domain__>>
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-kubeflow-gateway-access
+  namespace: istio-system
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+      istio: ingressgateway
+  rules:
+  - to:
+    - operation:
+        hosts:
+        - <<__subdomain_dashboard__>>.<<__domain__>> # needed for redirect after authentication

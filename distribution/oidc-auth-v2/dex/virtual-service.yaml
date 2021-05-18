@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: dex
+  namespace: auth
+  labels:
+    app: dex
+spec:
+  gateways:
+  - auth
+  hosts:
+  - <<__subdomain_auth__>>.<<__domain__>>
+  http:
+  - route:
+    - destination:
+        host: dex.auth.svc.cluster.local
+        port:
+          number: 5556

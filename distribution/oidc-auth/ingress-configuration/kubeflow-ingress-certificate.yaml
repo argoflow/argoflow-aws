@@ -6,8 +6,8 @@ metadata:
 spec:
   secretName: kubeflow-ingressgateway-certs
   issuerRef:
-    name: kubeflow-self-signing-issuer
+    name: <<__cert_issuer__>>
     kind: ClusterIssuer
-  commonName: kubeflow.example.com
+  commonName: <<__subdomain_dashboard__>>.<<__domain__>>
   dnsNames:
-    - kubeflow.example.com
+  - <<__subdomain_dashboard__>>.<<__domain__>>

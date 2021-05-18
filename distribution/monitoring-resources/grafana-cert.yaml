@@ -6,8 +6,8 @@ metadata:
 spec:
   secretName: grafana-example-com
   issuerRef:
-    name: kubeflow-self-signing-issuer
+    name: <<__cert_issuer__>>
     kind: ClusterIssuer
-  commonName: grafana.example.com
+  commonName: <<__subdomain_grafana__>>
   dnsNames:
-    - grafana.example.com
+  - <<__subdomain_grafana__>>

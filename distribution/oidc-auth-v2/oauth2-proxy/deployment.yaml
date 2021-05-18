@@ -1,0 +1,114 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oauth2-proxy
+  namespace: auth
+spec:
+  selector:
+    matchLabels:
+      app: oauth2-proxy
+  template:
+    metadata:
+      labels:
+        app: oauth2-proxy
+    spec:
+      serviceAccountName: oauth2-proxy
+      containers:
+      - name: oauth2-proxy
+        image: quay.io/oauth2-proxy/oauth2-proxy
+        args:
+
+        - --provider=oidc
+        - --cookie-secure=true
+        - --cookie-samesite=lax
+        - --cookie-refresh=1h
+        - --cookie-expire=4h
+        - --cookie-name=_oauth2_proxy_istio_ingressgateway
+        # - --set-authorization-header=true # breaks grafana if hosted at /grafana with virtual service
+        - --set-xauthrequest=true
+        - --pass-access-token=true
+        - --pass-host-header=true
+        - --reverse-proxy=true
+        - --email-domain=*
+        - --http-address=0.0.0.0:4180
+        - --upstream=static://200
+        - --skip-provider-button=true
+        - --cookie-domain=.<<__domain__>>
+        - --whitelist-domain=.<<__domain__>>
+        - --oidc-issuer-url=<<__oidc.issuer__>>
+        
+        # - --redirect-url=https://<<__subdomain_dashboard__>>.<<__domain__>>/oauth2/callback 
+        # - --scope=read_user profile email openid
+        # - --prefer-email-to-user=true
+
+
+        # # https://www.paraesthesia.com/archive/2020/09/03/setting-up-oauth2-proxy-with-istio/
+        # - --set-authorization-header=true
+        # - --pass-authorization-header=true
+        # - --pass-access-token=true
+        # - --skip-jwt-bearer-tokens=true
+
+
+
+        env:
+        - name: OAUTH2_PROXY_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: oauth2-proxy
+              key: CLIENT_ID
+        - name: OAUTH2_PROXY_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: oauth2-proxy
+              key: CLIENT_SECRET
+        - name: OAUTH2_PROXY_COOKIE_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: oauth2-proxy
+              key: COOKIE_SECRET
+        # - name: OAUTH2_PROXY_PROVIDER
+        #   value: oidc
+        # - name: OAUTH2_PROXY_COOKIE_SECURE
+        #   value: "true"
+        # - name: OAUTH2_PROXY_COOKIE_SAMESITE
+        #   value: lax
+        # - name: OAUTH2_PROXY_COOKIE_REFRESH
+        #   value: 1h
+        # - name: OAUTH2_PROXY_COOKIE_EXPIRE
+        #   value: 4h
+        # - name: OAUTH2_PROXY_COOKIE_NAME
+        #   value: _oauth2_proxy_istio_ingressgateway
+        # - name: OAUTH2_PROXY_SET_AUTHORIZATION_HEADER
+        #   value: "true"
+        # - name: OAUTH2_PROXY_SET_XAUTHREQUEST
+        #   value: "true"
+        # - name: OAUTH2_PROXY_EMAIL_DOMAINS
+        #   value: "*"
+        # - name: OAUTH2_PROXY_HTTP_ADDRESS
+        #   value: 0.0.0.0:4180
+        # - name: OAUTH2_PROXY_UPSTREAM
+        #   value: static://200
+        # - name: OAUTH2_PROXY_SKIP_PROVIDER_BUTTON
+        #   value: "true"
+        # - name: OAUTH2_PROXY_COOKIE_DOMAINS
+        #   value: .<<__domain__>>
+        # - name: OAUTH2_PROXY_WHITELIST_DOMAINS
+        #   value: .<<__domain__>>
+        # - name: OAUTH2_PROXY_OIDC_ISSUER_URL
+        #   value: <<__oidc.issuer__>>
+        - name: OAUTH2_PROXY_SESSION_STORE_TYPE
+          value: redis
+        - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
+          value: <<__oidc.redis.connection_url__>>
+        resources:
+          requests:
+            cpu: 10m
+            memory: 100Mi
+        ports:
+        - containerPort: 4180
+          protocol: TCP
+        readinessProbe:
+          periodSeconds: 3
+          httpGet:
+            path: /ping
+            port: 4180
