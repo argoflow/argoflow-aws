@@ -5,9 +5,6 @@ namespace: auth
 resources:
 - github.com/kubeflow/manifests/common/dex/overlays/istio
 
-patchesStrategicMerge:
-- configmap-patch.yaml
-
 images:
 - name: quay.io/dexidp/dex
   newName: ghcr.io/dexidp/dex

@@ -1,0 +1,27 @@
+
+# Use oidc-lite for simple (non-production!!) authentication via a built-in dex serv er
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: istio-system
+
+resources:
+- ../base
+- ../../dex
+
+patchesStrategicMerge:
+- dex-configmap-patch.yaml
+
+configMapGenerator:
+- name: oidc-authservice-parameters
+  envs:
+  - params.env
+
+secretGenerator:
+- name: oidc-authservice-client
+  type: Opaque
+  envs:
+  - secret_params.env
+
+generatorOptions:
+  disableNameSuffixHash: true
