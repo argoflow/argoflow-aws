@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
 - istio-spec.yaml
 - namespace.yaml
-# - monitoring/
+- kubeflow-cluster-roles.yaml

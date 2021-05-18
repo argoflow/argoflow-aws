@@ -5,8 +5,8 @@ metadata:
   name: istio
 spec:
   profile: default
-  tag: 1.9.4 # istio/operator
-  hub: gcr.io/istio-release  #ocker.io/istio
+  tag: 1.9.5 # istio/operator
+  hub: docker.io/istio
   meshConfig:
     accessLogFile: /dev/stdout
     enablePrometheusMerge: true
