@@ -26,7 +26,7 @@ spec:
             - --host=0.0.0.0
             - --port=5000
             - --backend-store-uri="mysql://$(RDS_USERNAME):$(RDS_PASSWORD)@$(RDS_HOST):3306/$(DB_NAME)"
-            - --default-artifact-root=s3://$(ARTIFACT_S3_BUCKET)/modeling/experiments
+            - --default-artifact-root=s3://$(ARTIFACT_S3_BUCKET)/$(ARTIFACT_S3_KEY_PREFIX)
           envFrom:
             - secretRef:
                 name: mlflow-secret

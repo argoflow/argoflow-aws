@@ -1,0 +1,39 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: istio-ingressgateway
+  namespace: istio-system
+spec:
+  workloadSelector:
+    labels:
+      app: istio-ingressgateway
+  configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      context: GATEWAY
+      listener:
+        filterChain:
+          filter:
+            name: envoy.filters.network.http_connection_manager
+            subFilter:
+              name: envoy.filters.http.jwt_authn
+    patch:
+      operation: INSERT_BEFORE
+      value:
+        name: envoy.filters.http.ext_authz
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthz
+          http_service:
+            server_uri:
+              uri: http://oauth2-proxy.oauth2-proxy.svc.cluster.local:4180
+              cluster: outbound|4180||oauth2-proxy.oauth2-proxy.svc.cluster.local
+              timeout: 10s              
+            authorizationRequest:
+              allowedHeaders:
+                patterns:
+                - exact: cookie
+            authorizationResponse:
+              allowedUpstreamHeaders:
+                patterns:
+                  - exact: authorization
+                  - exact: x-auth-request-email

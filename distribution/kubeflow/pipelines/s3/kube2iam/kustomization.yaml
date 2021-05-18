@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: kubeflow
+
+resources:
+- ../base
+- resources/kube2iam-clusterrole.yaml
+- resources/kube2iam-daemonset.yaml
+- resources/kube2iam-serviceaccount.yaml
+
+patchesStrategicMerge:
+- patches/ml-pipeline-viewer-template.yaml
+- patches/deployment-annotations.yaml
+
+commonAnnotations:
+  iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>

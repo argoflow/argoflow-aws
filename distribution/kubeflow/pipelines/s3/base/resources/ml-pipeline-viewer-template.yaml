@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ml-pipeline-ui-viewer-template
+data:
+  viewer-tensorboard-template.json: |
+    {
+        "spec": {
+            "containers": [
+                {
+                    "env": [
+                        {
+                            "name": "AWS_REGION",
+                            "value": "<<__aws_region__>>"
+                        }
+                    ]
+                }
+            ]
+        }
+    }

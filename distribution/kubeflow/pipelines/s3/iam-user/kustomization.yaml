@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: kubeflow
+
+resources:
+- ../base
+- resources/s3-secret.yaml
+
+patchesStrategicMerge:
+- patches/ml-pipeline.yaml         
+- patches/ml-pipeline-ui.yaml      
+- patches/ml-pipeline-viewer-template.yaml 
+- patches/workflow-controller-configmap.yaml  
+- patches/kubeflow-pipelines-profile-controller.yaml 
+
+
+
+configMapGenerator:
+- name: kubeflow-pipelines-profile-controller-code
+  files:
+  - patches/sync_with_s3.py
+  behavior: replace

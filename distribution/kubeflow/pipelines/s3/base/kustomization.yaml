@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: kubeflow
+
+resources:
+- ../../base
+- resources/s3-configmap.yaml
+- resources/ml-pipeline-viewer-template.yaml  
+- resources/ml-pipeline-config.yaml  
+
+patchesStrategicMerge:
+- patches/kubeflow-pipelines-profile-controller.yaml 
+- patches/ml-pipeline.yaml         
+- patches/ml-pipeline-ui.yaml 
+- patches/workflow-controller-configmap.yaml  
+- removals/minio-resources.yaml
+
+configMapGenerator:
+- name: kubeflow-pipelines-profile-controller-code
+  files:
+  - patches/sync_without_minio.py
+  behavior: replace

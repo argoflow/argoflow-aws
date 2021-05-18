@@ -8,12 +8,15 @@ spec:
   source:
     repoURL: <<__git_repo.url__>>
     targetRevision: <<__git_repo.target_revision__>>
-    path: distribution/kubeflow/common/istio
+    path: distribution/istio
     kustomize:
       version: v4.0.5
   destination:
     server: https://kubernetes.default.svc
+    namespace: istio-system
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
