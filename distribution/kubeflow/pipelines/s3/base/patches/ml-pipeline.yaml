@@ -61,5 +61,3 @@ spec:
               path: config.json
             - key: sample_config.json
               path: sample_config.json
-
-

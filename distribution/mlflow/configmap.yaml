@@ -8,4 +8,3 @@ data:
   RDS_PORT: "<<__rds.port__>>"
   ARTIFACT_S3_BUCKET: <<__s3.bucket.mlflow__>>
   ARTIFACT_S3_KEY_PREFIX: <<__s3.key_prefix.mlflow__>>
-

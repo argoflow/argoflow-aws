@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
 - ./ingress-configuration
 - ./oauth2-proxy
-

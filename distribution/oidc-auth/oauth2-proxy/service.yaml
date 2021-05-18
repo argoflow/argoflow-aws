@@ -9,5 +9,3 @@ spec:
   ports:
   - name: http
     port: 4180
-
-

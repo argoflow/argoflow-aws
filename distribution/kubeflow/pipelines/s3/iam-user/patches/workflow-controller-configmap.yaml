@@ -17,4 +17,3 @@ data:
       secretKeySecret: 
         name: pipelines-s3-secret
         key: S3_SECRETKEY
-

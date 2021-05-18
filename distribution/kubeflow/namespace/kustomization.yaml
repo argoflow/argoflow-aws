@@ -3,6 +3,3 @@ kind: Kustomization
 
 resources:
 - github.com/kubeflow/manifests/common/kubeflow-namespace/base
-
-
-

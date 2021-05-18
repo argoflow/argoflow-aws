@@ -8,5 +8,3 @@ data:
   BUCKET_NAME: <<__s3.bucket.pipelines__>>
   PIPELINE_FOLDER: <<__s3.path.pipelines__>>
   PIPELINE_PATH: <<__s3.path.pipelines__>>
-
-

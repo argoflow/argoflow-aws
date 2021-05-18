@@ -5,3 +5,4 @@ resources:
 - istio-spec.yaml
 - namespace.yaml
 - kubeflow-cluster-roles.yaml
+# - monitoring/

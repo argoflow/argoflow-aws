@@ -8,7 +8,7 @@ resources:
 - envoy-filter-kubeflow-userid.yaml
 - envoy-filter-proxy-protocol.yaml
 - gateway.yaml
-- ingress-certificate.yaml
+- kubeflow-ingress-certificate.yaml
 - peer-authentication.yaml
 - request-authentication.yaml
 - kubeflow-cluster-roles.yaml
