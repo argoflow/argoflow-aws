@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeflow-pipelines-profile-controller
+spec:
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+      - name: profile-controller
+        command: ["python", "/hooks/sync_with_s3.py"]
+        env:
+          - name: SECRET_NAME_S3_ACCESSKEY
+            value: <<__external_secret_name.kubeflow.s3_accesskey__>>
+          - name: SECRET_NAME_S3_SECRETKEY
+            value: <<__external_secret_name.kubeflow.s3_secretkey__>>            
+          - name: EXTERNAL_SECRET_ROLE_ARN
+            value: <<__role_arn.external_secrets.kubeflow__>>
+
+
+            

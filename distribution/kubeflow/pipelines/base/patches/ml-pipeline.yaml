@@ -6,8 +6,10 @@ spec:
   template:
     spec:
       containers:
-        - name: ml-pipeline-api-server
+        - name: ml-pipeline-api-server        
+          image: public.ecr.aws/atcommons/pipelines/backend:latest #For debugging only!
           env:
+            # RDS params
             - name: DBCONFIG_USER
               valueFrom:
                 secretKeyRef:

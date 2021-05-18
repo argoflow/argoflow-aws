@@ -1,18 +1,22 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+namespace: kubeflow
+
 resources:
 - github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-multi-user-pns?ref=2b5a5dd2d0beea39dd2d961d31ebad2ad363742a # tag=1.5.0
-- rds-secret.yaml
-- rds-configmap.yaml
-- database-creation-job.yaml
+- resources/rds-secret.yaml
+- resources/rds-configmap.yaml
+- resources/database-creation-job.yaml
 
 patchesStrategicMerge:
-- patches/remove-mysql-resources.yaml
-- patches/patch-cache-server.yaml
-- patches/patch-metadata-grpc-deployment.yaml
-- patches/patch-ml-pipeline.yaml
-# - patches/remove-minio-resources.yaml #TODO add this back in once S3 patches have been implemented
+- patches/cache-server.yaml      
+- patches/metadata-grpc-deployment.yaml  
+- patches/ml-pipeline.yaml 
+- removals/mysql-resources.yaml
+ 
+# commonAnnotations:
+#   eks.amazonaws.com/role-arn: <<__role_arn.pipelines__>>
 
 images:
 - name: gcr.io/ml-pipeline/cache-deployer

@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ml-pipeline-ui-viewer-template
+data:
+  viewer-tensorboard-template.json: |
+    {
+        "spec": {
+            "containers": [
+                {
+                    "env": [
+                        {
+                            "name": "AWS_ACCESS_KEY_ID",
+                            "valueFrom": {
+                                "secretKeyRef": {
+                                    "name": "pipelines-s3-secret",
+                                    "key": "S3_ACCESSKEY"
+                                }
+                            }
+                        },
+                        {
+                            "name": "AWS_SECRET_ACCESS_KEY",
+                            "valueFrom": {
+                                "secretKeyRef": {
+                                    "name": "pipelines-s3-secret",
+                                    "key": "S3_SECRETKEY"
+                                }
+                            }
+                        },
+                        {
+                            "name": "AWS_REGION",
+                            "value": "<<__aws_region__>>"
+                        }
+                    ]
+                }
+            ]
+        }
+    }

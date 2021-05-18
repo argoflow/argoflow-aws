@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeflow-pipelines-profile-controller
+spec:
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+      - name: profile-controller
+        command: ["python", "/hooks/sync_without_minio.py"]
+        env:
+
+        # remove minio-related params
+        - $patch: delete
+          name: MINIO_ACCESS_KEY
+        - $patch: delete
+          name: MINIO_SECRET_KEY

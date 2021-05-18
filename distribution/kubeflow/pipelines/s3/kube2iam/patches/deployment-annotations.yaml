@@ -1,0 +1,126 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: cache-deployer-deployment
+  annotations:
+    iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: cache-server
+spec:
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: kubeflow-pipelines-profile-controller
+spec:
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: metadata-envoy-deployment
+spec:
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: metadata-grpc-deployment
+spec:
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: metadata-writer
+spec:
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ml-pipeline
+spec:
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ml-pipeline-persistenceagent
+spec:
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ml-pipeline-scheduledworkflow
+spec:
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ml-pipeline-ui
+spec:
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ml-pipeline-viewer-crd
+spec:
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ml-pipeline-visualizationserver
+spec:
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: workflow-controller
+spec:
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
