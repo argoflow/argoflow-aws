@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: kubeflow-ingressgateway-certs
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-prod
     kind: ClusterIssuer
   commonName: <<__domain__>>
   dnsNames:
