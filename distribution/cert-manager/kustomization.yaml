@@ -9,7 +9,8 @@ resources:
 # see: https://cert-manager.io/docs/configuration/acme/#configuration
 # and uncomment the following line
 - letsencrypt-cluster-issuer.yaml
-
+patchesStrategicMerge:
+  - "service-account.yaml"
 images:
 - name: quay.io/jetstack/cert-manager-controller
   newName: quay.io/jetstack/cert-manager-controller
