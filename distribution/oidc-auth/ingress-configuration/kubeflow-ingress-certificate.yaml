@@ -5,6 +5,7 @@ metadata:
   namespace: istio-system
 spec:
   secretName: kubeflow-ingressgateway-certs
+  duration: 8h
   issuerRef:
     name: letsencrypt-staging
     kind: ClusterIssuer
