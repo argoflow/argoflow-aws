@@ -7,7 +7,7 @@ spec:
     # You must replace this email address with your own.
     # Let's Encrypt will use this to contact you about expiring
     # certificates, and issues related to your account.
-    email: user@example.com
+    email: <<__cert_manager.email__>>
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       # Secret resource that will be used to store the account's private key.
@@ -16,8 +16,8 @@ spec:
     solvers:
     - dns01:
         route53:
-          hostedZoneID: ""
-          region: ""
+          hostedZoneID: <<__route53.hosted_zone_id__>>
+          region: <<__aws_region__>>
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -28,7 +28,7 @@ spec:
     # You must replace this email address with your own.
     # Let's Encrypt will use this to contact you about expiring
     # certificates, and issues related to your account.
-    email: user@example.com
+    email: <<__cert_manager.email__>>
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       # Secret resource that will be used to store the account's private key.
@@ -37,5 +37,5 @@ spec:
     solvers:
     - dns01:
         route53:
-          hostedZoneID: ""
-          region: ""
+          hostedZoneID: <<__route53.hosted_zone_id__>>
+          region: <<__aws_region__>>
