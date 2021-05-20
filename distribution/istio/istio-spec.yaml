@@ -17,6 +17,7 @@ spec:
         serviceAnnotations:
           service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
           #service.beta.kubernetes.io/aws-load-balancer-target-group-attributes: proxy_protocol_v2.enabled=true
+          service.beta.kubernetes.io/aws-load-balancer-scheme: <<__aws_load_balancer.scheme__>>
           service.beta.kubernetes.io/aws-load-balancer-type: "external"
           service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "instance"
           proxy.istio.io/config: '{"gatewayTopology" : { "numTrustedProxies": 2 } }'
