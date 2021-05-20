@@ -10,7 +10,8 @@ resources:
 # and uncomment the following line
 - letsencrypt-cluster-issuer.yaml
 patchesStrategicMerge:
-  - "service-account.yaml"
+- service-account.yaml
+- cert-manager.yaml
 images:
 - name: quay.io/jetstack/cert-manager-controller
   newName: quay.io/jetstack/cert-manager-controller
