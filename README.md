@@ -200,7 +200,7 @@ You may add any additional placeholder/value pairs you want. The naming conventi
 To initialise your repository, do the following:
 - fork this repo
 - modify the kustomizations for your purpose. You may in particular wish to edit `distribution/kubeflow.yaml` with the selection of applications you wish to roll out
-- set up a "setup.conf" file (or do a manual "find-and-replace" if you prefer) such as [this](#TODO) one
+- set up a "setup.conf" file (or do a manual "find-and-replace" if you prefer) such as [this](./examples/setup.conf) one in the root of the repository
 - run `./setup_repo.sh setup.conf`
 - commit and push your changes
 
