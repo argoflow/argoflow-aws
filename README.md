@@ -1,11 +1,171 @@
-# Notice
+# Introduction
 
-This repository is still a work in progress and is based on the
-generic repository found [here](https://github.com/argoflow/argoflow).
-Contributions to improve the integration with AWS and document
-these integrations are much appreciated.
+This project offers a Kubeflow distribution that has the following characteristics:
+- It follows a fully declarative, GitOps approach using [ArgoCD](https://argoproj.github.io/argo-cd/). No other middleware is injected. All manifests are defined either as vanilla Kubernetes YAML specs, Kustomize specs, or Helm charts.
+- Maximum integration with AWS managed services. We offload as much as possible to AWS, including database and artifact storage, identity management, load balancing, network routing and more! See below for a full listing of the currently supported AWS managed services
+- A very simple [init script](./setup_repo.sh) and accompanying [config file](./examples/setup.conf). We have intentionally kept this a simple "find-and-replace" script (in favour using using a stricter approach, such as encoding the entire distribution as a Helm chart) in order to make the repo easy to extend.
+- Currently we offer "Kubeflow 1.3", but with a few differences. We do not in all places follow the official [Kubeflow manifests](https://github.com/kubeflow/manifests), preferring instead to follow directly the (often much more recent) upstream distributions for both the core Kubeflow components (such as Pipelines, KFServing etc.) and free-standing applications (such as Istio, Certificate Manager, KNative etc.). As of the time of writing this, the difference is small, but over time (and until Kubeflow cuts its 1.4 release) it will become more significant.
+- One particular area where we have chosen a fundamentally different approach relates to authentication and authorization. We have replaced the [oidc-authservice](https://github.com/arrikto/oidc-authservice) entirely, preferring instead to use [oauth2-proxy](https://github.com/oauth2-proxy/oauth2-proxy) due to its wide adoption and active user base.
+- Lastly, our interpretation of Kubeflow is that of an open and configurable ecosystem that can be easily extended with other services. As such, we also offer optional integrations with applications that are not part of the official Kubeflow distribution (such as [MLFlow](https://github.com/mlflow/mlflow) for example)
 
-# Deploying Kubeflow with ArgoCD
+
+
+# AWS Integrations
+
+This distribution assumes that you will be making use of the following AWS services:
+- An [EKS](https://aws.amazon.com/eks/) Kubernetes cluster
+- [Autoscaling Groups](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) as Worker Nodes in the EKS cluster. We use the [cluster-autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) application to automatically scales nodes up or down depening on usage.
+- An [RDS](https://aws.amazon.com/rds/) instance, with security group and VPC configuration that allows it to be accessed from the Worker Nodes in the EKS cluster. We authenticate to the RDS database using classical username / password credentials.
+- [S3](https://aws.amazon.com/s3/) Bucket(s) for Pipeline and (optionally) MLFlow artifact storage.
+- An [Elasticache](https://aws.amazon.com/elasticache/) Redis instance for storing cookies during the OIDC authentication process.
+- A [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html) via external ingress/egress is facilitated. We use the [aws-load-balancer-controller](https://github.com/kubernetes-sigs/aws-load-balancer-controller) application in order to automatically provision NLB's in the correct subnets. 
+  - **PLEASE NOTE** that the current `aws-load-balancer-controller` version does not support automatically activating "proxy v2" on the created Load Balancer's target groups. [Support for this will be added in v2.2.0](https://github.com/kubernetes/kubernetes/issues/57250#issuecomment-783550819). For now, you need to manually set "proxy v2" to "Enabled" after the NLB has been provisioned
+- [Route53](https://aws.amazon.com/route53/) for DNS routing. We use the [external-dns](https://github.com/kubernetes-sigs/external-dns) application to automatically create records sets in Route53 in order to route from a public DNS to the NLB endpoint, as well as a [LetsEncrypt](https://letsencrypt.org/) DNS-01 solver to certify the domain with Route53.
+- [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) for storing sensitive data, such as various types of credentials. We use the [external-secrets](https://github.com/external-secrets/kubernetes-external-secrets) application to fetch these secrets into the Kubernetes cluster, allowing us to define in Git only the location where the secrets are to be found, as well as the ServiceAccount to use in order to find them.
+- [IAM Roles for Service Accounts (IRSA)](https://aws.amazon.com/blogs/opensource/introducing-fine-grained-iam-roles-service-accounts/) to define the IAM Roles that may be assumed by specific Pods, by attaching a specific ServiceAccount to them. For example, we attach to the `external-dns` Pod a ServiceAccount that uses an IAM Role allowing certain actions in Route53. See the section below for a detailed listing of IRSA policies that are needed.
+- [IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html). As far as possible, we try to avoid relying on IAM Users with static credentials, but there are certain cases where IRSA is currently not supported by the underlying Kubeflow applications. This includes Kubeflow Pipelines (for S3 artifact storage) and KFServing (for serving models directly from S3).
+
+In the future we may develop overlays that would make some of these services optional, but for the current release if you wish to take them out this needs to be done after forking the repo.
+
+
+# AWS IAM Roles for Service Acocunts
+
+Below you will find all of the IAM Policies that need to be attached to the IRSA roles. Before looking at the policies though, please take note of the fact that IRSA works via setting up a Trust relationship to a *specific* ServiceAccount in a *specific* Namespace. If you find that an IAM role is not being correctly assumed, it probably means that you are attaching it to a ServiceAccount that hasn't explicitly been authorized to do so.
+
+## Trust Relationships
+
+Let's take the [external-dns](https://github.com/kubernetes-sigs/external-dns) service as an example. The ServiceAccount for this application is defined [here](distribution/external-dns/serviceaccount.yaml), is named `external-dns` and is rolled out in the `kube-system` Namespace. To allow this ServiceAccount to assume an IAM Role, we have to set a [trust relationship](https://aws.amazon.com/blogs/security/how-to-use-trust-policies-with-iam-roles/) that looks as follows:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::123456789012:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/id/SOMEUNIQUEID1234567890"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "oidc.eks.eu-central-1.amazonaws.com/id/SOMEUNIQUEID1234567890:sub": "system:serviceaccount:kube-system:external-dns"
+        }
+      }
+    }
+  ]
+}
+```
+
+For every IRSA Role you set up, you will need the trust relationship above substituting for the actual oidc provider url as well as the the values "kube-system" and "external-dns" in `system:serviceaccount:kube-system:external-dns` for appropriate values.
+
+
+## Policies
+
+Further down in this guide we explain how to initialise this repository. For now, just take note that we use placeholder values such as `<<__role_arn.external_dns__>>` that will be replaced by the actual ARNs of the Roles you wish to use. Below is a listing of all of the IRSA roles in use in this repository, along with links to JSON files with example policies. If you do a search on the whole "distribution" folder you find exactly where these placeholders are used.
+
+---
+### `aws-loadbalancer-controller`
+
+Needs policies that allows it to schedule a NLB in specific subnests.
+
+- Placeholder:      `<<__role_arn.loadbalancer_controller__>>`
+- Example ARN:      `arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-loadbalancer-controller`
+- Policy:           [link](./docs/iam_policies/aws-loadbalancer-controller.json)
+---
+### `cluster-autoscaler`
+
+Needs policies that allows it to automatically scale EC2 instances up/down.
+
+- Placeholder:      `<<__role_arn.cluster_autoscaler__>>`
+- Example ARN:      `arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-cluster-autoscaler`
+- Policy:           [link](./docs/iam_policies/aws-cluster-autoscaler.json)
+
+
+---
+### `external-dns`
+
+Needs policies that allows it to automatically create record sets in Route53.
+
+- Placeholder:      `<<__role_arn.external_dns__>>`
+- Example ARN:      `arn:aws:iam::123456789012:role/my-cluster_kube-system_external-dns`
+- Policy:           [link](./docs/iam_policies/external-dns.json)
+
+---
+### `certificate-manager`
+
+Needs policies that allows it to automatically create entries in Route53 in order to allow for DNS-01 solving.
+
+- Placeholder:      `<<__role_arn.cert_manager__>>`
+- Example ARN:      `arn:aws:iam::123456789012:role/my-cluster_cert-manager_cert-manager`
+- Policy:           [link](./docs/iam_policies/cert-manager.json)
+
+
+---
+### `external-secrets`
+
+The external-secrets application is middleman that will create ExternalSecret custom resources in specific namespaces. It can be configured in two ways.
+
+Option 1: Allow the external-secret application wide authority to read and write AWS secrets
+
+Option 2: Allow the external-secret application to assume roles that have more narrowly defined 
+
+- Placeholder:        `<<__role_arn.external_secrets>>`
+- Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_kube-system_external_secrets`
+- Policy:             
+  - [Option 1](./docs/iam_policies/external-secrets.json)
+  - Option 2 requires only a trust relationship. See below
+
+In the second case, you then need to define roles to be assumed by the ExternalSecret resources that will be created. Each of these roles will need to have the follow trust relationship to the external-secrets role:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:role/dev-kf13-14_kube-system_external-secrets"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+In addition, we need to grant each role limited access to secrets. We have chosen an approach of limiting access to secrets by namespace, but it is possible to make this more granular if desired. 
+
+#### `ExternalSecret` for the `argocd` namespace
+
+- Placeholder:        `<<__role_arn.external_secrets.argocd__>>=`
+- Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_argocd`
+- Policy:             [link](./docs/iam_policies/external-secrets_argocd.json)
+
+
+#### `ExternalSecret` for the `kubeflow` namespace
+
+- Placeholder:        `<<__role_arn.external_secrets.kubeflow__>>=`
+- Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_kubeflow`
+- Policy:             [link](./docs/iam_policies/external-secrets_kubeflow.json)
+
+
+#### `ExternalSecret` for the `oauth2_proxy` namespace
+
+- Placeholder:        `<<__role_arn.external_secrets.oauth2_proxy__>>=`
+- Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_oauth2_proxy`
+- Policy:             [link](./docs/iam_policies/external-secrets_oauth2_proxy`.json)
+
+
+#### `ExternalSecret` for the `mlflow` namespace
+
+- Placeholder:        `<<__role_arn.external_secrets.mlflow__>>=`
+- Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_mlflow`
+- Policy:             [link](./docs/iam_policies/external-secrets_mlflow.json)
+
+
+---
+# Deployment
 
 This repository contains Kustomize manifests that point to the upstream
 manifest of each Kubeflow component and provides an easy way for people
@@ -16,313 +176,55 @@ run a script to change the ArgoCD application specs to point to their fork
 of this repository, and finally apply a master ArgoCD application that will
 deploy all other applications.
 
-To run the below script [yq](https://github.com/mikefarah/yq) version 4
-must be installed
-
-Overview of the steps:
-
-- fork this repo
-- modify the kustomizations for your purpose
-- run `./setup_repo.sh <your_repo_fork_url>`
-- commit and push your changes
-- run `kubectl apply -f distribution/kubeflow.yaml`
-
-## Folder setup
-
-- [argocd](./distibution/argocd): Kustomize files for ArgoCD
-- [argocd-applications](./distibution/argocd-applications): ArgoCD application for each Kubeflow component
-- [cert-manager](./distibution/cert-manager): Kustomize files for installing cert-manager v1.2
-- [kubeflow](./distibution/kubeflow): Kustomize files for installing Kubeflow componenets
-  - [common/dex-istio](./distibution/kubeflow/common/dex-istio): Kustomize files for Dex auth installation
-  - [common/oidc-authservice](./distibution/kubeflow/common/oidc-authservice): Kustomize files for OIDC authservice
-  - [roles-namespaces](./distibution/kubeflow/common/roles-namespaces): Kustomize files for Kubeflow namespace and ClusterRoles
-  - [user-namespace](./distibution/kubeflow/common/user-namespace): Kustomize manifest to create the profile and namespace for the default Kubeflow user
-  - [katib](./distibution/kubeflow/katib): Kustomize files for installing Katib
-  - [kfserving](./distibution/kubeflow/kfserving): Kustomize files for installing KFServing
-    - [knative](./distibution/kubeflow/knative): Kustomize files for installing KNative
-  - [central-dashboard](./distibution/kubeflow/notebooks/central-dashboard): Kustomize files for installing the Central Dashboard
-  - [jupyter-web-app](./distibution/kubeflow/notebooks/jupyter-web-app): Kustomize files for installing the Jupyter Web App
-    - [notebook-controller](./distibution/kubeflow/notebooks/notebook-controller): Kustomize files for installing the Notebook Controller
-  - [pod-defaults](./distibution/kubeflow/notebooks/pod-defaults): Kustomize files for installing Pod Defaults (a.k.a. admission webhook)
-  - [profile-controller_access-management](./distibution/kubeflow/notebooks/profile-controller_access-management): Kustomize files for installing the Profile Controller and Access Management
-  - [tensorboards-web-app](./distibution/kubeflow/notebooks/tensorboards-web-app): Kustomize files for installing the Tensorboards Web App
-    - [tensorboard-controller](./distibution/kubeflow/notebooks/tensorboard-controller): Kustomize files for installing the Tensorboard Controller
-  - [volumes-web-app](./distibution/kubeflow/notebooks/volumes-web-app): Kustomize files for installing the Volumes Web App
-  - [operators](./distibution/kubeflow/operators): Kustomize files for installing the various operators
-  - [pipelines](./distibution/kubeflow/pipelines): Kustomize files for installing Kubeflow Pipelines
-- [metallb](./distibution/metallb): Kustomize files for installing MetalLB
-
-### Root files
-
-- [kustomization.yaml](./distribution/kustomization.yaml): Kustomization file that references the ArgoCD application files in [argocd-applications](./distibution/argocd-applications)
-- [kubeflow.yaml](./distribution/kubeflow.yaml): ArgoCD application that deploys the ArgoCD applications referenced in [kustomization.yaml](./distribution/kustomization.yaml)
-
-## Prerequisite
+## Prerequisites
 
 - kubectl (latest)
 - kustomize 4.0.5
-- docker (if using kind)
 
-## Quick Start using kind
 
-### Install kind
+## The `setup.conf` file and `setup_repo.sh` script
 
-On linux:
+This repository uses a very simple initialisation script, [./setup_repo.sh ](./setup_repo.sh) that takes an config file such as the example one, [./examples/setup.conf](./examples/setup.conf) and iterates over all lines therein. A single line would for example look as follows:
+```bash
+<<__role_arn.cluster_autoscaler__>>=arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-cluster-autoscaler
+```
+The init script will look for all occurences in the ./distribution folder of the placeholder `<<__role_arn.cluster_autoscaler__>>` and will replace it with the value `arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-cluster-autoscaler`. Please note that that comments (`//`, `#`), quatation marks (`"`, `'`) or unnecessary line-breaks should be avoided.
+
+You may add any additional placeholder/value pairs you want. The naming convention `<<__...__>> ` has no functional purpose other than to aid readability and minimise the risk of a "find-and-replace" being performed on a value that was not meant as a placeholder.
+
+
+
+
+## Deployment steps
+
+To initialise your repository, do the following:
+- fork this repo
+- modify the kustomizations for your purpose. You may in particular wish to edit `distribution/kubeflow.yaml` with the selection of applications you wish to roll out
+- set up a "setup.conf" file (or do a manual "find-and-replace" if you prefer) such as [this](./examples/setup.conf) one in the root of the repository
+- run `./setup_repo.sh setup.conf`
+- commit and push your changes
+
+Start up external-secret and argocd:
 
 ```bash
-curl -Lo ./distibution/kind https://kind.sigs.k8s.io/dl/v0.10.0/kind-linux-amd64
-chmod +x ./distibution/kind
-mv ./distibution/kind /<some-dir-in-your-PATH>/kind
+kustomize build distribution/external-secrets/ | kubectl apply -f -
+kustomize build distribution/argocd/ | kubectl apply -f -
 ```
 
-On Mac:
-
+Finally, roll out kubeflow with:
 ```bash
-curl -Lo ./distibution/kind https://kind.sigs.k8s.io/dl/v0.10.0/kind-darwin-amd64
-chmod +x ./distibution/kind
-mv ./distibution/kind /<some-dir-in-your-PATH>/kind
+kubectl apply -f distribution/kubeflow.yaml
 ```
 
-On Windows:
-
-```cmd
-curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/v0.10.0/kind-windows-amd64
-Move-Item .\kind-windows-amd64.exe c:\some-dir-in-your-PATH\kind.exe
-```
-
-### Deploy kind cluster
-
-Note - This will overwrite any existing ~/.kube/config file
-Please back up your current file if it already exists
-
-`kind create cluster --config kind/kind-cluster.yaml`
-
-```bash
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
-kubectl patch deployment metrics-server -n kube-system -p '{"spec":{"template":{"spec":{"containers":[{"name":"metrics-server","args":["--cert-dir=/tmp", "--secure-port=4443", "--kubelet-insecure-tls","--kubelet-preferred-address-types=InternalIP"]}]}}}}'
-```
-
-### Deploy MetalLB
-
-Edit the IP range in [configmap.yaml](./distibution/metallb/configmap.yaml) so that it is within
-the range of your docker network. To get your docker network range,
-run the following command:
-
-`docker network inspect -f '{{.IPAM.Config}}' kind`
-
-After updating the metallb configmap, deploy it by running:
-
-`kustomize build metallb/ | kubectl apply -f -`
-
-### Deploy Argo CD
-
-Deploy Argo CD with the following commaind:
-
-`kustomize build distribution/argocd/ | kubectl apply -f -`
-
-Expose Argo CD with a LoadBalancer to access the UI by executing:
-
-`kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'`
-
-Get the IP of the Argo CD endpoint:
-
-`kubectl get svc argocd-server -n argocd`
-
-Login with the username `admin` and the output of the following command as the password:
-
-`kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
-
-### Deploy kubeflow
-
-To deploy Kubeflow, execute the following command:
-
-`kubectl apply -f distribution/kubeflow.yaml`
-
-Note - This deploys all components of Kubeflow 1.3, it might take a while
-for everything to get started. Also, it is unknown what hardware specifications
-are needed for this at the current time, so your mileage may vary. Also,
-this deployment is using the manifests in this repository directly. For instructions
-how to customize the deployment and have Argo CD use those manifests see the next section.
-
-Get the IP of the Kubeflow gateway with the following command:
-
-`kubectl get svc istio-ingressgateway -n istio-system`
-
-Login to Kubeflow with "email-address" `user` and password `12341234`
-
-### Remove kind cluster
-
-Run: `kind delete cluster`
-
-## Installing ArgoCD
-
-For this installation the HA version of ArgoCD is used.
-Due to Pod Tolerations, 3 nodes will be required for this installation.
-If you do not wish to use a HA installation of ArgoCD,
-edit this [kustomization.yaml](./distribution/argocd/kustomization.yaml) and remove `/ha`
-from the URI.
-
-1. Next, to install ArgoCD execute the following command:
-
-    ```bash
-    kustomize build distribution/argocd/ | kubectl apply -f -
-    ```
-
-2. Install the ArgoCD CLI tool from  [here](https://github.com/argoproj/argo-cd/releases/latest)
-3. Access the ArgoCD UI by exposing it through a LoadBalander, Ingress or by port-fowarding
-using `kubectl port-forward svc/argocd-server -n argocd 8080:443`
-4. Login to the ArgoCD CLI. First get the default password for the `admin` user:
-    `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
-
-    Next, login with the following command:
-    `argocd login <ARGOCD_SERVER>  # e.g. localhost:8080 or argocd.example.com`
-
-    Finally, update the account password with:
-    `argocd account update-password`
-5. You can now login to the ArgoCD UI with your new password.
-This UI will be handy to keep track of the created resources
-while deploying Kubeflow.
-
-Note - Argo CD needs to be able access your repository to deploy applications.
- If the fork of this repository that you are planning to use with Argo CD is private
- you will need to add credentials so it can access the repository. Please see
- the instructions provided by Argo CD [here](https://argoproj.github.io/argo-cd/user-guide/private-repositories/).
-
-## Installing Kubeflow
-
-The purpose of this repository is to make it easy for people to customize their Kubeflow
-deployment and have it managed through a GitOps tool like ArgoCD.
-First, fork this repository and clone your fork locally.
-Next, apply any customization you require in the kustomize folders of the Kubeflow
-applications. Next will follow a set of recommended changes that we encourage everybody
-to make.
-
-### Credentials
-
-The default `username`, `password` and `namespace` of this deployment are:
-`user`, `12341234` and `kubeflow-user` respectively.
-To change these, edit the `user` and `profile-name`
-(the namespace for this user) in [params.env](./distibution/kubeflow/common/user-namespace/params.env).
-
-Next, in [configmap-path.yaml](./distibution/kubeflow/common/dex-istio/configmap-patch.yaml)
-under `staticPasswords`, change the `email`, the `hash` and the `username`
-for your used account.
-
-```yaml
-staticPasswords:
-- email: user
-  hash: $2y$12$4K/VkmDd1q1Orb3xAt82zu8gk7Ad6ReFR4LCP9UeYE90NLiN9Df72
-  username: user
-```
-
-The `hash` is the bcrypt has of your password.
-You can generate this using [this website](https://passwordhashing.com/BCrypt),
-or with the command below:
-
-```bash
-python3 -c 'from passlib.hash import bcrypt; import getpass; print(bcrypt.using(rounds=12, ident="2y").hash(getpass.getpass()))'
-```
-
-To add new static users to Dex, you can add entries to the
-[configmap-path.yaml](./kubeflow/common/dex-istio/configmap-patch.yaml)
-and set a password as described above.If you have already deployed Kubeflow
-commit these changes to your fork so Argo CD detects them. You will also
-need to kill the Dex pod or restart the dex deployment. This can be
-done in the Argo CD UI, or by running the following command:
-
-```bash
-kubectl rollout restart deployment dex -n auth
-```
-
-### Ingress and Certificate
-
-By default the Istio Ingress Gateway is setup to use a LoadBalancer
-and to redirect HTTP traffic to HTTPS. Manifests for MetalLB are provided
-to make it easier for users to use a LoadBalancer Service.
-Edit the [configmap.yaml](./distibution/metallb/configmap.yaml) and set
-a range of IP addresses MetalLB can use under `data.config.address-pools.addresses`.
-This must be in the same subnet as your cluster nodes.
-
-If you do not wish to use a LoadBalancer, change the `spec.type` in [gateway-service.yaml](./distibution/kubeflow/common/istio/gateway-service.yaml)
-to `NodePort`.
-
-To provide HTTPS out-of-the-box, the `kubeflow-self-signing-issuer` used by internal
-Kubeflow applications is setup to provide a certificate for the Istio Ingress
-Gateway.
-
-To use a different certificate for the Ingress Gateway, change
-the `spec.issuerRef.name` to the cert-manager ClusterIssuer you would like to use in [ingress-certificate.yaml](./distibution/kubeflow/common/istio/ingress-certificate.yaml)
-and set the `spec.commonName` and `spec.dnsNames[0]` to your Kubeflow domain.
-
-If you would like to use LetsEncrypt, a ClusterIssuer template if provided in
-[letsencrypt-cluster-issuer.yaml](./distibution/cert-manager/letsencrypt-cluster-issuer.yaml).
-Edit this file according to your requirements and uncomment the line in
-the [kustomization.yaml](./distibution/cert-manager/kustomization.yaml) file
-so it is included in the deployment.
-
-### Customizing the Jupyter Web App
+## Customizing the Jupyter Web App
 
 To customize the list of images presented in the Jupyter Web App
 and other related setting such as allowing custom images,
 edit the [spawner_ui_config.yaml](./distibution/kubeflow/notebooks/jupyter-web-app/spawner_ui_config.yaml)
 file.
 
-### Setting up
 
-This repo uses a simplified setup script (setup_repo.sh) that will perform initial variable substitution. In order to configure two things:
-1. The configuration variables that should be injected into your YAML specifications
-2. The repository (`spec.source.repoURL`) and branch from which ArgoCD should perform syncing
-
-Alter the values in [setup.conf](./setup.conf) to be in line with your AWS setup.
-
-Now simply run [setup_repo.sh](./setup_repo.sh) with the following paramaters:
-
-In order to set the repo URL and use HEAD:
-
-```bash
-./setup_repo.sh <your_repo_fork_url>
-```
-
-If you need to target a specific branch or release on your for you can add a second
-argument to the script to specify it.
-
-```bash
-./setup_repo.sh <your_repo_fork_url> <your_branch_or_release>
-```
-
-To change what Kubeflow or third-party componenets are included in the deployment,
-edit the [root kustomization.yaml](./distibution/kustomization.yaml) and
-comment or uncomment the components you do or don't want.
-
-Next, commit your changes and push them to your repository.
-
-### Deploying Kubeflow
-
-Once you've commited and pushed your changes to your repository,
-you can either choose to deploy componenet individually or
-deploy them all at once.
-For example, to deploy a single component you can run:
-
-`kubectl apply -f argocd-applications/kubeflow-roles-namespaces.yaml`
-
-To deploy everything specified in the root [kustomization.yaml](./distibution/kustomization.yaml),
- execute:
-
- `kubectl apply -f distribution/kubeflow.yaml`
-
-After this, you should start seeing applications being deployed in
-the ArgoCD UI and what the resources each application create.
-
-### Updating the deployment
-
-By default, all the ArgoCD application specs included here are
-setup to automatically sync with the specified repoURL.
-If you would like to change something about your deployment,
-simply make the change, commit it and push it to your fork
-of this repo. ArgoCD will automatically detect the changes
-and update the necessary resources in your cluster.
-
-### Bonus: Extending the Volumes Web App with a File Browser
+## Bonus: Extending the Volumes Web App with a File Browser
 
 A large problem for many people is how to easily upload or download data to and from the
 PVCs mounted as their workspace volumes for Notebook Servers. To make this easier
@@ -348,3 +250,34 @@ the [kubeflow.yaml](./distribution/kubeflow.yaml) file, you can edit the root
 [kustomization.yaml](./distibution/kustomization.yaml) and comment out the regular
 Volumes Web App and uncomment the PVCViewer Controller and Experimental
 Volumes Web App.
+
+### Updating the deployment
+
+By default, all the ArgoCD application specs included here are
+setup to automatically sync with the specified repoURL.
+If you would like to change something about your deployment,
+simply make the change, commit it and push it to your fork
+of this repo. ArgoCD will automatically detect the changes
+and update the necessary resources in your cluster.
+
+
+# Accessing the ArgoCD UI
+
+By default the ArgoCD UI is rolled out behind a ClusterIP. This can be accessed for development purposes with port forwarding, for example:
+
+```bash
+kubectl port-forward svc/argocd-server -n argocd 8888:80
+```
+
+The UI will now be accessible at `localhost:8888` and can be accessed with the initial admin password. The password is stored in a secret and can be read as follows:
+
+```bash
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
+
+If you wish to update the password, this can be done using the [argcd cli](https://github.com/argoproj/argo-cd/releases/latest), using the following commands:
+```bash
+argocd login localhost:8888
+argocd account update-password
+```
+
