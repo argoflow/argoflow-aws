@@ -7,5 +7,6 @@ spec:
   template:
     spec:
       containers:
-        - securityContext:
-            fsGroup: 65534
+      - name: cert-manager
+        securityContext:
+          fsGroup: 65534
