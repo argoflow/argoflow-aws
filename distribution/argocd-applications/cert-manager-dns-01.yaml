@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager-issuer
+  name: cert-manager
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: <<__git_repo.url__>>
     targetRevision: <<__git_repo.target_revision__>>
-    path: distribution/cert-manager-issuer/lets-encrypt-dns-01
+    path: distribution/cert-manager/lets-encrypt-dns-01
     kustomize:
       version: v4.0.5
   destination:
