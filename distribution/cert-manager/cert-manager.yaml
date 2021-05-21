@@ -4,9 +4,7 @@ metadata:
   name: cert-manager
   namespace: cert-manager
 spec:
-  selector:
   template:
-  spec:
-    containers:
-      - securityContext:
-          fsGroup: 65534
+    spec:
+      securityContext:
+        fsGroup: 65534
