@@ -4,11 +4,9 @@ namespace: cert-manager
 
 resources:
 - https://github.com/jetstack/cert-manager/releases/download/v1.3.1/cert-manager.yaml
-- letsencrypt-cluster-issuer.yaml
 
 patchesStrategicMerge:
-- service-account.yaml
-- cert-manager.yaml
+- patch-cert-manager-deployment.yaml
 
 images:
 - name: quay.io/jetstack/cert-manager-controller
