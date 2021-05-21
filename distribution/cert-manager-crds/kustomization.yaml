@@ -3,10 +3,4 @@ kind: Kustomization
 namespace: cert-manager
 
 resources:
-- ../base
-- cluster-issuer.yaml
-- certificate.yaml
-
-patchesStrategicMerge:
-- service-account.yaml
-
+- https://github.com/jetstack/cert-manager/releases/download/v1.3.1/cert-manager.crds.yaml
