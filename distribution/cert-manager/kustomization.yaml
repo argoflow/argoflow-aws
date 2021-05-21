@@ -11,7 +11,7 @@ resources:
 - letsencrypt-cluster-issuer.yaml
 patchesStrategicMerge:
 - service-account.yaml
-- cert-manager.yaml
+# - cert-manager.yaml
 images:
 - name: quay.io/jetstack/cert-manager-controller
   newName: quay.io/jetstack/cert-manager-controller
