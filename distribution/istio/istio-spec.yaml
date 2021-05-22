@@ -15,15 +15,15 @@ spec:
     - name: istio-ingressgateway
       k8s:
         serviceAnnotations:            
-          service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: '2'
-          service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: '10'
+          service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: "3"            
+          service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "3"
+          service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "10"
+          service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: "HTTP"
+          service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "15021"
+          #service.beta.kubernetes.io/aws-load-balancer-healthcheck-path
           service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
           service.beta.kubernetes.io/aws-load-balancer-scheme: <<__aws_load_balancer.scheme__>>
           service.beta.kubernetes.io/aws-load-balancer-type: "external"
           service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "instance"
-          service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: "HTTP"
-          #service.beta.kubernetes.io/aws-load-balancer-healthcheck-port
-          #service.beta.kubernetes.io/aws-load-balancer-healthcheck-path
-
           proxy.istio.io/config: '{"gatewayTopology" : { "numTrustedProxies": 2 } }'
           external-dns.alpha.kubernetes.io/hostname: <<__subdomain_dashboard__>>.<<__domain__>>, <<__subdomain_auth__>>.<<__domain__>>, <<__subdomain_serving__>>.<<__domain__>>, *.<<__subdomain_serving__>>.<<__domain__>>
