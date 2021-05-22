@@ -4,7 +4,7 @@ metadata:
   name: letsencrypt-issuer
 spec:
   acme:
-    email: <<__cert_manager.email__>>
+    email: <<__cert_manager.email_user__>>@<<__cert_manager.email_domain__>>
     server: <<__cert_manager.server__>>
     privateKeySecretRef:
       name: letsencrypt-issuer-account-key
