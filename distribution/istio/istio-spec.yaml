@@ -14,12 +14,14 @@ spec:
     ingressGateways:
     - name: istio-ingressgateway
       k8s:
+        service:
+          type: LoadBalancer
         serviceAnnotations:
           service.beta.kubernetes.io/load-balancer-name: <<__aws_load_balancer.name__>>     
           service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: "3"            
           service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "3"
           service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "10"
-          service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: "HTTP"
+          #service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: "HTTP"
           service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "15021"
           #service.beta.kubernetes.io/aws-load-balancer-healthcheck-path
           service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
