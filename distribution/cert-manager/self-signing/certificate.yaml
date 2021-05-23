@@ -8,6 +8,6 @@ spec:
   issuerRef:
     name: kubeflow-self-signing-issuer
     kind: ClusterIssuer
-  commonName: kubeflow.example.com
+  commonName: <<__domain__>>
   dnsNames:
-    - kubeflow.example.com
+    - <<__domain__>>
