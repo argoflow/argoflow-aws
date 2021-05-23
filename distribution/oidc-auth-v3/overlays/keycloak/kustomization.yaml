@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: auth
+
+resources:
+# - ../../base
+- github.com/keycloak/keycloak-operator/deploy?ref=57d81e278bcb71c26ef0f02bda1c01b662e1f1f7 # tag=13.0.0
+- keycloak.yaml
+
+images:
+- name: quay.io/keycloak/keycloak-operator
+  newName: quay.io/keycloak/keycloak-operator
+  newTag: 13.0.0

@@ -8,6 +8,6 @@ spec:
   issuerRef:
     name: letsencrypt-staging
     kind: ClusterIssuer
-  commonName: <<__domain__>>
+  commonName: <<__subdomain_dashboard__>>.<<__domain__>>
   dnsNames:
-    - <<__domain__>>
+    - <<__subdomain_dashboard__>>.<<__domain__>>

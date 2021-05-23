@@ -1,0 +1,33 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakUser
+metadata:
+  name: kubeflow-realm-admin-user
+  namespace: auth
+  labels:
+    app: sso
+spec:
+  user:
+    username: "creds_user"
+    firstName: "Creds"
+    lastName: "User"
+    email: "creds_user@redhat.com"
+    enabled: True
+    emailVerified: False
+    credentials:
+      - type: "secret"
+        value: "test"
+    realmRoles:
+      - "offline_access"
+      - "uma_authorization"
+    clientRoles:
+      account:
+        - "manage-account"
+        - "view-profile"
+      realm-management:
+        - "manage-users"
+        - "view-users"
+        - "query-users"
+        - "create-client"
+  realmSelector:
+    matchLabels:
+      app: sso
