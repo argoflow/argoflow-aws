@@ -53,7 +53,7 @@ images:
   # digest: sha256:570011e6e37812d5303ad99096687b2a5f539871ec8fc7b92d2a85ddccd74fea
 - name: gcr.io/ml-pipeline/scheduledworkflow
   newName: gcr.io/ml-pipeline/scheduledworkflow
-  newTag: 1.5.0
+  newTag: 1.6.0
   # digest: sha256:2946f8401c04f171c73aa3c74ac907590e00780af983e816d1504845f38282c9
 - name: gcr.io/ml-pipeline/frontend
   newName: gcr.io/ml-pipeline/frontend
