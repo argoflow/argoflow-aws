@@ -17,8 +17,30 @@ spec:
         value: manager
       - name: proxyAddressForwarding
         value: "true"
-      # - name: auth.existingSecret
-      #   value: keycloak-secret
+      - name: auth.existingSecret
+        value: keycloak-secret
+      - name: postgresql.existingSecret
+        value: keycloak-postgresql
+      - name: extraVolumeMounts[0].name
+        value: config
+      - name: extraVolumeMounts[0].mountPath
+        value: "/config"
+      - name: extraVolumeMounts[0].readOnly
+        value: "true"
+      - name: extraVolumes[0].name
+        value: config
+      - name: extraVolumes[0].secret.secretName
+        value: kubeflow-realm
+      - name: extraEnvVars[0].name
+        value: KEYCLOAK_EXTRA_ARGS
+      - name: extraEnvVars[0].value
+        value: "-Dkeycloak.import=/config/kubeflow-realm.json"
+      - name: service.type
+        value: ClusterIP
+      - name: service.port
+        value: "8080"
+      - name: service.httpsPort
+        value: "8443"
       - name: metrics.enabled
         value: "true"
       - name: metrics.serviceMonitor.enabled
