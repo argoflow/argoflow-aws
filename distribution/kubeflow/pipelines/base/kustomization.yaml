@@ -65,7 +65,7 @@ images:
   # digest: sha256:c5bdcdf176725d3bee9662c6b742727ca2b183245b5ba9a63e5375b43fb8eeb6
 - name: gcr.io/ml-pipeline/visualization-server
   newName: gcr.io/ml-pipeline/visualization-server
-  newTag: 1.5.0
+  newTag: 1.6.0
   # digest: sha256:6b11817b99538e890f3632f3b0e7c69d8c40126c162449ff7710b32e7cf99499
 - name: gcr.io/ml-pipeline/mysql
   newName: gcr.io/ml-pipeline/mysql
