@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metallb
+  name: oidc-auth
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: <<__git_repo.url__>>
     targetRevision: <<__git_repo.target_revision__>>
-    path: metallb
+    path: distribution/oidc-auth/dex
     kustomize:
       version: v4.0.5
   destination:

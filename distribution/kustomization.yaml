@@ -11,12 +11,10 @@ resources:
   - argocd-applications/istio.yaml    
   #- argocd-applications/knative.yaml
   # - argocd-applications/sealed-secrets.yaml
-  # - argocd-applications/dex.yaml
   - argocd-applications/oauth2-proxy.yaml
-  - argocd-applications/oidc-auth-v3.yaml
+  - argocd-applications/oidc-auth.yaml
 
   ## Kubeflow  
-  # - argocd-applications/oidc-auth.yaml
   - argocd-applications/central-dashboard.yaml
   - argocd-applications/profile-controller_access-management.yaml
   - argocd-applications/kubeflow-namespace.yaml

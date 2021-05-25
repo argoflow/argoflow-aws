@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: auth-ingressgateway-certs
   issuerRef:
-    name: kubeflow-self-signing-issuer
+    name: gateways-issuer
     kind: ClusterIssuer
   commonName: <<__subdomain_auth__>>.<<__domain__>>
   dnsNames:

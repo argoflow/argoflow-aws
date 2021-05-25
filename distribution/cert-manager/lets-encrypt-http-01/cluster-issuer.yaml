@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-issuer
+  name: gateways-issuer
 spec:
   acme:
     email: <<__cert_manager.email_user__>>@<<__cert_manager.email_domain__>>
     server: <<__cert_manager.server__>>
     privateKeySecretRef:
-      name: letsencrypt-issuer-account-key
+      name: gateways-issuer-account-key
     solvers:
     # TODO 
