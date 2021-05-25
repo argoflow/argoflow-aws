@@ -12,7 +12,7 @@ resources:
   #- argocd-applications/knative.yaml
   # - argocd-applications/sealed-secrets.yaml
   - argocd-applications/oauth2-proxy.yaml
-  - argocd-applications/oidc-auth.yaml
+  - argocd-applications/oidc-auth-external.yaml
 
   ## Kubeflow  
   - argocd-applications/central-dashboard.yaml
