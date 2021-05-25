@@ -3,4 +3,6 @@ kind: Kustomization
 
 resources:
 - ../base
-- cluster-issuer.yaml
+
+patchesStrategicMerge:
+- patches/cluster-issuer.yaml
