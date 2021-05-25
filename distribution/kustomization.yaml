@@ -16,9 +16,9 @@ resources:
   #- argocd-applications/cert-manager-https-01.yaml
 
   # Pick *one* of the following three applications:  
-  - argocd-applications/oidc-on-cluster-dex.yaml
-  #- argocd-applications/oidc-on-cluster-keycloak.yaml
-  #- argocd-applications/oidc-auth-external.yaml
+  #- argocd-applications/oidc-auth-on-cluster-dex.yaml
+  #- argocd-applications/oidc-auth-on-cluster-keycloak.yaml
+  - argocd-applications/oidc-auth-external.yaml
 
 
   ## Kubeflow  
