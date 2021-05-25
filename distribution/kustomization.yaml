@@ -11,8 +11,8 @@ resources:
   - argocd-applications/oauth2-proxy.yaml
   
   # Pick *one* of the following three applications 
-  - argocd-applications/cert-manager-self-signing.yaml
-  #- argocd-applications/cert-manager-dns-01.yaml
+  #- argocd-applications/cert-manager-self-signing.yaml
+  - argocd-applications/cert-manager-dns-01.yaml
   #- argocd-applications/cert-manager-https-01.yaml
 
   # Pick *one* of the following three applications:  
