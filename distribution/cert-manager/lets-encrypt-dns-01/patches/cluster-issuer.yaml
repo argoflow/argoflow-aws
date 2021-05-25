@@ -3,8 +3,8 @@ kind: ClusterIssuer
 metadata:
   name: gateways-issuer
 spec:  
-  selfSigned: {}
-  $patch: delete
+  selfSigned:
+    $patch: delete
   acme:
     email: <<__cert_manager.email_user__>>@<<__cert_manager.email_domain__>>
     server: <<__cert_manager.server__>>
