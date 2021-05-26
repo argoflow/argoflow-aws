@@ -15,6 +15,10 @@ spec:
           value: <<__role_arn.loadbalancer_controller__>>
         - name: clusterName
           value: <<__cluster_name__>>
+        - name: image.repository
+          value: amazon/aws-alb-ingress-controller
+        - name: image.tag
+          value: v2.2.0    
         - name: vpcId
           value: <<__vpc_id__>>
         - name: region
