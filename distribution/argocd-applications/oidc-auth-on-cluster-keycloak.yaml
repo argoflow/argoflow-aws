@@ -5,7 +5,6 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  spec.destination.namespace: auth
   source:
     repoURL: https://github.com/aflorithmic/argoflow-aws.git
     targetRevision: v0.4
