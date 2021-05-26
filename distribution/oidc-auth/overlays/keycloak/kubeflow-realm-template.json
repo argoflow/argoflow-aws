@@ -74,8 +74,8 @@
             "clientAuthenticatorType": "client-secret",
             "secret": "",
             "redirectUris": [
-                "kubeflow.platform.aflr.io",
-                "kubeflow.platform.aflr.io/oauth2/callback"
+                "https://kubeflow.platform.aflr.io",
+                "https://kubeflow.platform.aflr.io/oauth2/callback"
             ],
             "webOrigins": []
         }
