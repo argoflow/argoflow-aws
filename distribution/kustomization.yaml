@@ -6,6 +6,7 @@ resources:
   - argocd-applications/argocd.yaml
   - argocd-applications/istio-operator.yaml
   - argocd-applications/istio.yaml    
+  - argocd-applications/istio-resources.yaml
   #- argocd-applications/knative.yaml
   # - argocd-applications/sealed-secrets.yaml
   - argocd-applications/oauth2-proxy.yaml
