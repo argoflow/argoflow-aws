@@ -4,35 +4,45 @@ kind: Kustomization
 resources:
   ## Common
   - argocd-applications/argocd.yaml
-  - argocd-applications/cert-manager.yaml
   - argocd-applications/istio-operator.yaml
   - argocd-applications/istio.yaml    
   #- argocd-applications/knative.yaml
+  # - argocd-applications/sealed-secrets.yaml
+  - argocd-applications/oauth2-proxy.yaml
+  
+  # Pick *one* of the following applications 
+  #- argocd-applications/cert-manager-self-signing.yaml
+  - argocd-applications/cert-manager-dns-01.yaml
+
+  # Pick *one* of the following applications:  
+  #- argocd-applications/oidc-auth-on-cluster-dex.yaml
+  #- argocd-applications/oidc-auth-on-cluster-keycloak.yaml
+  - argocd-applications/oidc-auth-external.yaml
+
 
   ## Kubeflow  
-  - argocd-applications/oidc-auth.yaml  
   - argocd-applications/central-dashboard.yaml
   - argocd-applications/profile-controller_access-management.yaml
   - argocd-applications/kubeflow-namespace.yaml
   - argocd-applications/kubeflow-profiles.yaml
   - argocd-applications/kubeflow-roles.yaml
   #- argocd-applications/pipelines-base.yaml
-  - argocd-applications/pipelines-iam-user.yaml
+  # - argocd-applications/pipelines-iam-user.yaml
   #- argocd-applications/pipelines-iam-roles-for-service-accuonts.yaml
-  #- argocd-applications/pipelines-kube2iam.yaml
-  - argocd-applications/katib.yaml
+  # #- argocd-applications/pipelines-kube2iam.yaml
+  # - argocd-applications/katib.yaml
   # - argocd-applications/kfserving.yaml
-  - argocd-applications/pod-defaults.yaml
-  - argocd-applications/jupyter-web-app.yaml
-  - argocd-applications/notebook-controller.yaml
-  - argocd-applications/tensorboard-controller.yaml
-  - argocd-applications/tensorboards-web-app.yaml
-  - argocd-applications/volumes-web-app.yaml
-  - argocd-applications/tensorflow-operator.yaml
-  - argocd-applications/pytorch-operator.yaml
-  - argocd-applications/mpi-operator.yaml
-  - argocd-applications/mxnet-operator.yaml
-  - argocd-applications/xgboost-operator.yaml
+  # - argocd-applications/pod-defaults.yaml
+  # - argocd-applications/jupyter-web-app.yaml
+  # - argocd-applications/notebook-controller.yaml
+  # - argocd-applications/tensorboard-controller.yaml
+  # - argocd-applications/tensorboards-web-app.yaml
+  # - argocd-applications/volumes-web-app.yaml
+  # - argocd-applications/tensorflow-operator.yaml
+  # - argocd-applications/pytorch-operator.yaml
+  # - argocd-applications/mpi-operator.yaml
+  # - argocd-applications/mxnet-operator.yaml
+  # - argocd-applications/xgboost-operator.yaml
 
   ## System
   # - argocd-applications/aws-node-termination-handler.yaml

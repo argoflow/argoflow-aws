@@ -28,6 +28,14 @@ spec:
         value: 100m
       - name: resources.requests.memory
         value: 300Mi
+      - name: sources[0]
+        value: service
+      - name: sources[1]
+        value: ingress
+      - name: sources[2]
+        value: istio-gateway
+      - name: sources[3]
+        value: istio-virtualservice
       # - name: aws.assumeRolenArn
       #   value: <<__role_arn.external_dns__>>
       - name: serviceAccount.annotations.eks\.amazonaws\.com/role-arn
