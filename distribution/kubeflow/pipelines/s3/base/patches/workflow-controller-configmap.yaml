@@ -6,10 +6,10 @@ data:
   artifactRepository: |
     archiveLogs: true
     s3:
-      bucket: <<__s3.bucket.pipelines__>>
-      keyPrefix: <<__s3.key_prefix.pipelines__>>
+      bucket: 863518836478-dev-kf13-12-pipelines
+      keyPrefix: pipelines/artifacts
       endpoint: s3.amazonaws.com
-      region: <<__aws_region__>>
+      region: eu-west-1
       insecure: false
   containerRuntimeExecutor: pns
   # namespace: kubeflow

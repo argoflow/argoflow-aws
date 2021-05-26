@@ -9,7 +9,7 @@ spec:
   gateways:
   - auth-gateway
   hosts:
-  - <<__subdomain_auth__>>.<<__domain__>>
+  - auth.platform.aflr.io
   http:
   - route:
     - destination:

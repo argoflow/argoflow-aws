@@ -1,4 +1,4 @@
-issuer: https://<<__subdomain_auth__>>.<<__domain__>>
+issuer: https://auth.platform.aflr.io
 storage:
   type: kubernetes
   config:
@@ -25,6 +25,6 @@ staticClients:
 # https://github.com/dexidp/dex/pull/1664
 - id:
   redirectURIs:
-  - "https://<<__subdomain_dashboard__>>.<<__domain__>>/oauth2/callback"
+  - "https://kubeflow.platform.aflr.io/oauth2/callback"
   name: 'Dex Login Application'
   secret:

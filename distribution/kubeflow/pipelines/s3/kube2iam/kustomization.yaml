@@ -14,4 +14,4 @@ patchesStrategicMerge:
 - patches/deployment-annotations.yaml
 
 commonAnnotations:
-  iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
+  iam.amazonaws.com/role: arn:aws:iam::161747956760:role/eksctl-ml-cluster-ServiceRole-18X4ZD7THSNT0

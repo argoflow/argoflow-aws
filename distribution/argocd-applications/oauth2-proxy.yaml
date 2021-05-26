@@ -40,21 +40,21 @@ spec:
       - name: extraArgs.skip-provider-button
         value: "true"
       - name: extraArgs.cookie-domain
-        value: .<<__domain__>>
+        value: .platform.aflr.io
       - name: extraArgs.whitelist-domain
-        value: .<<__domain__>>
+        value: .platform.aflr.io
       - name: extraArgs.oidc-issuer-url
-        value: <<__oidc.issuer__>>
+        value: https://auth.platform.aflr.io
       # - name: extraArgs.login-url
-      #   value: "https://<<__subdomain_auth__>>.<<__oidc.issuer__>>/auth/realms/kubeflow/protocol/openid-connect/auth"
+      #   value: "https://auth.https://auth.platform.aflr.io/auth/realms/kubeflow/protocol/openid-connect/auth"
       # - name: extraArgs.oidc-jwks-url
-      #   value: "https://<<__oidc.issuer__>>/keys"
+      #   value: "https://https://auth.platform.aflr.io/keys"
       # - name: extraArgs.redeem-url
-      #   value: "https://<<__subdomain_auth__>>.<<__oidc.issuer__>>/auth/realms/kubeflow/protocol/openid-connect/token"
+      #   value: "https://auth.https://auth.platform.aflr.io/auth/realms/kubeflow/protocol/openid-connect/token"
       # - name: extraArgs.profile-url
-      #   value: "https://<<__subdomain_auth__>>.<<__oidc.issuer__>>/auth/realms/kubeflow/protocol/openid-connect/userinfo"
+      #   value: "https://auth.https://auth.platform.aflr.io/auth/realms/kubeflow/protocol/openid-connect/userinfo"
       # - name: extraArgs.validate-url
-      #   value: "https://<<__subdomain_auth__>>.<<__oidc.issuer__>>.nl/auth/realms/kubeflow/protocol/openid-connect/userinfo"
+      #   value: "https://auth.https://auth.platform.aflr.io.nl/auth/realms/kubeflow/protocol/openid-connect/userinfo"
       # - name: extraArgs.scope
       #   value: email
       # - name: extraArgs.scope

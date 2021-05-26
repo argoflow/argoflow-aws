@@ -12,13 +12,13 @@ spec:
     helm:
       parameters:
         - name: serviceAccount.annotations.eks\.amazonaws\.com/role-arn
-          value: <<__role_arn.loadbalancer_controller__>>
+          value: arn:aws:iam::161747956760:role/eksctl-ml-cluster-ServiceRole-18X4ZD7THSNT0
         - name: clusterName
-          value: <<__cluster_name__>>
+          value: ml
         - name: vpcId
-          value: <<__vpc_id__>>
+          value: vpc-080a30289b4801f32
         - name: region
-          value: <<__aws_region__>>
+          value: eu-west-1
         - name: serviceAccount.create
           value: "true"
         - name: rbac.create

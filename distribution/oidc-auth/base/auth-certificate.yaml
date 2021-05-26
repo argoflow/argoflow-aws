@@ -8,6 +8,6 @@ spec:
   issuerRef:
     name: gateways-issuer
     kind: ClusterIssuer
-  commonName: <<__subdomain_auth__>>.<<__domain__>>
+  commonName: auth.platform.aflr.io
   dnsNames:
-    - <<__subdomain_auth__>>.<<__domain__>>
+    - auth.platform.aflr.io

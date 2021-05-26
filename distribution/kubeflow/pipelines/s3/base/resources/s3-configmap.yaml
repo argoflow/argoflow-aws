@@ -4,7 +4,7 @@ metadata:
   name: pipelines-s3-config
   namespace: kubeflow
 data:
-  REGION: <<__aws_region__>>
-  BUCKET_NAME: <<__s3.bucket.pipelines__>>
-  PIPELINE_FOLDER: <<__s3.path.pipelines__>>
-  PIPELINE_PATH: <<__s3.path.pipelines__>>
+  REGION: eu-west-1
+  BUCKET_NAME: 863518836478-dev-kf13-12-pipelines
+  PIPELINE_FOLDER: pipelines
+  PIPELINE_PATH: pipelines

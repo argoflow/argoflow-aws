@@ -12,7 +12,7 @@ spec:
     helm:
       parameters:
         - name: rbac.serviceAccount.annotations.eks\.amazonaws\.com/role-arn
-          value: <<__role_arn.cluster_autoscaler__>>
+          value: arn:aws:iam::161747956760:role/eksctl-ml-cluster-ServiceRole-18X4ZD7THSNT0
         - name: rbac.serviceAccount.create
           value: "true"
         - name: rbac.create
@@ -26,11 +26,11 @@ spec:
         - name: image.tag
           value: v1.20.0
         - name: autoDiscovery.clusterName
-          value: <<__cluster_name__>>
+          value: ml
         - name: autoDiscovery.enabled
           value: "true"
         - name: awsRegion
-          value: <<__aws_region__>>
+          value: eu-west-1
         - name: extraArgs.balance-similar-node-groups
           value: "true"
         - name: extraArgs.scale-down-enabled

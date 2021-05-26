@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: <<__git_repo.url__>>
-    targetRevision: <<__git_repo.target_revision__>>
+    repoURL: https://github.com/aflorithmic/argoflow-aws.git
+    targetRevision: v0.4
     path: distribution/kubeflow/pipelines/s3/base
     kustomize:
       version: v4.0.5

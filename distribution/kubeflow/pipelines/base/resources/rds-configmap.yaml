@@ -4,8 +4,8 @@ metadata:
   name: pipelines-rds-config
   namespace: kubeflow
 data:
-  DB_NAME_PIPELINES: <<__rds.db_name.pipelines__>>
-  DB_NAME_CACHE: <<__rds.db_name.cache__>>
-  DB_NAME_METADATA: <<__rds.db_name.metadata__>>
-  RDS_HOST: <<__rds.host__>>
-  RDS_PORT: "<<__rds.port__>>"
+  DB_NAME_PIPELINES: mlpipeline
+  DB_NAME_CACHE: cachedb
+  DB_NAME_METADATA: metadb
+  RDS_HOST: dev-kf13-3-instance.c6e2xeayekua.eu-central-1.rds.amazonaws.com
+  RDS_PORT: "3306"

@@ -16,7 +16,7 @@ patchesStrategicMerge:
 - removals/mysql-resources.yaml
  
 # commonAnnotations:
-#   eks.amazonaws.com/role-arn: <<__role_arn.pipelines__>>
+#   eks.amazonaws.com/role-arn: arn:aws:iam::161747956760:role/eksctl-ml-cluster-ServiceRole-18X4ZD7THSNT0
 
 images:
 - name: gcr.io/ml-pipeline/cache-deployer
