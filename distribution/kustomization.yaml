@@ -7,8 +7,9 @@ resources:
   - argocd-applications/istio-operator.yaml
   - argocd-applications/istio.yaml    
   - argocd-applications/knative.yaml
-  # - argocd-applications/sealed-secrets.yaml
+  - argocd-applications/sealed-secrets.yaml
   - argocd-applications/oauth2-proxy.yaml
+  - argocd-applications/keycloak.yaml
   
   # Pick *one* of the following applications 
   #- argocd-applications/cert-manager-self-signing.yaml
@@ -16,8 +17,8 @@ resources:
 
   # Pick *one* of the following applications:  
   #- argocd-applications/oidc-auth-on-cluster-dex.yaml
-  #- argocd-applications/oidc-auth-on-cluster-keycloak.yaml
-  - argocd-applications/oidc-auth-external.yaml
+  - argocd-applications/oidc-auth-on-cluster-keycloak.yaml
+  # - argocd-applications/oidc-auth-external.yaml
 
 
   ## Kubeflow  

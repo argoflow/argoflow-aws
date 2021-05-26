@@ -20,7 +20,7 @@ spec:
       - name: service.port
         value: "4180"
       - name: extraArgs.provider
-        value: oidc
+        value: keycloak
       - name: extraArgs.set-xauthrequest
         value: "true"
       - name: extraArgs.cookie-secure
@@ -43,24 +43,24 @@ spec:
         value: .platform.aflr.io
       - name: extraArgs.whitelist-domain
         value: .platform.aflr.io
-      - name: extraArgs.oidc-issuer-url
-        value: https://auth.platform.aflr.io
-      # - name: extraArgs.login-url
-      #   value: "https://auth.https://auth.platform.aflr.io/auth/realms/kubeflow/protocol/openid-connect/auth"
+      # - name: extraArgs.oidc-issuer-url
+        # value: https://auth.platform.aflr.io
+      - name: extraArgs.login-url
+        value: "https://auth.https://auth.platform.aflr.io/auth/realms/kubeflow/protocol/openid-connect/auth"
       # - name: extraArgs.oidc-jwks-url
-      #   value: "https://https://auth.platform.aflr.io/keys"
-      # - name: extraArgs.redeem-url
-      #   value: "https://auth.https://auth.platform.aflr.io/auth/realms/kubeflow/protocol/openid-connect/token"
-      # - name: extraArgs.profile-url
-      #   value: "https://auth.https://auth.platform.aflr.io/auth/realms/kubeflow/protocol/openid-connect/userinfo"
-      # - name: extraArgs.validate-url
-      #   value: "https://auth.https://auth.platform.aflr.io.nl/auth/realms/kubeflow/protocol/openid-connect/userinfo"
-      # - name: extraArgs.scope
-      #   value: email
-      # - name: extraArgs.scope
-      #   value: profile
-      # - name: extraArgs.scope
-      #   value: openid
+        value: "https://https://auth.platform.aflr.io/keys"
+      - name: extraArgs.redeem-url
+        value: "https://auth.https://auth.platform.aflr.io/auth/realms/kubeflow/protocol/openid-connect/token"
+      - name: extraArgs.profile-url
+        value: "https://auth.https://auth.platform.aflr.io/auth/realms/kubeflow/protocol/openid-connect/userinfo"
+      - name: extraArgs.validate-url
+        value: "https://auth.https://auth.platform.aflr.io.nl/auth/realms/kubeflow/protocol/openid-connect/userinfo"
+      - name: extraArgs.scope
+        value: email
+      - name: extraArgs.scope
+        value: profile
+      - name: extraArgs.scope
+        value: openid
       # - name: extraArgs.skip-oidc-discovery
       #   value: "true"
     repoURL: https://oauth2-proxy.github.io/manifests

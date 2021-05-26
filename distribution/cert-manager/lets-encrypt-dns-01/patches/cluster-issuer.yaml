@@ -7,7 +7,7 @@ spec:
     $patch: delete
   acme:
     email: lars@aflorithmic.ai
-    server: test
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: gateways-issuer-account-key
     solvers:
