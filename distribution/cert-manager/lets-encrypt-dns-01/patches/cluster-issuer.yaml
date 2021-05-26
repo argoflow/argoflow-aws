@@ -6,13 +6,13 @@ spec:
   selfSigned:
     $patch: delete
   acme:
-    email: <<__cert_manager.email_user__>>@<<__cert_manager.email_domain__>>
-    server: <<__cert_manager.server__>>
+    email: lars@aflorithmic.ai
+    server: test
     privateKeySecretRef:
       name: gateways-issuer-account-key
     solvers:
     - dns01:
         route53:
-          hostedZoneID: <<__route53.hosted_zone_id__>>
+          hostedZoneID: Z01884081A34VMRZ2H6J9
           region: eu-west-1
           # role: <<__role_arn.cert_manager__>>

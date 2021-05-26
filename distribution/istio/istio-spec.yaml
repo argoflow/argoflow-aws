@@ -39,7 +39,7 @@ spec:
         service:
           type: LoadBalancer
         serviceAnnotations:
-          service.beta.kubernetes.io/aws-load-balancer-name: <<__aws_load_balancer.name__>>
+          service.beta.kubernetes.io/aws-load-balancer-name: ml-kubeflow
           # service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: "3"
           # service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "3"
           # service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "10"
@@ -49,5 +49,5 @@ spec:
           service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
           service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
           service.beta.kubernetes.io/aws-load-balancer-type: "external"
-          service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: <<__aws_load_balancer.nlb_target_type__>>
+          service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
           proxy.istio.io/config: '{"gatewayTopology" : { "numTrustedProxies": 2 } }'
