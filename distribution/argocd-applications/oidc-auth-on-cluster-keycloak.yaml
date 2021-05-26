@@ -5,6 +5,7 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  spec.destination.namespace: auth
   source:
     repoURL: https://github.com/aflorithmic/argoflow-aws.git
     targetRevision: v0.4
@@ -13,7 +14,10 @@ spec:
       version: v4.0.5
   destination:
     server: https://kubernetes.default.svc
+    namespace: auth
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
