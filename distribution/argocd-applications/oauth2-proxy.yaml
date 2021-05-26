@@ -48,7 +48,7 @@ spec:
       - name: extraArgs.login-url
         value: "https://auth.https://auth.platform.aflr.io/auth/realms/kubeflow/protocol/openid-connect/auth"
       # - name: extraArgs.oidc-jwks-url
-        value: "https://https://auth.platform.aflr.io/keys"
+        # value: "https://https://auth.platform.aflr.io/keys"
       - name: extraArgs.redeem-url
         value: "https://auth.https://auth.platform.aflr.io/auth/realms/kubeflow/protocol/openid-connect/token"
       - name: extraArgs.profile-url
