@@ -41,12 +41,12 @@ spec:
         value: "8080"
       - name: service.httpsPort
         value: "8443"
-      - name: metrics.enabled
-        value: "true"
-      - name: metrics.serviceMonitor.enabled
-        value: "true"
-      - name: metrics.serviceMonitor.namespace
-        value: monitoring
+      # - name: metrics.enabled
+      #   value: "true"
+      # - name: metrics.serviceMonitor.enabled
+      #   value: "true"
+      # - name: metrics.serviceMonitor.namespace
+      #   value: monitoring
   destination:
     server: https://kubernetes.default.svc
     namespace: auth
