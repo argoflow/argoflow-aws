@@ -8,5 +8,5 @@ resources:
 
 patchesStrategicMerge:
 - removals/auth-certificate.yaml
-- removals/kubeflow-gaetway-cert.yaml
+- removals/kubeflow-gateway-cert.yaml
  
