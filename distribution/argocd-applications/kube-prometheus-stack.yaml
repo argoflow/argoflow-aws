@@ -11,26 +11,34 @@ spec:
     chart: kube-prometheus-stack
     helm:
      parameters:
-      - name : grafana.ingress.enabled
-        value : "true"
-      - name: grafana.ingress.hosts[0]
-        value: grafana.example.com
-      - name: grafana.ingress.tls[0].secretName
-        value: grafana-example-com
-      - name: grafana.ingress.tls[0].hosts[0]
-        value: grafana-example-com
+      - name: grafana.admin.existingSecret
+        value: grafana-admin-secret
+      - name: grafana.adminUser
+        value: ""
+      - name: grafana.adminPassword
+        value: ""
+      # - name : grafana.ingress.enabled
+      #   value : "true"
+      # - name: grafana.ingress.hosts[0]
+      #   value: grafana.example.com
+      # - name: grafana.ingress.tls[0].secretName
+      #   value: grafana-example-com
+      # - name: grafana.ingress.tls[0].hosts[0]
+      #   value: grafana-example-com
       - name: grafana.persistence.type
         value: pvc
       - name: grafana.persistence.enabled
         value: "true"
       - name: grafana.persistence.storageClassName
-        value: rook-ceph-block
+        value: gp2
       - name: grafana.persistence.accessModes[0]
         value: ReadWriteOnce
       - name:  grafana.persistence.size
         value: 20Gi
       - name: grafana.grafana\.ini.server.root_url
-        value: https://grafana.example.com
+        value: https://<<__subdomain_grafana__>>.<<__domain__>>/grafana/
+      - name: grafana.grafana\.ini.server.serve_from_sub_path
+        value: "true"
       - name: grafana.plugins[0]
         value: vonage-status-panel
       - name: grafana.sidecar.dashboards.provider.foldersFromFilesStructure
@@ -39,16 +47,16 @@ spec:
         value: k8s-sidecar-target-directory
       - name: grafana.sidecar.dashboards.annotations.k8s-sidecar-target-directory
         value: /tmp/dashboards/kubernetes
-      - name: grafana.grafana\.ini.auth\.anonymous.enabled
-        value: "true"
-      - name: grafana.grafana\.ini.auth\.anonymous.org_name
-        value: "Main Org."
-      - name: grafana.grafana\.ini.auth\.anonymous.org_role
-        value: Viewer
+      # - name: grafana.grafana\.ini.auth\.anonymous.enabled
+      #   value: "true"
+      # - name: grafana.grafana\.ini.auth\.anonymous.org_name
+      #   value: "Main Org."
+      # - name: grafana.grafana\.ini.auth\.anonymous.org_role
+      #   value: Viewer
       - name: grafana.grafana\.ini.security.allow_embedding
         value: "true"
       - name: prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.storageClassName
-        value: rook-ceph-block
+        value: gp2
       - name: prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.accessModes[0]
         value: ReadWriteOnce
       - name: prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage
