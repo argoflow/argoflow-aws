@@ -12,4 +12,4 @@ resources:
 - kubeflow-cluster-roles.yaml
 - kubeflow-gateway.yaml
 - kubeflow-gateway-cert.yaml
-# - monitoring/
+- monitoring/
