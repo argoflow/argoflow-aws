@@ -11,3 +11,4 @@ resources:
 
 patchesStrategicMerge:
 - oauth2-signout-virtual-service.yaml
+- remove-external-secret.yaml
