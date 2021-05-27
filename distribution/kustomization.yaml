@@ -48,7 +48,7 @@ resources:
   - argocd-applications/monitoring-resources.yaml
 
   # Monitoring
-  - argocd-applications/loki-stack.ymal
+  - argocd-applications/loki-stack.yaml
 
   ## System
   # - argocd-applications/aws-node-termination-handler.yaml
