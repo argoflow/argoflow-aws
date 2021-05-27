@@ -5,8 +5,8 @@ metadata:
   namespace: monitoring
 spec:
   gateways:
-  - kubeflow/kubeflow-gateway
   - grafana-gateway
+  - kubeflow/kubeflow-gateway
   hosts:
   - grafana.platform.aflr.io
   - kubeflow.platform.aflr.io
