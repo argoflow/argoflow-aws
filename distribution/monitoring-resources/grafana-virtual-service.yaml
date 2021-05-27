@@ -6,7 +6,6 @@ metadata:
 spec:
   gateways:
   - grafana-gateway
-  - kubeflow/kubeflow-gateway
   hosts:
   - grafana.platform.aflr.io
   - kubeflow.platform.aflr.io
