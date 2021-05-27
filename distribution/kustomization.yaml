@@ -44,7 +44,8 @@ resources:
   - argocd-applications/mpi-operator.yaml
   - argocd-applications/mxnet-operator.yaml
   - argocd-applications/xgboost-operator.yaml
-
+  - argocd-applications/kube-prometheus-stack.yaml
+  - argocd-applications/monitoring-resources.yaml
   ## System
   # - argocd-applications/aws-node-termination-handler.yaml
   - argocd-applications/cluster-autoscaler.yaml

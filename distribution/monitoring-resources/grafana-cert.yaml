@@ -1,13 +1,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: grafana-example-com
-  namespace: monitoring
+  name: grafana-ingressgateway-certs
+  namespace: istio-system
 spec:
-  secretName: grafana-example-com
+  secretName: grafana-ingressgateway-certs
   issuerRef:
-    name: kubeflow-self-signing-issuer
+    name: gateways-issuer
     kind: ClusterIssuer
-  commonName: grafana.example.com
+  commonName: grafana.platform.aflr.io
   dnsNames:
-    - grafana.example.com
+    - grafana.platform.aflr.io
