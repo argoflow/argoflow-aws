@@ -6,6 +6,7 @@ resources:
 
 patchesStrategicMerge:
 - enable-registration-flow.yaml
+- configmap-patch.yaml
 
 images:
 - name: public.ecr.aws/j1r0q0g6/notebooks/central-dashboard
