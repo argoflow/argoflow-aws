@@ -10,16 +10,7 @@ spec:
   - grafana.platform.aflr.io
   - kubeflow.platform.aflr.io
   http:
-  - headers:
-      request:
-        add:
-          x-forwarded-prefix: /grafana
-    match:
-    - uri:
-        prefix: /grafana/
-    rewrite:
-      uri: /
-    route:
+  - route:
     - destination:
         host: kube-prometheus-stack-grafana.monitoring.svc.cluster.local
         port:
