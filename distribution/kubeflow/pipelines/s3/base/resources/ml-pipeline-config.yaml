@@ -8,7 +8,7 @@ data:
   config.json: |
     {
       "DBConfig": {
-        "Host": "dev-kf13-3-instance.c6e2xeayekua.eu-central-1.rds.amazonaws.com",
+        "Host": "ml-pipelines.cqpq5kqzemda.eu-west-1.rds.amazonaws.com",
         "Port": "3306",
         "DriverName": "mysql",
         "DataSourceName": "",

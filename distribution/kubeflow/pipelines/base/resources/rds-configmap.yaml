@@ -7,5 +7,5 @@ data:
   DB_NAME_PIPELINES: mlpipeline
   DB_NAME_CACHE: cachedb
   DB_NAME_METADATA: metadb
-  RDS_HOST: dev-kf13-3-instance.c6e2xeayekua.eu-central-1.rds.amazonaws.com
+  RDS_HOST: ml-pipelines.cqpq5kqzemda.eu-west-1.rds.amazonaws.com
   RDS_PORT: "3306"

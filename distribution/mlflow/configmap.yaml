@@ -4,7 +4,7 @@ metadata:
   name: mlflow-config
 data:
   DB_NAME: mlflow
-  RDS_HOST: dev-kf13-3-instance.c6e2xeayekua.eu-central-1.rds.amazonaws.com
+  RDS_HOST: ml-pipelines.cqpq5kqzemda.eu-west-1.rds.amazonaws.com
   RDS_PORT: "3306"
   ARTIFACT_S3_BUCKET: 863518836478-dev-kf13-12-mlflow
   ARTIFACT_S3_KEY_PREFIX: mlflow/experiments

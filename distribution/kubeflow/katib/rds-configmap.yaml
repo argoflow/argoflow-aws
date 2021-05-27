@@ -5,5 +5,5 @@ metadata:
   namespace: kubeflow
 data:
   DB_NAME: katib
-  RDS_HOST: dev-kf13-3-instance.c6e2xeayekua.eu-central-1.rds.amazonaws.com
+  RDS_HOST: ml-pipelines.cqpq5kqzemda.eu-west-1.rds.amazonaws.com
   RDS_PORT: "3306"

@@ -1,0 +1,27 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+ name: allow-knative-serving
+ namespace: vanderspek-david
+spec:
+ action: ALLOW
+ rules:
+ - from:
+   - source:
+      namespaces:
+      - vanderspek-david
+      - "knative-serving"
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-knative-serving-metrics
+  namespace: vanderspek-david
+spec:
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        paths:
+        - /metrics   # The path to collect metrics by system pod.
+        - /healthz   # The path to probe by system pod.
