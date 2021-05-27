@@ -13,3 +13,4 @@ resources:
 - namespace.yaml
 - nvidia-dcgm-service-monitor.yaml
 - nvidia-dcgm-exporter-dashboard.yaml
+- grafana-kubeflow-virtual-service.yaml
