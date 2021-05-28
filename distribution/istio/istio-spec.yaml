@@ -39,8 +39,8 @@ spec:
         service:
           type: LoadBalancer
         serviceAnnotations:
-          service.beta.kubernetes.io/aws-load-balancer-name: <<__aws_load_balancer.name__>>     
-          # service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: "3"            
+          service.beta.kubernetes.io/aws-load-balancer-name: <<__aws_load_balancer.name__>>
+          # service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: "3"
           # service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "3"
           # service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "10"
           #service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: "HTTP"
