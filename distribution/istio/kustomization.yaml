@@ -4,12 +4,4 @@ kind: Kustomization
 resources:
 - istio-spec.yaml
 - namespace.yaml
-- deny-all-authorizationpolicy.yaml
-- envoy-filter-ingressgateway-settings.yaml
-- envoy-filter-kubeflow-userid.yaml
-- envoy-filter-proxy-protocol.yaml
-- gateway-authorizationpolicy.yaml
-- kubeflow-cluster-roles.yaml
-- kubeflow-gateway.yaml
-- kubeflow-gateway-cert.yaml
 # - monitoring/
