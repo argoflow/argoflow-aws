@@ -9,4 +9,5 @@ resources:
 - dex.yaml
 
 patchesStrategicMerge:
-- oauth2-signout-virtual-service.yaml
+- oauth2-proxy-signout-virtual-service.yaml
+- removals/oauth2-proxy-secret.yaml
