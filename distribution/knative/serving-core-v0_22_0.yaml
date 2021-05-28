@@ -1394,6 +1394,7 @@ metadata:
   annotations:
     knative.dev/example-checksum: "74c3fc6a"
 data:
+  kubeflow.platform.aflr.io: ""
   _example: |
     ################################
     #                              #
@@ -1413,11 +1414,11 @@ data:
     # Default value for domain.
     # Although it will match all routes, it is the least-specific rule so it
     # will only be used if no other domain matches.
-    platform.aflr.io: |
+    example.com: |
 
     # These are example settings of domain.
     # example.org will be used for routes having app=nonprofit.
-    platform.aflr.io: |
+    example.org: |
       selector:
         app: nonprofit
 
