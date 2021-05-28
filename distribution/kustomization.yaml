@@ -24,10 +24,10 @@ resources:
   - argocd-applications/kubeflow-namespace.yaml
   - argocd-applications/kubeflow-profiles.yaml
   - argocd-applications/kubeflow-roles.yaml
-  #- argocd-applications/pipelines-base.yaml
+  # - argocd-applications/pipelines-base.yaml
   # - argocd-applications/pipelines-iam-user.yaml
-  #- argocd-applications/pipelines-iam-roles-for-service-accuonts.yaml
-  # #- argocd-applications/pipelines-kube2iam.yaml
+  # - argocd-applications/pipelines-iam-roles-for-service-accuonts.yaml
+  # - argocd-applications/pipelines-kube2iam.yaml
   # - argocd-applications/katib.yaml
   # - argocd-applications/kfserving.yaml
   # - argocd-applications/pod-defaults.yaml

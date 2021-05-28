@@ -6,7 +6,6 @@ resources:
 - auth-authorizationpolicy.yaml
 - auth-certificate.yaml
 - auth-gateway.yaml
-- secret.yaml
 - oauth2-proxy-signout-virtual-service.yaml
 - oauth2-proxy-secret.yaml
 - oauth2-proxy.yaml
