@@ -1395,7 +1395,7 @@ metadata:
     knative.dev/example-checksum: "74c3fc6a"
 data:
   kubeflow.platform.aflr.io: ""
-  _example: |
+  kubeflow.platform.aflr.io: |
     ################################
     #                              #
     #    EXAMPLE CONFIGURATION     #
