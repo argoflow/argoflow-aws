@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   ## Common
-  - argocd-applications/argocd.yaml
   - argocd-applications/istio-operator.yaml
   - argocd-applications/istio.yaml    
   - argocd-applications/istio-resources.yaml
