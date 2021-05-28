@@ -18,7 +18,9 @@ kubectl create secret generic -n auth keycloak-secret --from-literal=admin-passw
 kubectl create secret generic -n auth keycloak-postgresql --from-literal=postgresql-password=${DATABASE_PASS} --from-literal=postgresql-postgres-password=${POSTGRESQL_PASS} --dry-run=client -o yaml | kubeseal | yq eval -P > postgresql-secret.yaml
 
 read -p 'Email (for Kubeflow login): ' EMAIL
+read -p 'First name (for Kubeflow account): ' FIRSTNAME
+read -p 'Last name (for Kubeflow account): ' LASTNAME
 read -p 'Username (for Kubeflow login): ' USERNAME
 read -p 'Password (for Kubeflow login): ' ADMIN_PASS
 
-yq eval -j -P ".users[0].username = \"${USERNAME}\" | .users[0].email = \"${EMAIL}\" | .users[0].credentials[0].value = \"${ADMIN_PASS}\" | .clients[0].clientId = \"${OIDC_CLIENT_ID}\" | .clients[0].secret = \"${OIDC_CLIENT_SECRET}\"" kubeflow-realm-template.json | kubectl create secret generic -n auth kubeflow-realm --dry-run=client --from-file=kubeflow-realm.json=/dev/stdin -o json | kubeseal | yq eval -P > kubeflow-realm-secret.yaml
+yq eval -j -P ".users[0].username = \"${USERNAME}\" | .users[0].email = \"${EMAIL}\" | .users[0].firstName = \"${FIRSTNAME}\" | .users[0].lastName = \"${LASTNAME}\" | .users[0].credentials[0].value = \"${ADMIN_PASS}\" | .clients[0].clientId = \"${OIDC_CLIENT_ID}\" | .clients[0].secret = \"${OIDC_CLIENT_SECRET}\"" kubeflow-realm-template.json | kubectl create secret generic -n auth kubeflow-realm --dry-run=client --from-file=kubeflow-realm.json=/dev/stdin -o json | kubeseal | yq eval -P > kubeflow-realm-secret.yaml

@@ -74,8 +74,8 @@
             "clientAuthenticatorType": "client-secret",
             "secret": "",
             "redirectUris": [
-                "<<__subdomain_dashboard__>>.<<__domain__>>",
-                "<<__subdomain_dashboard__>>.<<__domain__>>/oauth2/callback"
+                "https://<<__subdomain_dashboard__>>.<<__domain__>>",
+                "https://<<__subdomain_dashboard__>>.<<__domain__>>/oauth2/callback"
             ],
             "webOrigins": []
         }

@@ -5,5 +5,8 @@ resources:
 - namespace.yaml
 - auth-authorizationpolicy.yaml
 - auth-gateway.yaml
-- secret.yaml
-- oauth2-signout-virtual-service.yaml
+- oauth2-proxy-signout-virtual-service.yaml
+- oauth2-proxy.yaml
+- oauth2-proxy-secret.yaml
+
+
