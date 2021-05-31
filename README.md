@@ -112,10 +112,8 @@ Option 2: Allow the external-secret application to assume roles that have more n
 - Placeholder:        `<<__role_arn.external_secrets>>`
 - Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_kube-system_external_secrets`
 - Policy:             
-  - [Option 1](./docs/iam_policies/external-secrets.json)
-  - Option 2 requires only a trust relationship. See below
-
-In the second case, you then need to define roles to be assumed by the ExternalSecret resources that will be created. Each of these roles will need to have the follow trust relationship to the external-secrets role:
+  - [Option 1](./docs/iam_policies/external-secrets-option-1.json)
+  - [Option 2](./docs/iam_policies/external-secrets-option-2.json). In addition, for this case you then need to define roles to be assumed by the ExternalSecret resources that will be created. Each of these roles will need to have the follow trust relationship to the external-secrets role:
 
 ```json
 {
@@ -125,7 +123,7 @@ In the second case, you then need to define roles to be assumed by the ExternalS
       "Sid": "",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::123456789012:role/dev-kf13-14_kube-system_external-secrets"
+        "AWS": "arn:aws:iam::123456789012:role/my-cluster_kube-system_external-secrets"
       },
       "Action": "sts:AssumeRole"
     }
