@@ -1902,7 +1902,7 @@ data:
     # installed in the Knative ingress to terminate external TLS connection.
     # 1. Enabled: enabling auto-TLS feature.
     # 2. Disabled: disabling auto-TLS feature.
-    autoTLS: "Disabled"
+    autoTLS: "Enabled"
 
     # Controls the behavior of the HTTP endpoint for the Knative ingress.
     # It requires autoTLS to be enabled.
