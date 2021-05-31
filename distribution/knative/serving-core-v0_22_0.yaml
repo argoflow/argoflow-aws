@@ -1829,6 +1829,7 @@ metadata:
   annotations:
     knative.dev/example-checksum: "15954d34"
 data:
+  autoTLS: "Enabled"
   _example: |
     ################################
     #                              #
@@ -1902,7 +1903,7 @@ data:
     # installed in the Knative ingress to terminate external TLS connection.
     # 1. Enabled: enabling auto-TLS feature.
     # 2. Disabled: disabling auto-TLS feature.
-    autoTLS: "Enabled"
+    autoTLS: "Disabled"
 
     # Controls the behavior of the HTTP endpoint for the Knative ingress.
     # It requires autoTLS to be enabled.
