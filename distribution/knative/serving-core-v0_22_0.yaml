@@ -1830,6 +1830,7 @@ metadata:
     knative.dev/example-checksum: "15954d34"
 data:
   autoTLS: "Enabled"
+  httpProtocol: "Redirected"
   _example: |
     ################################
     #                              #
