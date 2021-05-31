@@ -4,14 +4,13 @@
 export SETUP_CONF_PATH=$1 # location of the setup config
 export DISTRIBUTION_PATH=./distribution # folder where the distribution's YAML files are to be found
 
-# while IFS="=" read PLACEHOLDER VALUE # While loop that will perform simple parsing. On each line MY_VAR=123 will be read into PLACEHOLDER=MY_VAR, VALUE=123
-# do
-#   # recursively look for $PLACEHOLDER in all files in the $DISTRIBUTION_PATH and replace it with $VALUE
-#   echo ${VALUE}
-#   VALUE=$(echo "${VALUE////$'\/'}") #escape forward slashes (needed for sed to work correctly)
-#   grep -rli ${PLACEHOLDER} ${DISTRIBUTION_PATH}/* | xargs -i@ sed -i "s/${PLACEHOLDER}/${VALUE}/g" @ #perform recursive replace
-# done <${SETUP_CONF_PATH} # pass the setup config into the while loop
-
+while IFS="=" read PLACEHOLDER VALUE # While loop that will perform simple parsing. On each line MY_VAR=123 will be read into PLACEHOLDER=MY_VAR, VALUE=123
+do
+  # recursively look for $PLACEHOLDER in all files in the $DISTRIBUTION_PATH and replace it with $VALUE
+  echo ${VALUE}
+  VALUE=$(echo "${VALUE////$'\/'}") #escape forward slashes (needed for sed to work correctly)
+  grep -rli ${PLACEHOLDER} ${DISTRIBUTION_PATH}/* | xargs -i@ sed -i "s/${PLACEHOLDER}/${VALUE}/g" @ #perform recursive replace
+done <${SETUP_CONF_PATH} # pass the setup config into the while loop
 
 COOKIE_SECRET=$(python3 -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(16)).decode())')
 OIDC_CLIENT_ID=$(python3 -c 'import secrets; print(secrets.token_hex(16))')
@@ -28,12 +27,11 @@ KEYCLOAK_MANAGEMENT_PASS=$(python3 -c 'import secrets; print(secrets.token_hex(1
 kubectl create secret generic -n auth keycloak-secret --from-literal=admin-password=${KEYCLOAK_ADMIN_PASS} --from-literal=database-password=${DATABASE_PASS} --from-literal=management-password=${KEYCLOAK_MANAGEMENT_PASS} --dry-run=client -o yaml | kubeseal | yq eval -P > ${DISTRIBUTION_PATH}/oidc-auth/overlays/keycloak/keycloak-secret.yaml
 kubectl create secret generic -n auth keycloak-postgresql --from-literal=postgresql-password=${DATABASE_PASS} --from-literal=postgresql-postgres-password=${POSTGRESQL_PASS} --dry-run=client -o yaml | kubeseal | yq eval -P > ${DISTRIBUTION_PATH}/oidc-auth/overlays/keycloak/postgresql-secret.yaml
 
-read -p 'Email: ' EMAIL
-read -p 'Username: ' USERNAME
-read -p 'First name (for Kubeflow account): ' FIRSTNAME
-read -p 'Last name (for Kubeflow account): ' LASTNAME
-read -p 'Password (for Kubeflow login): ' ADMIN_PASS
-
+EMAIL="admin@argoflow.org"
+USERNAME="admin"
+FIRSTNAME="admin"
+LASTNAME="admin"
+ADMIN_PASS=$(python3 -c 'import secrets; print(secrets.token_hex(16))')
 ADMIN_PASS_DEX=$(python3 -c "from passlib.hash import bcrypt; import secrets; print(bcrypt.using(rounds=12, ident='2y').hash(\"${ADMIN_PASS}\"))")
 
 yq eval -i ".data.ADMIN = \"${EMAIL}\"" ${DISTRIBUTION_PATH}/kubeflow/notebooks/profile-controller_access-management/patch-admin.yaml
