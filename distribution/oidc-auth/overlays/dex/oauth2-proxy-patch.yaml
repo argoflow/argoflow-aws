@@ -45,32 +45,11 @@ spec:
         value: .<<__domain__>>
       - name: extraArgs.oidc-issuer-url
         value: <<__oidc.issuer__>>
-      # - name: extraArgs.login-url
-      #   value: "https://<<__subdomain_auth__>>.<<__oidc.issuer__>>/auth/realms/kubeflow/protocol/openid-connect/auth"
-      # - name: extraArgs.oidc-jwks-url
-      #   value: "https://<<__oidc.issuer__>>/keys"
-      # - name: extraArgs.redeem-url
-      #   value: "https://<<__subdomain_auth__>>.<<__oidc.issuer__>>/auth/realms/kubeflow/protocol/openid-connect/token"
-      # - name: extraArgs.profile-url
-      #   value: "https://<<__subdomain_auth__>>.<<__oidc.issuer__>>/auth/realms/kubeflow/protocol/openid-connect/userinfo"
-      # - name: extraArgs.validate-url
-      #   value: "https://<<__subdomain_auth__>>.<<__oidc.issuer__>>.nl/auth/realms/kubeflow/protocol/openid-connect/userinfo"
-      # - name: extraArgs.scope
-      #   value: email
-      # - name: extraArgs.scope
-      #   value: profile
-      # - name: extraArgs.scope
-      #   value: openid
-      # - name: extraArgs.skip-oidc-discovery
-      #   value: "true"
-    repoURL: https://oauth2-proxy.github.io/manifests
-    targetRevision: 3.2.13
-  destination:
-    namespace: auth
-    server: https://kubernetes.default.svc
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+      - name: extraArgs.login-url
+        value: "<<__oidc.issuer__>>/auth"
+      - name: extraArgs.oidc-jwks-url
+        value: "<<__oidc.issuer__>>/keys"
+      - name: extraArgs.redeem-url
+        value: "<<__oidc.issuer__>>/token"
+      - name: extraArgs.skip-oidc-discovery
+        value: "true"

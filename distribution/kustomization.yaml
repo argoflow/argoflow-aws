@@ -3,21 +3,19 @@ kind: Kustomization
 
 resources:
   ## Common
-  - argocd-applications/argocd.yaml
   - argocd-applications/istio-operator.yaml
   - argocd-applications/istio.yaml    
-  #- argocd-applications/knative.yaml
-  # - argocd-applications/sealed-secrets.yaml
-  - argocd-applications/oauth2-proxy.yaml
+  - argocd-applications/istio-resources.yaml
+  # - argocd-applications/knative.yaml
   
   # Pick *one* of the following applications 
-  #- argocd-applications/cert-manager-self-signing.yaml
+  # - argocd-applications/cert-manager-self-signing.yaml
   - argocd-applications/cert-manager-dns-01.yaml
 
   # Pick *one* of the following applications:  
-  #- argocd-applications/oidc-auth-on-cluster-dex.yaml
-  #- argocd-applications/oidc-auth-on-cluster-keycloak.yaml
-  - argocd-applications/oidc-auth-external.yaml
+  - argocd-applications/oidc-auth-on-cluster-dex.yaml
+  # - argocd-applications/oidc-auth-on-cluster-keycloak.yaml
+  # - argocd-applications/oidc-auth-external.yaml
 
 
   ## Kubeflow  
@@ -26,10 +24,10 @@ resources:
   - argocd-applications/kubeflow-namespace.yaml
   - argocd-applications/kubeflow-profiles.yaml
   - argocd-applications/kubeflow-roles.yaml
-  #- argocd-applications/pipelines-base.yaml
+  # - argocd-applications/pipelines-base.yaml
   # - argocd-applications/pipelines-iam-user.yaml
-  #- argocd-applications/pipelines-iam-roles-for-service-accuonts.yaml
-  # #- argocd-applications/pipelines-kube2iam.yaml
+  # - argocd-applications/pipelines-iam-roles-for-service-accuonts.yaml
+  # - argocd-applications/pipelines-kube2iam.yaml
   # - argocd-applications/katib.yaml
   # - argocd-applications/kfserving.yaml
   # - argocd-applications/pod-defaults.yaml
@@ -50,6 +48,7 @@ resources:
   - argocd-applications/aws-load-balancer-controller.yaml
   - argocd-applications/external-dns.yaml
   - argocd-applications/external-secrets.yaml
+  - argocd-applications/sealed-secrets.yaml
 
   ## Contrib
   # - argocd-applications/mlflow.yaml

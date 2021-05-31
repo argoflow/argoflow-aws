@@ -215,6 +215,12 @@ Finally, roll out kubeflow with:
 kubectl apply -f distribution/kubeflow.yaml
 ```
 
+If you wish, you may also set up ArgoCD to manage itself, as follows:
+
+```bash
+kubectl apply -f distribution/argocd-applications/argocd.yaml
+```
+
 ## Customizing the Jupyter Web App
 
 To customize the list of images presented in the Jupyter Web App
