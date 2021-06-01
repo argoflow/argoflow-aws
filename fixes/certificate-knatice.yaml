@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: serving-ingressgateway-certs
+  namespace: istio-system
+spec:
+  secretName: serving-ingressgateway-certs
+  issuerRef:
+    name: gateways-issuer
+    kind: ClusterIssuer
+  commonName: auth.platform.aflr.io
+  dnsNames:
+    - '*.serving.platform.aflr.io'

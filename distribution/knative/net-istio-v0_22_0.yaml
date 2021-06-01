@@ -73,7 +73,7 @@ spec:
       protocol: HTTPS
     tls:
       mode: SIMPLE
-      credentialName: auth-ingressgateway-certs
+      credentialName: serving-ingressgateway-certs
 ---
 # Copyright 2019 The Knative Authors
 #
