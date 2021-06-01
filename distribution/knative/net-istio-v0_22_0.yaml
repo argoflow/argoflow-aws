@@ -300,7 +300,7 @@ metadata:
     serving.knative.dev/release: "v0.22.0"
     networking.knative.dev/ingress-provider: istio
 data:
-  enable-virtualservice-status: "true"
+  # enable-virtualservice-status: "true"
   _example: |
     ################################
     #                              #
