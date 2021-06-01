@@ -65,6 +65,10 @@ spec:
         value: "false"
       - name: prometheus.prometheusSpec.serviceMonitorSelector
         value: ""
+      - name: prometheus.prometheusSpec.ruleSelectorNilUsesHelmValues
+        value: "false"
+      - name: prometheus.prometheusSpec.ruleSelector
+        value: ""
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring

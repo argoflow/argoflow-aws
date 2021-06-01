@@ -28,35 +28,35 @@ spec:
         - /healthz   # The path to probe by system pod.
 
 
---- 
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
- name: allow-knative-serving-to-lars-ns
- namespace: knative-serving
-spec:
- action: ALLOW
- rules:
- - from:
-   - source:
-      namespaces:
-      - 'kubeflow'
-      - "knative-serving"
-      - 'lars'
---- 
+# --- 
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#  name: allow-knative-serving-to-lars-ns
+#  namespace: knative-serving
+# spec:
+#  action: ALLOW
+#  rules:
+#  - from:
+#    - source:
+#       namespaces:
+#       - 'kubeflow'
+#       - "knative-serving"
+#       - 'lars'
+# --- 
 
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-knative-serving-metrics-all
-  namespace: knative-serving
-spec:
-  action: ALLOW
-  rules:
-  - to:
-    - operation:
-        paths:
-        # WILDCARD needs to be filtered out for production
-        - '*'
-        - /metrics   # The path to collect metrics by system pod.
-        - /healthz   # The path to probe by system pod.
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#   name: allow-knative-serving-metrics-all
+#   namespace: knative-serving
+# spec:
+#   action: ALLOW
+#   rules:
+#   - to:
+#     - operation:
+#         paths:
+#         # WILDCARD needs to be filtered out for production
+#         - '*'
+#         - /metrics   # The path to collect metrics by system pod.
+#         - /healthz   # The path to probe by system pod.

@@ -1,10 +1,10 @@
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
- name: torchserve-scaled-policy
-spec:
- selector:
-   matchLabels:
-     serving.kubeflow.org/inferenceservice: torchserve-scaled
- rules:
-   -  {}
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#  name: torchserve-scaled-policy
+# spec:
+#  selector:
+#    matchLabels:
+#      serving.kubeflow.org/inferenceservice: torchserve-scaled
+#  rules:
+#    -  {}
