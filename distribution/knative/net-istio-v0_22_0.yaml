@@ -62,7 +62,15 @@ spec:
         protocol: HTTP
       hosts:
         - "*"
-
+    - hosts:
+        - '*'
+      port:
+        name: https
+        number: 443
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: tls-cert
 ---
 # Copyright 2019 The Knative Authors
 #

@@ -19,3 +19,4 @@ spec:
         hosts:
         - kubeflow.platform.aflr.io
         - serving.platform.aflr.io
+        - '*.serving.platform.aflr.io'
