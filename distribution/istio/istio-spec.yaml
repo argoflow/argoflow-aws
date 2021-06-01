@@ -52,4 +52,3 @@ spec:
           service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: <<__aws_load_balancer.nlb_target_type__>>  
           proxy.istio.io/config: '{"gatewayTopology" : { "numTrustedProxies": 2 } }'
           external-dns.alpha.kubernetes.io/hostname: <<__route53.hosted_zone_hostnames__>>
-

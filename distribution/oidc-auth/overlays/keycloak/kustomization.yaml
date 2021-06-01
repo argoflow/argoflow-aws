@@ -12,4 +12,5 @@ resources:
 
 patchesStrategicMerge:
 - oauth2-proxy-signout-virtual-service.yaml
+- oauth2-proxy-patch.yaml
 - removals/oauth2-proxy-secret.yaml

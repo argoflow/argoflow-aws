@@ -27,7 +27,7 @@
                     "autoscaling:ResourceTag/k8s.io/cluster-autoscaler/enabled": [
                         "true"
                     ],
-                    "autoscaling:ResourceTag/kubernetes.io/cluster/dev-kf13-14": [
+                    "autoscaling:ResourceTag/kubernetes.io/cluster/my-cluster": [
                         "owned"
                     ]
                 }
