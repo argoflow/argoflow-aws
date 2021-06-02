@@ -57,6 +57,8 @@ resources:
   ## Monitoring
   # - argocd-applications/monitoring-resources.yaml
   # - argocd-applications/kube-prometheus-stack.yaml
+  # - argocd-applications/loki-stack.yaml
+  # - argocd-applications/kiali.yaml
   # - argocd-applications/kubecost.yaml
 
   ## Contrib
