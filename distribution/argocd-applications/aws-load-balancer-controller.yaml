@@ -17,8 +17,6 @@ spec:
           value: <<__cluster_name__>>
         - name: image.repository
           value: amazon/aws-alb-ingress-controller
-        - name: image.tag
-          value: v2.2.0    
         - name: vpcId
           value: <<__vpc_id__>>
         - name: region

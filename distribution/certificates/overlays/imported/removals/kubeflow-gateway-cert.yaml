@@ -4,4 +4,3 @@ kind: Certificate
 metadata:
   name: kubeflow-ingressgateway-certs
   namespace: istio-system
-

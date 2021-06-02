@@ -3,10 +3,10 @@ kind: Kustomization
 
 resources:
 - ../base
-- resources/auth-certificate-secret.yaml
-- resources/kubeflow-gateway-cert-secret.yaml
+- auth-certificate-secret.yaml
+- kubeflow-gateway-cert-secret.yaml
+- monitoring-certificate-secret.yaml
 
 patchesStrategicMerge:
 - removals/auth-certificate.yaml
 - removals/kubeflow-gateway-cert.yaml
- 

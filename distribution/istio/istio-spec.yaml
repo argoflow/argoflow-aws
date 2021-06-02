@@ -47,8 +47,8 @@ spec:
           #service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "15021"
           #service.beta.kubernetes.io/aws-load-balancer-healthcheck-path
           service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
-          service.beta.kubernetes.io/aws-load-balancer-scheme: <<__aws_load_balancer.scheme__>>          
+          service.beta.kubernetes.io/aws-load-balancer-scheme: <<__aws_load_balancer.scheme__>>
           service.beta.kubernetes.io/aws-load-balancer-type: "external"
-          service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: <<__aws_load_balancer.nlb_target_type__>>  
+          service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: <<__aws_load_balancer.nlb_target_type__>>
           proxy.istio.io/config: '{"gatewayTopology" : { "numTrustedProxies": 2 } }'
           external-dns.alpha.kubernetes.io/hostname: <<__route53.hosted_zone_hostnames__>>

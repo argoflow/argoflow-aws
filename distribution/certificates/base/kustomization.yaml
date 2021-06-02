@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
 - kubeflow-gateway-cert.yaml
 - auth-certificate.yaml
+- monitoring-certificate.yaml
