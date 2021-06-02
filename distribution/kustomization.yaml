@@ -54,6 +54,11 @@ resources:
   - argocd-applications/external-secrets.yaml
   - argocd-applications/sealed-secrets.yaml
 
+  ## Monitoring
+  # - argocd-applications/monitoring-resources.yaml
+  # - argocd-applications/kube-prometheus-stack.yaml
+  # - argocd-applications/kubecost.yaml
+
   ## Contrib
   # - argocd-applications/mlflow.yaml
   # - argocd-applications/experimental-pvcviewer-controller.yaml

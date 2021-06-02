@@ -6,10 +6,10 @@ resources:
 - allow-all-ns-mon-authorization-policy.yaml
 - grafana-admin-secret.yaml
 - grafana-autorization-policy.yaml
-- grafana-cert.yaml
-- grafana-gateway.yaml
+- grafana-virtual-service-kubeflow.yaml
 - grafana-virtual-service.yaml
-- kiali-cert.yaml
+- monitoring-cert.yaml
+- monitoring-gateway.yaml
 - namespace.yaml
 - nvidia-dcgm-service-monitor.yaml
 - nvidia-dcgm-exporter-dashboard.yaml
