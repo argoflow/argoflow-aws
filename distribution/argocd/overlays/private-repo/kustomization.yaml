@@ -3,13 +3,11 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-- namespace.yaml
-- github.com/argoproj/argo-cd/manifests/cluster-install?ref=8d2b13d733e1dff7d1ad2c110ed31be4804406e2 # tag=v2.0.3
+- ../../base
 - secret.yaml
 
 patchesStrategicMerge:
-- configmap-patch.yaml
-- add-custom-kustomize.yaml
+- patches/configmap-patch.yaml
 
 images:
 - name: ghcr.io/dexidp/dex

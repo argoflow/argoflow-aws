@@ -201,14 +201,28 @@ To initialise your repository, do the following:
 - run `./setup_repo.sh setup.conf`
 - commit and push your changes
 
-Start up external-secret and argocd:
+Start up external-secret:
 
 ```bash
 kustomize build distribution/external-secrets/ | kubectl apply -f -
-kustomize build distribution/argocd/ | kubectl apply -f -
 ```
 
+Start up argocd:
+
+- If you are using a public repo:
+
+  ```bash
+  kustomize build distribution/argocd/base/ | kubectl apply -f -
+  ```
+
+- If you are private a public repo:
+
+  ```bash
+  kustomize build distribution/argocd/overlays/private-repo/ | kubectl apply -f -
+  ```
+
 Finally, roll out kubeflow with:
+
 ```bash
 kubectl apply -f distribution/kubeflow.yaml
 ```
