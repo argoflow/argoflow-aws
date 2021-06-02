@@ -10,3 +10,4 @@ resources:
 patchesStrategicMerge:
 - removals/auth-certificate.yaml
 - removals/kubeflow-gateway-cert.yaml
+- removals/monitoring-certificate.yaml
