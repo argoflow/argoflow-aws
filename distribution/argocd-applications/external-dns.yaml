@@ -41,7 +41,7 @@ spec:
       - name: serviceAccount.annotations.eks\.amazonaws\.com/role-arn
         value: <<__role_arn.external_dns__>>
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: 5.0.2
+    targetRevision: 5.0.3
   syncPolicy:
     automated:
       prune: true
