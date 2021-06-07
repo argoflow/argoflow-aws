@@ -175,30 +175,75 @@ deploy all other applications.
 
 ## Prerequisites
 
-- kubectl (latest)
-- kustomize 4.0.5
+Mandatory:
+- [kubectl](https://kubernetes.io/docs/tasks/tools/
+- [kustomize 4.0.5](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv4.0.5)
 
+Optional (if using setup_credentials.sh to generate initial credentials as sealed secrets):
+
+- [yq](https://github.com/mikefarah/yq)
+- [python 3.6 or newer](https://www.python.org/downloads/)
+- [kubeseal](https://github.com/bitnami-labs/sealed-secrets/releases/tag/v0.16.0)
+- Python libraries:
+  - passlib
 
 ## The `setup.conf` file and `setup_repo.sh` script
 
 This repository uses a very simple initialisation script, [./setup_repo.sh ](./setup_repo.sh) that takes an config file such as the example one, [./examples/setup.conf](./examples/setup.conf) and iterates over all lines therein. A single line would for example look as follows:
+
 ```bash
 <<__role_arn.cluster_autoscaler__>>=arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-cluster-autoscaler
 ```
+
 The init script will look for all occurences in the ./distribution folder of the placeholder `<<__role_arn.cluster_autoscaler__>>` and will replace it with the value `arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-cluster-autoscaler`. Please note that that comments (`//`, `#`), quatation marks (`"`, `'`) or unnecessary line-breaks should be avoided.
 
 You may add any additional placeholder/value pairs you want. The naming convention `<<__...__>> ` has no functional purpose other than to aid readability and minimise the risk of a "find-and-replace" being performed on a value that was not meant as a placeholder.
 
+## The "setup_credentials.sh" script
 
+Finally, if you wish you can use the "setup_credentials.sh" script to generate [SealedSecrets](https://github.com/bitnami-labs/sealed-secrets) that will be used for access to "admin" applications, such as the ArgoCD dashboard
+(in the future), Grafana, Dex, Keycloak, the kubeflow admin user etc. This script will generate various random credentials and create a "sealed" representation that is safe to declare in your Git repository.
 
+Run the following commands to install the kubeseal CLI on Linux:
+
+```bash
+wget https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.16.0/kubeseal-linux-amd64 -O kubeseal
+sudo install -m 755 kubeseal /usr/local/bin/kubeseal
+```
+
+On mac you can use Brew to install the kubeseal CLI:
+
+```bash
+brew install kubeseal
+```
+
+Next, ensure passlib is installed:
+
+```bash
+pip install passlib
+```
+
+Deploy the Sealed Secrets controller to the cluster:
+
+```bash
+kubectl apply -f distribution/argocd-applications/sealed-secrets.yaml
+```
+
+Finally, the script can be run with:
+
+`./setup_credentials.sh --email test@test.com --username youruser --firstname Yourname --lastname Yoursurname --password yourpassword`
+
+You may leave out any of the input paramaters. In that case, a default value (or generated value in the case of passwords) will be used. Alternatively, environmnet variables can be used instead of input parameters.
 
 ## Deployment steps
 
 To initialise your repository, do the following:
+
 - fork this repo
 - modify the kustomizations for your purpose. You may in particular wish to edit `distribution/kubeflow.yaml` with the selection of applications you wish to roll out
 - set up a "setup.conf" file (or do a manual "find-and-replace" if you prefer) such as [this](./examples/setup.conf) one in the root of the repository
 - run `./setup_repo.sh setup.conf`
+- (optionally) run `./setup_credentials.sh --email test@test.com --username youruser --firstname Yourname --lastname Yoursurname --password yourpassword`
 - commit and push your changes
 
 Start up external-secret:
@@ -239,7 +284,6 @@ To customize the list of images presented in the Jupyter Web App
 and other related setting such as allowing custom images,
 edit the [spawner_ui_config.yaml](./distibution/kubeflow/notebooks/jupyter-web-app/spawner_ui_config.yaml)
 file.
-
 
 ## Bonus: Extending the Volumes Web App with a File Browser
 

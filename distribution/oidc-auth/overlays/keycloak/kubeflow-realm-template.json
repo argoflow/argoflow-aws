@@ -8,14 +8,14 @@
     "requiredCredentials": [ "password" ],
     "users" : [
         {
-            "username" : "user",
+            "username" : "",
             "enabled": true,
-            "email" : "user@kubeflow.org",
-            "firstName": "Sample",
-            "lastName": "User",
+            "email" : "",
+            "firstName": "",
+            "lastName": "",
             "credentials" : [
                 { "type" : "password",
-                  "value" : "12341234" }
+                  "value" : "" }
             ],
             "realmRoles": [ "user" ],
             "clientRoles": {
