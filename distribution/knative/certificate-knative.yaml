@@ -10,4 +10,5 @@ spec:
     kind: ClusterIssuer
   commonName: 'serving.platform.aflr.io'
   dnsNames:
+    - 'serving.platform.aflr.io'
     - '*.serving.platform.aflr.io'
