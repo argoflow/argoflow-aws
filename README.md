@@ -107,11 +107,11 @@ The external-secrets application is middleman that will create ExternalSecret cu
 
 Option 1: Allow the external-secret application wide authority to read and write AWS secrets
 
-Option 2: Allow the external-secret application to assume roles that have more narrowly defined 
+Option 2: Allow the external-secret application to assume roles that have more narrowly defined
 
 - Placeholder:        `<<__role_arn.external_secrets>>`
 - Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_kube-system_external_secrets`
-- Policy:             
+- Policy:
   - [Option 1](./docs/iam_policies/external-secrets-option-1.json)
   - [Option 2](./docs/iam_policies/external-secrets-option-2.json). In addition, for this case you then need to define roles to be assumed by the ExternalSecret resources that will be created. Each of these roles will need to have the follow trust relationship to the external-secrets role:
 
@@ -131,7 +131,7 @@ Option 2: Allow the external-secret application to assume roles that have more n
 }
 ```
 
-In addition, we need to grant each role limited access to secrets. We have chosen an approach of limiting access to secrets by namespace, but it is possible to make this more granular if desired. 
+In addition, we need to grant each role limited access to secrets. We have chosen an approach of limiting access to secrets by namespace, but it is possible to make this more granular if desired.
 
 #### `ExternalSecret` for the `argocd` namespace
 
@@ -298,3 +298,12 @@ argocd login localhost:8888
 argocd account update-password
 ```
 
+
+
+# Contributing
+
+Before contributing, install [pre-commit](https://pre-commit.com/) and initialise `.pre-commit-config.yaml` by running the following from the repo's root directory:
+
+```bash
+pre-commit install
+```
