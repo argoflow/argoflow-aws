@@ -176,7 +176,7 @@ deploy all other applications.
 ## Prerequisites
 
 Mandatory:
-- [kubectl (latest)](https://kubernetes.io/docs/tasks/tools/
+- [kubectl](https://kubernetes.io/docs/tasks/tools/
 - [kustomize 4.0.5](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv4.0.5)
 
 Optional (if using setup_credentials.sh to generate initial credentials as sealed secrets):
