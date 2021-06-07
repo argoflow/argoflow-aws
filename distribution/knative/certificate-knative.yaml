@@ -8,6 +8,6 @@ spec:
   issuerRef:
     name: gateways-issuer
     kind: ClusterIssuer
-  commonName: '*.serving.platform.aflr.io'
+  commonName: 'serving.platform.aflr.io'
   dnsNames:
     - '*.serving.platform.aflr.io'
