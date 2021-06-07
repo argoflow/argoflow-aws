@@ -56,12 +56,12 @@ Let's take the [external-dns](https://github.com/kubernetes-sigs/external-dns) s
 }
 ```
 
-For every IRSA Role you set up, you will need the trust relationship above substituting for the actual oidc provider url as well as the the values "kube-system" and "external-dns" in `system:serviceaccount:kube-system:external-dns` for appropriate values.
+For every IRSA Role you set up, you will a trust relationship such as the one above (substituting of course for the actual oidc provider url) and setting values "kube-system" and "external-dns" in `system:serviceaccount:kube-system:external-dns` for appropriate for the Namespace and ServiceAccount names respectively.
 
 
 ## Policies
 
-Further down in this guide we explain how to initialise this repository. For now, just take note that we use placeholder values such as `<<__role_arn.external_dns__>>` that will be replaced by the actual ARNs of the Roles you wish to use. Below is a listing of all of the IRSA roles in use in this repository, along with links to JSON files with example policies. If you do a search on the whole "distribution" folder you find exactly where these placeholders are used.
+Further down in this guide we explain how to initialise this repository. For now, just take note that we use placeholder values such as `<<__role_arn.external_dns__>>` that will be replaced by the actual ARNs of the roles you wish to use. Below is a listing of all of the IRSA roles in use in this repository, along with links to JSON files with example policies. If you do a search on the whole "distribution" folder you find exactly where these placeholders are used.
 
 ---
 ### `aws-loadbalancer-controller`
@@ -103,9 +103,9 @@ Needs policies that allows it to automatically create entries in Route53 in orde
 ---
 ### `external-secrets`
 
-The external-secrets application is middleman that will create ExternalSecret custom resources in specific namespaces. It can be configured in two ways.
+The external-secrets application is a middleman that will create ExternalSecret custom resources in specific namespaces. It can be configured in two ways.
 
-Option 1: Allow the external-secret application wide authority to read and write AWS secrets
+Option 1: Allow the external-secret application broad authority to read and write AWS secrets
 
 Option 2: Allow the external-secret application to assume roles that have more narrowly defined
 
@@ -189,7 +189,7 @@ Optional (if using setup_credentials.sh to generate initial credentials as seale
 
 ## The `setup.conf` file and `setup_repo.sh` script
 
-This repository uses a very simple initialisation script, [./setup_repo.sh ](./setup_repo.sh) that takes an config file such as the example one, [./examples/setup.conf](./examples/setup.conf) and iterates over all lines therein. A single line would for example look as follows:
+This repository uses a very simple initialisation script, [./setup_repo.sh ](./setup_repo.sh) that takes a config file such as the example one, [./examples/setup.conf](./examples/setup.conf) and iterates over all lines therein. A single line would for example look as follows:
 
 ```bash
 <<__role_arn.cluster_autoscaler__>>=arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-cluster-autoscaler
@@ -260,13 +260,13 @@ Start up argocd:
   kustomize build distribution/argocd/base/ | kubectl apply -f -
   ```
 
-- If you are private a public repo:
+- If you are using a private repo (not that this will use an ExternalSecret to fetch git credentials from the AWS Secret Manager):
 
   ```bash
   kustomize build distribution/argocd/overlays/private-repo/ | kubectl apply -f -
   ```
 
-Finally, roll out kubeflow with:
+Finally, roll out Kubeflow with:
 
 ```bash
 kubectl apply -f distribution/kubeflow.yaml
@@ -346,8 +346,10 @@ argocd account update-password
 
 # Contributing
 
-Before contributing, install [pre-commit](https://pre-commit.com/) and initialise `.pre-commit-config.yaml` by running the following from the repo's root directory:
+Before contributing, please install [pre-commit](https://pre-commit.com/) and initialise `.pre-commit-config.yaml` by running the following from the repo's root directory:
 
 ```bash
 pre-commit install
 ```
+
+Please feel free to add features by forking this repo, developing and testing your feature and merging back to master via a Pull Request. We are currently still a small community, but feel free to also report bugs or make issue requests on the issue board!
