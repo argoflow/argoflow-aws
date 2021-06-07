@@ -77,17 +77,6 @@ spec:
   #   tls:
   #     mode: SIMPLE
   #     credentialName: serving-ingressgateway-certs
-
-  # CHANGES FOR AUTOTLS
-  - hosts:
-    - '*'
-  port:
-    name: https
-    number: 443
-    protocol: HTTPS
-  tls:
-    mode: SIMPLE
-        credentialName: tls-cert
 ---
 # Copyright 2019 The Knative Authors
 #

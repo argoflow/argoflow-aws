@@ -11,5 +11,5 @@ metadata:
 data:
   issuerRef: |
     kind: ClusterIssuer
-    name: cert-manager
+    name: gateways-issuer
     namespace: cert-manager
