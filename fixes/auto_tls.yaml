@@ -1,0 +1,16 @@
+# kubectl apply --filename https://github.com/knative/net-certmanager/releases/download/v0.22.0/release.yaml
+# kubectl apply --filename https://github.com/knative/serving/releases/download/v0.22.0/serving-nscert.yaml
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-certmanager
+  namespace: knative-serving
+  labels:
+    networking.knative.dev/certificate-provider: cert-manager
+data:
+  issuerRef: |
+    kind: ClusterIssuer
+    name: cert-manager
+    namespace: cert-manager

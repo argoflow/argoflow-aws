@@ -5,7 +5,7 @@ resources:
 - serving-core-v0_22_0.yaml
 - net-istio-v0_22_0.yaml
 - eventing-core-v0_22_0.yaml # Eventing is optional
-- certificate-knative.yaml
+# - certificate-knative.yaml
 
 images:
 - name: gcr.io/knative-releases/knative.dev/serving/cmd/activator

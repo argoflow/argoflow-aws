@@ -63,17 +63,17 @@ spec:
       number: 80
       protocol: HTTP
     # Upgrade HTTP to HTTPS
-    tls:
-      httpsRedirect: true
-  - hosts:
-    - serving.platform.aflr.io
-    port:
-      name: https
-      number: 443
-      protocol: HTTPS
-    tls:
-      mode: SIMPLE
-      credentialName: serving-ingressgateway-certs
+  #   tls:
+  #     httpsRedirect: true
+  # - hosts:
+  #   - serving.platform.aflr.io
+  #   port:
+  #     name: https
+  #     number: 443
+  #     protocol: HTTPS
+  #   tls:
+  #     mode: SIMPLE
+  #     credentialName: serving-ingressgateway-certs
 ---
 # Copyright 2019 The Knative Authors
 #
