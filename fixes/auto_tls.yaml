@@ -1,5 +1,4 @@
 # kubectl apply --filename https://github.com/knative/net-certmanager/releases/download/v0.22.0/release.yaml
-# kubectl apply --filename https://github.com/knative/serving/releases/download/v0.22.0/serving-nscert.yaml
 
 ---
 apiVersion: v1
