@@ -1,5 +1,5 @@
 #!/bin/bash
-
+DISTRIBUTION_PATH="./distribution"
 COOKIE_SECRET=$(python3 -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(16)).decode())')
 OIDC_CLIENT_ID=$(python3 -c 'import secrets; print(secrets.token_hex(16))')
 OIDC_CLIENT_SECRET=$(python3 -c 'import secrets; print(secrets.token_hex(32))')
