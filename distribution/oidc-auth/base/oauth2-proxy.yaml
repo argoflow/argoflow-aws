@@ -54,7 +54,7 @@ spec:
       # - name: extraArgs.profile-url
       #   value: "<<__oidc.issuer__>>/auth/realms/kubeflow/protocol/openid-connect/userinfo"
       # - name: extraArgs.validate-url
-      #   value: "<<__oidc.issuer__>>.nl/auth/realms/kubeflow/protocol/openid-connect/userinfo"
+      #   value: "<<__oidc.issuer__>>/auth/realms/kubeflow/protocol/openid-connect/userinfo"
       # - name: extraArgs.scope
       #   value: email
       # - name: extraArgs.scope
