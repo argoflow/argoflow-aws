@@ -46,12 +46,17 @@ spec:
           value: .<<__domain__>>
         - name: extraArgs.oidc-issuer-url
           value: <<__oidc.issuer__>>
-        - name: sessionStorage.redis.standalone.connectionUrl
-          value: <<__oidc.redis.connection_url__>>
         - name: serviceAccount.enabled
           value: 'false' # we will create the ServiceAccount manually.
         - name: serviceAccount.name
           value: oauth2-proxy
+        - name: sessionStorage.type
+          value: redis
+        - name: sessionStorage.redis.standalone.clientType
+          value: standalone
+        - name: sessionStorage.redis.standalone.connectionUrl
+          value: <<__oidc.redis.connection_url__>>
+
     repoURL: https://oauth2-proxy.github.io/manifests
     targetRevision: 3.3.2
   destination:
