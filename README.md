@@ -56,7 +56,7 @@ Let's take the [external-dns](https://github.com/kubernetes-sigs/external-dns) s
 }
 ```
 
-For every IRSA Role you set up, you will a trust relationship such as the one above (substituting of course for the actual oidc provider url) and setting values "kube-system" and "external-dns" in `system:serviceaccount:kube-system:external-dns` for appropriate for the Namespace and ServiceAccount names respectively.
+For every IRSA Role you set up, you will need a trust relationship such as the one above (substituting of course for the actual oidc provider url) and setting values "kube-system" and "external-dns" in `system:serviceaccount:kube-system:external-dns` for appropriate for the Namespace and ServiceAccount names respectively.
 
 
 ## Policies
