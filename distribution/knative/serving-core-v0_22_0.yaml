@@ -2362,7 +2362,7 @@ spec:
         - name: autoscaler
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler@sha256:761dc36210e69ebef3a64ce72ad9f54f8172e4aed6b97e8a706e3128956ec54d
+          image: gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler@sha256:845d65ade770938295a41a8b57736f1449b2f9a8098df094a847075ce6b66830
           resources:
             requests:
               cpu: 100m
