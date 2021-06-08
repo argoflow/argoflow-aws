@@ -56,7 +56,6 @@ spec:
           value: standalone
         - name: sessionStorage.redis.standalone.connectionUrl
           value: <<__oidc.redis.connection_url__>>
-
     repoURL: https://oauth2-proxy.github.io/manifests
     targetRevision: 3.3.2
   destination:
