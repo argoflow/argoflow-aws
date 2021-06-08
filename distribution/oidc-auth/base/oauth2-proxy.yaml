@@ -53,8 +53,7 @@ spec:
                 - name: serviceAccount.name
                   value: oauth2-proxy
                 - name: serviceAccount.annotations
-                  value:
-                      eks.amazonaws.com/role-arn: <<__role_arn.oauth2_proxy__>>
+                  value: '{eks.amazonaws.com/role-arn: <<__role_arn.oauth2_proxy__>>}'
         repoURL: https://oauth2-proxy.github.io/manifests
         targetRevision: 3.3.2
     destination:
