@@ -1,21 +1,22 @@
 ---
 exclude: ^examples/
 repos:
-    - repo: https://github.com/adrienverge/yamllint.git
-      rev: v1.26.1
-      hooks:
-          - id: yamllint
-            args: [-c, .yamllint]
-    - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
-      rev: 0.1.0
-      hooks:
-          - id: yamlfmt
-    - repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: v2.5.0
-      hooks:
-          - id: end-of-file-fixer
-          - id: trailing-whitespace
-    - repo: https://github.com/psf/black
-      rev: 21.5b2
-      hooks:
-          - id: black
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.26.1
+    hooks:
+      - id: yamllint
+        args: [-c, .yamllint]
+  - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+    rev: 0.1.0
+    hooks:
+      - id: yamlfmt
+        args: [--mapping, '2', --sequence, '4', --offset, '2', --width, '120']
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/psf/black
+    rev: 21.5b2
+    hooks:
+      - id: black
