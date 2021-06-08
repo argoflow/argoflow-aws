@@ -16,30 +16,30 @@ spec:
     spec:
       serviceAccountName: external-secrets
       containers:
-        - name: kubernetes-external-secrets
-          image: "ghcr.io/external-secrets/kubernetes-external-secrets:7.2.1"
-          ports:
-            - name: prometheus
-              containerPort: 3001
-          imagePullPolicy: IfNotPresent
-          resources: {}
-          env:
-            - name: "AWS_DEFAULT_REGION"
-              value: "<<__aws_region__>>"
-            - name: "AWS_REGION"
-              value: "<<__aws_region__>>"
-            - name: "LOG_LEVEL"
-              value: "info"
-            - name: "LOG_MESSAGE_KEY"
-              value: "msg"
-            - name: "METRICS_PORT"
-              value: "3001"
-            - name: "POLLER_INTERVAL_MILLISECONDS"
-              value: "10000"
-            - name: "VAULT_ADDR"
-              value: "http://127.0.0.1:8200"
-            - name: "WATCH_TIMEOUT"
-              value: "60000"
+      - name: kubernetes-external-secrets
+        image: ghcr.io/external-secrets/kubernetes-external-secrets:7.2.1
+        ports:
+        - name: prometheus
+          containerPort: 3001
+        imagePullPolicy: IfNotPresent
+        resources: {}
+        env:
+        - name: AWS_DEFAULT_REGION
+          value: <<__aws_region__>>
+        - name: AWS_REGION
+          value: <<__aws_region__>>
+        - name: LOG_LEVEL
+          value: info
+        - name: LOG_MESSAGE_KEY
+          value: msg
+        - name: METRICS_PORT
+          value: '3001'
+        - name: POLLER_INTERVAL_MILLISECONDS
+          value: '10000'
+        - name: VAULT_ADDR
+          value: http://127.0.0.1:8200
+        - name: WATCH_TIMEOUT
+          value: '60000'
           # Params for env vars populated from k8s secrets
       securityContext:
         fsGroup: 1000

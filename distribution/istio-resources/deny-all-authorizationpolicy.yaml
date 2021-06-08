@@ -5,5 +5,4 @@ kind: AuthorizationPolicy
 metadata:
   name: global-deny-all
   namespace: istio-system
-spec:
-  {}
+spec: {}

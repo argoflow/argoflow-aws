@@ -7,11 +7,11 @@ spec:
   template:
     metadata:
       annotations:
-        sidecar.istio.io/inject: "false"
+        sidecar.istio.io/inject: 'false'
     spec:
       containers:
       - name: profile-controller
-        command: ["python", "/hooks/sync_without_minio.py"]
+        command: [python, /hooks/sync_without_minio.py]
         env:
 
         # remove minio-related params

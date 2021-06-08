@@ -4,9 +4,9 @@ metadata:
   name: istio-performance-dashboard
   namespace: monitoring
   labels:
-    grafana_dashboard:  "istio-performance-dashboard"
+    grafana_dashboard: istio-performance-dashboard
   annotations:
-      k8s-sidecar-target-directory: "/tmp/dashboards/Istio Dashboards"
+    k8s-sidecar-target-directory: /tmp/dashboards/Istio Dashboards
 data:
   istio-performance-dashboard.json: |-
     {

@@ -10,9 +10,9 @@ spec:
     targetRevision: v1.7.0
     chart: gpu-operator
     helm:
-     parameters:
-      - name : operator.defaultRuntime
-        value : containerd
+      parameters:
+      - name: operator.defaultRuntime
+        value: containerd
   destination:
     server: https://kubernetes.default.svc
     namespace: default

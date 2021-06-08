@@ -20,9 +20,9 @@ spec:
     relabelings:
     - sourceLabels: [__meta_kubernetes_pod_container_port_name]
       action: keep
-      regex: '.*-envoy-prom'
+      regex: .*-envoy-prom
     - action: labeldrop
-      regex: "__meta_kubernetes_pod_label_(.+)"
+      regex: __meta_kubernetes_pod_label_(.+)
     - sourceLabels: [__meta_kubernetes_namespace]
       action: replace
       targetLabel: namespace

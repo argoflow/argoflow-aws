@@ -4,9 +4,9 @@ metadata:
   name: istio-workload-dashboard
   namespace: monitoring
   labels:
-    grafana_dashboard:  "istio-workload-dashboard"
+    grafana_dashboard: istio-workload-dashboard
   annotations:
-      k8s-sidecar-target-directory: "/tmp/dashboards/Istio Dashboards"
+    k8s-sidecar-target-directory: /tmp/dashboards/Istio Dashboards
 data:
   istio-workload-dashboard.json: |-
     {

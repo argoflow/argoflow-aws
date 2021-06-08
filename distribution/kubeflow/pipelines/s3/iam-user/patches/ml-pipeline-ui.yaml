@@ -6,15 +6,15 @@ spec:
   template:
     spec:
       containers:
-        - name: ml-pipeline-ui
-          env:
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: pipelines-s3-secret
-                  key: S3_ACCESSKEY
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: pipelines-s3-secret
-                  key: S3_SECRETKEY
+      - name: ml-pipeline-ui
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-s3-secret
+              key: S3_ACCESSKEY
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-s3-secret
+              key: S3_SECRETKEY

@@ -12,7 +12,7 @@ spec:
       app: istio-ingressgateway
       istio: ingressgateway
   provider:
-    name: "oauth2-proxy"
+    name: oauth2-proxy
   rules:
   - to:
     - operation:

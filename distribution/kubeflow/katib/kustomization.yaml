@@ -27,5 +27,5 @@ images:
   # digest: sha256:d8d738394379f794bf49e687a6cb8478ec08ec3a553e312d2df1ffdef08d6b97
 - name: mysql
   newName: mysql
-  newTag: "8"
+  newTag: '8'
   # digest: sha256:355617769102e9d2ebb7d5879263a12d230badb7271c91748b2c7b0ac6971083

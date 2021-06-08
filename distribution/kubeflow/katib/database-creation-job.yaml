@@ -7,36 +7,36 @@ spec:
   template:
     metadata:
       annotations:
-        "sidecar.istio.io/inject": "false"
+        sidecar.istio.io/inject: 'false'
     spec:
       containers:
-        - name: create-katib-database
-          image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
-          env:
-            - name: HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: katib-rds-config
-                  key: RDS_HOST
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: katib-rds-config
-                  key: RDS_PORT
-            - name: USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: katib-rds-secret
-                  key: RDS_USERNAME
-            - name: PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: katib-rds-secret
-                  key: RDS_PASSWORD
-            - name: DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: katib-rds-config
-                  key: DB_NAME
+      - name: create-katib-database
+        image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
+        env:
+        - name: HOST
+          valueFrom:
+            configMapKeyRef:
+              name: katib-rds-config
+              key: RDS_HOST
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: katib-rds-config
+              key: RDS_PORT
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: katib-rds-secret
+              key: RDS_USERNAME
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: katib-rds-secret
+              key: RDS_PASSWORD
+        - name: DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: katib-rds-config
+              key: DB_NAME
       restartPolicy: Never
   backoffLimit: 5

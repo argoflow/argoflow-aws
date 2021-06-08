@@ -10,4 +10,4 @@ spec:
     kind: ClusterIssuer
   commonName: <<__subdomain_auth__>>.<<__domain__>>
   dnsNames:
-    - <<__subdomain_auth__>>.<<__domain__>>
+  - <<__subdomain_auth__>>.<<__domain__>>

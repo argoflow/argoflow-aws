@@ -6,32 +6,32 @@ spec:
   template:
     spec:
       containers:
-        - name: ml-pipeline-api-server        
-          image: public.ecr.aws/atcommons/pipelines/backend:latest #For debugging only!
-          env:
+      - name: ml-pipeline-api-server
+        image: public.ecr.aws/atcommons/pipelines/backend:latest   #For debugging only!
+        env:
             # RDS params
-            - name: DBCONFIG_USER
-              valueFrom:
-                secretKeyRef:
-                  name: pipelines-rds-secret
-                  key: RDS_USERNAME
-            - name: DBCONFIG_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pipelines-rds-secret
-                  key: RDS_PASSWORD
-            - name: DBCONFIG_DBNAME
-              valueFrom:
-                configMapKeyRef:
-                  name: pipelines-rds-config
-                  key: DB_NAME_PIPELINES
-            - name: DBCONFIG_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: pipelines-rds-config
-                  key: RDS_HOST
-            - name: DBCONFIG_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: pipelines-rds-config
-                  key: RDS_PORT
+        - name: DBCONFIG_USER
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-rds-secret
+              key: RDS_USERNAME
+        - name: DBCONFIG_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-rds-secret
+              key: RDS_PASSWORD
+        - name: DBCONFIG_DBNAME
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-rds-config
+              key: DB_NAME_PIPELINES
+        - name: DBCONFIG_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-rds-config
+              key: RDS_HOST
+        - name: DBCONFIG_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-rds-config
+              key: RDS_PORT
