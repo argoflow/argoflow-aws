@@ -4,9 +4,9 @@ metadata:
   name: istio-mesh-dashboard
   namespace: monitoring
   labels:
-    grafana_dashboard:  "istio-mesh-dashboard"
+    grafana_dashboard: istio-mesh-dashboard
   annotations:
-      k8s-sidecar-target-directory: "/tmp/dashboards/Istio Dashboards"
+    k8s-sidecar-target-directory: /tmp/dashboards/Istio Dashboards
 data:
   istio-mesh-dashboard.json: |-
     {

@@ -11,42 +11,42 @@ spec:
     chart: cluster-autoscaler
     helm:
       parameters:
-        - name: rbac.serviceAccount.annotations.eks\.amazonaws\.com/role-arn
-          value: <<__role_arn.cluster_autoscaler__>>
-        - name: rbac.serviceAccount.create
-          value: "true"
-        - name: rbac.create
-          value: "true"
-        - name: fullnameOverride
-          value: cluster-autoscaler
-        - name: cloudProvider
-          value: aws
-        - name: image.repository
-          value: us.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler
-        - name: image.tag
-          value: v1.20.0
-        - name: autoDiscovery.clusterName
-          value: <<__cluster_name__>>
-        - name: autoDiscovery.enabled
-          value: "true"
-        - name: awsRegion
-          value: <<__aws_region__>>
-        - name: extraArgs.balance-similar-node-groups
-          value: "true"
-        - name: extraArgs.scale-down-enabled
-          value: "true"
-        - name: rbac.create
-          value: "true"
-        - name: rbac.pspEnabled
-          value: "true"
-        - name: resources.limits.cpu
-          value: 100m
-        - name: resources.limits.memory
-          value: 300Mi
-        - name: resources.requests.cpu
-          value: 100m
-        - name: resources.requests.memory
-          value: 300Mi
+      - name: rbac.serviceAccount.annotations.eks\.amazonaws\.com/role-arn
+        value: <<__role_arn.cluster_autoscaler__>>
+      - name: rbac.serviceAccount.create
+        value: 'true'
+      - name: rbac.create
+        value: 'true'
+      - name: fullnameOverride
+        value: cluster-autoscaler
+      - name: cloudProvider
+        value: aws
+      - name: image.repository
+        value: us.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler
+      - name: image.tag
+        value: v1.20.0
+      - name: autoDiscovery.clusterName
+        value: <<__cluster_name__>>
+      - name: autoDiscovery.enabled
+        value: 'true'
+      - name: awsRegion
+        value: <<__aws_region__>>
+      - name: extraArgs.balance-similar-node-groups
+        value: 'true'
+      - name: extraArgs.scale-down-enabled
+        value: 'true'
+      - name: rbac.create
+        value: 'true'
+      - name: rbac.pspEnabled
+        value: 'true'
+      - name: resources.limits.cpu
+        value: 100m
+      - name: resources.limits.memory
+        value: 300Mi
+      - name: resources.requests.cpu
+        value: 100m
+      - name: resources.requests.memory
+        value: 300Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

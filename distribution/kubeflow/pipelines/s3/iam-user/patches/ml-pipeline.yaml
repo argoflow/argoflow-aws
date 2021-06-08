@@ -6,15 +6,15 @@ spec:
   template:
     spec:
       containers:
-        - name: ml-pipeline-api-server
-          env:
-            - name: OBJECTSTORECONFIG_ACCESSKEY
-              valueFrom:
-                secretKeyRef:
-                  name: pipelines-s3-secret
-                  key: S3_ACCESSKEY
-            - name: OBJECTSTORECONFIG_SECRETACCESSKEY
-              valueFrom:
-                secretKeyRef:
-                  name: pipelines-s3-secret
-                  key: S3_SECRETKEY
+      - name: ml-pipeline-api-server
+        env:
+        - name: OBJECTSTORECONFIG_ACCESSKEY
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-s3-secret
+              key: S3_ACCESSKEY
+        - name: OBJECTSTORECONFIG_SECRETACCESSKEY
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-s3-secret
+              key: S3_SECRETKEY

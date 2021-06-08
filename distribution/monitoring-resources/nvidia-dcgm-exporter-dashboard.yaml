@@ -4,7 +4,7 @@ metadata:
   name: nvidia-dcgm-exporter
   namespace: monitoring
   labels:
-    grafana_dashboard:  "nvidia-dcgm-exporter-dashboard"
+    grafana_dashboard: nvidia-dcgm-exporter-dashboard
 data:
   nvidia-dcgm-exporter.json: |-
     {

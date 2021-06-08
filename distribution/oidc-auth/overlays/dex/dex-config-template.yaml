@@ -6,13 +6,13 @@ storage:
 web:
   http: 0.0.0.0:5556
 logger:
-  level: "debug"
+  level: debug
   format: text
 oauth2:
   skipApprovalScreen: true
 expiry:
-  signingKeys: "4h"
-  idTokens: "1h"
+  signingKeys: 4h
+  idTokens: 1h
 enablePasswordDB: true
 staticPasswords:
 - email:
@@ -20,11 +20,11 @@ staticPasswords:
   # https://github.com/dexidp/dex/pull/1601/commits
   # FIXME: Use hashFromEnv instead
   username:
-  userID: "15841185641784"
+  userID: '15841185641784'
 staticClients:
 # https://github.com/dexidp/dex/pull/1664
 - id:
   redirectURIs:
-  - "https://<<__subdomain_dashboard__>>.<<__domain__>>/oauth2/callback"
-  name: 'Dex Login Application'
+  - https://<<__subdomain_dashboard__>>.<<__domain__>>/oauth2/callback
+  name: Dex Login Application
   secret:

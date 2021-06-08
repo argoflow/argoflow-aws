@@ -9,6 +9,6 @@ roleRef:
   kind: ClusterRole
   name: external-secrets
 subjects:
-  - name: external-secrets
-    namespace: "kube-system"
-    kind: ServiceAccount
+- name: external-secrets
+  namespace: kube-system
+  kind: ServiceAccount

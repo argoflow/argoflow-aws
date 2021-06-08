@@ -13,7 +13,7 @@ spec:
     - uri:
         prefix: /logout
     rewrite:
-      uri: "/oauth2/sign_out"
+      uri: /oauth2/sign_out
     route:
     - destination:
         host: oauth2-proxy.auth.svc.cluster.local
@@ -22,4 +22,4 @@ spec:
     headers:
       request:
         set:
-          X-Auth-Request-Redirect: "https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow/protocol/openid-connect/logout?redirect_uri=https%%3A%%2F%%2F<<__subdomain_dashboard__>>.<<__domain__>>"
+          X-Auth-Request-Redirect: https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow/protocol/openid-connect/logout?redirect_uri=https%%3A%%2F%%2F<<__subdomain_dashboard__>>.<<__domain__>>

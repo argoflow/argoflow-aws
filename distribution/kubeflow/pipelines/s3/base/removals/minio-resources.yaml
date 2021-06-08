@@ -1,3 +1,4 @@
+---
 #this will remove all resources related to on-cluster MySQL
 $patch: delete
 apiVersion: apps/v1

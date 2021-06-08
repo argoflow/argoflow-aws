@@ -8,11 +8,11 @@ resources:
 - resources/s3-secret.yaml
 
 patchesStrategicMerge:
-- patches/ml-pipeline.yaml         
-- patches/ml-pipeline-ui.yaml      
-- patches/ml-pipeline-viewer-template.yaml 
-- patches/workflow-controller-configmap.yaml  
-- patches/kubeflow-pipelines-profile-controller.yaml 
+- patches/ml-pipeline.yaml
+- patches/ml-pipeline-ui.yaml
+- patches/ml-pipeline-viewer-template.yaml
+- patches/workflow-controller-configmap.yaml
+- patches/kubeflow-pipelines-profile-controller.yaml
 
 
 

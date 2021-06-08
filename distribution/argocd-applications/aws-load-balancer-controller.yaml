@@ -11,28 +11,28 @@ spec:
     chart: aws-load-balancer-controller
     helm:
       parameters:
-        - name: serviceAccount.annotations.eks\.amazonaws\.com/role-arn
-          value: <<__role_arn.loadbalancer_controller__>>
-        - name: clusterName
-          value: <<__cluster_name__>>
-        - name: image.repository
-          value: amazon/aws-alb-ingress-controller
-        - name: vpcId
-          value: <<__vpc_id__>>
-        - name: region
-          value: <<__aws_region__>>
-        - name: serviceAccount.create
-          value: "true"
-        - name: rbac.create
-          value: "true"
-        - name: resources.limits.cpu
-          value: 100m
-        - name: resources.limits.memory
-          value: 300Mi
-        - name: resources.requests.cpu
-          value: 100m
-        - name: resources.requests.memory
-          value: 300Mi
+      - name: serviceAccount.annotations.eks\.amazonaws\.com/role-arn
+        value: <<__role_arn.loadbalancer_controller__>>
+      - name: clusterName
+        value: <<__cluster_name__>>
+      - name: image.repository
+        value: amazon/aws-alb-ingress-controller
+      - name: vpcId
+        value: <<__vpc_id__>>
+      - name: region
+        value: <<__aws_region__>>
+      - name: serviceAccount.create
+        value: 'true'
+      - name: rbac.create
+        value: 'true'
+      - name: resources.limits.cpu
+        value: 100m
+      - name: resources.limits.memory
+        value: 300Mi
+      - name: resources.requests.cpu
+        value: 100m
+      - name: resources.requests.memory
+        value: 300Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

@@ -1,3 +1,4 @@
+---
 #this will remove all resources related to on-cluster MySQL
 $patch: delete
 apiVersion: apps/v1
@@ -31,7 +32,7 @@ metadata:
 #   name: mysql
 ---
 $patch: delete
-apiVersion: "networking.istio.io/v1alpha3"
+apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: ml-pipeline-mysql

@@ -17,9 +17,9 @@ spec:
       - name: domainFilters[0]
         value: <<__route53.hosted_zone_domain__>>
       - name: serviceAccount.create
-        value: "true"
+        value: 'true'
       - name: rbac.create
-        value: "true"
+        value: 'true'
       - name: resources.limits.cpu
         value: 100m
       - name: resources.limits.memory

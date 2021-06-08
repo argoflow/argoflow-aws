@@ -10,11 +10,11 @@ resources:
 - resources/database-creation-job.yaml
 
 patchesStrategicMerge:
-- patches/cache-server.yaml      
-- patches/metadata-grpc-deployment.yaml  
-- patches/ml-pipeline.yaml 
+- patches/cache-server.yaml
+- patches/metadata-grpc-deployment.yaml
+- patches/ml-pipeline.yaml
 - removals/mysql-resources.yaml
- 
+
 # commonAnnotations:
 #   eks.amazonaws.com/role-arn: <<__role_arn.pipelines__>>
 
@@ -69,7 +69,7 @@ images:
   # digest: sha256:6b11817b99538e890f3632f3b0e7c69d8c40126c162449ff7710b32e7cf99499
 - name: gcr.io/ml-pipeline/mysql
   newName: gcr.io/ml-pipeline/mysql
-  newTag: "5.7"
+  newTag: '5.7'
   # digest: sha256:4056370ee427dc9ff2337884674d8ee35f5b236c543bb8446b8b0a3751f70349
 - name: gcr.io/ml-pipeline/workflow-controller
   newName: gcr.io/ml-pipeline/workflow-controller

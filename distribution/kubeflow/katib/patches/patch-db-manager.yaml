@@ -8,44 +8,44 @@ spec:
   template:
     spec:
       containers:
-        - name: katib-db-manager
-          env:
-            - name: DB_NAME
-              value: mysql
-            - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  key: RDS_USERNAME
-                  name: katib-rds-secret
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: RDS_PASSWORD
-                  name: katib-rds-secret
-            - name: KATIB_MYSQL_DB_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  key: DB_NAME
-                  name: katib-rds-config
-                secretKeyRef:
-                  $patch: delete
-                  key: KATIB_MYSQL_DB_DATABASE
-                  name: katib-mysql-secrets-th9dkf48dg
-            - name: KATIB_MYSQL_DB_HOST
-              valueFrom:
-                configMapKeyRef:
-                  key: RDS_HOST
-                  name: katib-rds-config
-                secretKeyRef:
-                  $patch: delete
-                  key: KATIB_MYSQL_DB_HOST
-                  name: katib-mysql-secrets-th9dkf48dg
-            - name: KATIB_MYSQL_DB_PORT
-              valueFrom:
-                configMapKeyRef:
-                  key: RDS_PORT
-                  name: katib-rds-config
-                secretKeyRef:
-                  $patch: delete
-                  key: KATIB_MYSQL_DB_PORT
-                  name: katib-mysql-secrets-th9dkf48dg
+      - name: katib-db-manager
+        env:
+        - name: DB_NAME
+          value: mysql
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              key: RDS_USERNAME
+              name: katib-rds-secret
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: RDS_PASSWORD
+              name: katib-rds-secret
+        - name: KATIB_MYSQL_DB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: DB_NAME
+              name: katib-rds-config
+            secretKeyRef:
+              $patch: delete
+              key: KATIB_MYSQL_DB_DATABASE
+              name: katib-mysql-secrets-th9dkf48dg
+        - name: KATIB_MYSQL_DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: RDS_HOST
+              name: katib-rds-config
+            secretKeyRef:
+              $patch: delete
+              key: KATIB_MYSQL_DB_HOST
+              name: katib-mysql-secrets-th9dkf48dg
+        - name: KATIB_MYSQL_DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: RDS_PORT
+              name: katib-rds-config
+            secretKeyRef:
+              $patch: delete
+              key: KATIB_MYSQL_DB_PORT
+              name: katib-mysql-secrets-th9dkf48dg

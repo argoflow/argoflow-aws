@@ -8,7 +8,7 @@ metadata:
 spec:
   namespaceSelector:
     matchNames:
-      - gpu-operator-resources
+    - gpu-operator-resources
   selector:
     matchLabels:
       app: nvidia-dcgm-exporter

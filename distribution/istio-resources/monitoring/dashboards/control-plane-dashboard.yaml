@@ -4,9 +4,9 @@ metadata:
   name: istio-control-plane-dashboard
   namespace: monitoring
   labels:
-    grafana_dashboard:  "istio-control-plane-dashboard"
+    grafana_dashboard: istio-control-plane-dashboard
   annotations:
-      k8s-sidecar-target-directory: "/tmp/dashboards/Istio Dashboards"
+    k8s-sidecar-target-directory: /tmp/dashboards/Istio Dashboards
 data:
   istio-control-plane-dashboard.json: |-
     {

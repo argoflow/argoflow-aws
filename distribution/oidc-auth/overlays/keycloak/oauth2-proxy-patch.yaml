@@ -14,17 +14,17 @@ spec:
       - name: image.tag
         value: v7.1.3
       - name: configSecret.create
-        value: "false"
+        value: 'false'
       - name: config.existingSecret
         value: oauth2-proxy
       - name: service.port
-        value: "4180"
+        value: '4180'
       - name: extraArgs.provider
         value: keycloak
       - name: extraArgs.set-xauthrequest
-        value: "true"
+        value: 'true'
       - name: extraArgs.cookie-secure
-        value: "true"
+        value: 'true'
       - name: extraArgs.cookie-samesite
         value: lax
       - name: extraArgs.cookie-refresh
@@ -34,23 +34,23 @@ spec:
       - name: extraArgs.cookie-name
         value: _oauth2_proxy
       - name: extraArgs.email-domain
-        value: "*"
+        value: '*'
       - name: extraArgs.upstream
-        value: "static://200"
+        value: static://200
       - name: extraArgs.skip-provider-button
-        value: "true"
+        value: 'true'
       - name: extraArgs.cookie-domain
         value: .<<__domain__>>
       - name: extraArgs.whitelist-domain
         value: .<<__domain__>>
       - name: extraArgs.login-url
-        value: "https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow/protocol/openid-connect/auth"
+        value: https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow/protocol/openid-connect/auth
       - name: extraArgs.redeem-url
-        value: "https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow/protocol/openid-connect/token"
+        value: https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow/protocol/openid-connect/token
       - name: extraArgs.profile-url
-        value: "https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow/protocol/openid-connect/userinfo"
+        value: https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow/protocol/openid-connect/userinfo
       - name: extraArgs.validate-url
-        value: "https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow/protocol/openid-connect/userinfo"
+        value: https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow/protocol/openid-connect/userinfo
       - name: extraArgs.scope
         value: email
       - name: extraArgs.scope

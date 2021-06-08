@@ -8,5 +8,5 @@ spec:
     app: mlflow
   type: ClusterIP
   ports:
-    - port: 80
-      targetPort: 5000
+  - port: 80
+    targetPort: 5000

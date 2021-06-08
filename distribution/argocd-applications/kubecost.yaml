@@ -10,21 +10,21 @@ spec:
     targetRevision: 1.81.0
     chart: cost-analyzer
     helm:
-     parameters:
+      parameters:
       - name: global.podAnnotations.sidecar\.istio\.io\/inject
         value: \"false\"
       - name: global.prometheus.enabled
-        value: "false"
+        value: 'false'
       - name: global.prometheus.kubeStateMetrics.enabled
-        value: "false"
+        value: 'false'
       - name: global.prometheus.fqdn
         value: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
       - name: serviceMonitor.enabled
-        value: "true"
+        value: 'true'
       - name: prometheusRule.enabled
-        value: "true"
+        value: 'true'
       - name: global.grafana.enabled
-        value: "false"
+        value: 'false'
       - name: global.grafana.domainName
         value: kube-prometheus-stack-grafana.monitoring.svc.cluster.local
       - name: kubecostProductConfigs.grafanaURL
@@ -41,4 +41,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

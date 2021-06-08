@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: ml-pipeline-ui-viewer-template
 data:
-  viewer-tensorboard-template.json: |
+  viewer-tensorboard-template.json: |-
     {
         "metadata": {
             "annotations": {

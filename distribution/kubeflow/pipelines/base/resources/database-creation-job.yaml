@@ -1,3 +1,4 @@
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -7,37 +8,37 @@ spec:
   template:
     metadata:
       annotations:
-        "sidecar.istio.io/inject": "false"
+        sidecar.istio.io/inject: 'false'
     spec:
       containers:
-        - name: create-cache-database
-          image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
-          env:
-            - name: HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: pipelines-rds-config
-                  key: RDS_HOST
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: pipelines-rds-config
-                  key: RDS_PORT
-            - name: USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: pipelines-rds-secret
-                  key: RDS_USERNAME
-            - name: PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pipelines-rds-secret
-                  key: RDS_PASSWORD
-            - name: DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: pipelines-rds-config
-                  key: DB_NAME_CACHE
+      - name: create-cache-database
+        image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
+        env:
+        - name: HOST
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-rds-config
+              key: RDS_HOST
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-rds-config
+              key: RDS_PORT
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-rds-secret
+              key: RDS_USERNAME
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-rds-secret
+              key: RDS_PASSWORD
+        - name: DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-rds-config
+              key: DB_NAME_CACHE
       restartPolicy: Never
   backoffLimit: 5
 ---
@@ -50,37 +51,37 @@ spec:
   template:
     metadata:
       annotations:
-        "sidecar.istio.io/inject": "false"
+        sidecar.istio.io/inject: 'false'
     spec:
       containers:
-        - name: create-pipelines-database
-          image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
-          env:
-            - name: HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: pipelines-rds-config
-                  key: RDS_HOST
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: pipelines-rds-config
-                  key: RDS_PORT
-            - name: USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: pipelines-rds-secret
-                  key: RDS_USERNAME
-            - name: PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pipelines-rds-secret
-                  key: RDS_PASSWORD
-            - name: DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: pipelines-rds-config
-                  key: DB_NAME_PIPELINES
+      - name: create-pipelines-database
+        image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
+        env:
+        - name: HOST
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-rds-config
+              key: RDS_HOST
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-rds-config
+              key: RDS_PORT
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-rds-secret
+              key: RDS_USERNAME
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-rds-secret
+              key: RDS_PASSWORD
+        - name: DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-rds-config
+              key: DB_NAME_PIPELINES
       restartPolicy: Never
   backoffLimit: 5
 ---
@@ -93,36 +94,36 @@ spec:
   template:
     metadata:
       annotations:
-        "sidecar.istio.io/inject": "false"
+        sidecar.istio.io/inject: 'false'
     spec:
       containers:
-        - name: create-metadata-database
-          image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
-          env:
-            - name: HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: pipelines-rds-config
-                  key: RDS_HOST
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: pipelines-rds-config
-                  key: RDS_PORT
-            - name: USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: pipelines-rds-secret
-                  key: RDS_USERNAME
-            - name: PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pipelines-rds-secret
-                  key: RDS_PASSWORD
-            - name: DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: pipelines-rds-config
-                  key: DB_NAME_METADATA
+      - name: create-metadata-database
+        image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
+        env:
+        - name: HOST
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-rds-config
+              key: RDS_HOST
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-rds-config
+              key: RDS_PORT
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-rds-secret
+              key: RDS_USERNAME
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-rds-secret
+              key: RDS_PASSWORD
+        - name: DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-rds-config
+              key: DB_NAME_METADATA
       restartPolicy: Never
   backoffLimit: 5

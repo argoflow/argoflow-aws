@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/istio/istio'
+    repoURL: https://github.com/istio/istio
     targetRevision: HEAD
     path: manifests/charts/istio-operator
     helm:
@@ -16,11 +16,11 @@ spec:
       - name: tag
         value: 1.10.0 # istio/operator
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: istio-operator
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true
