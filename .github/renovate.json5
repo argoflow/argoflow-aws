@@ -37,6 +37,12 @@
       "groupName": "kubeflow-pipelines",
       "additionalBranchPrefix": ""
     },
+    {
+      "description": "Group KNative",
+      "matchPackagePatterns": ["^gcr.io\/knative.*$"],
+      "groupName": "knative",
+      "additionalBranchPrefix": ""
+    },
     //{
     //  "matchDatasources": [
     //    "docker"
