@@ -874,7 +874,7 @@ spec:
           terminationMessagePolicy: FallbackToLogsOnError
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: gcr.io/knative-releases/knative.dev/eventing/cmd/webhook@sha256:5f037fe6755fb85fb0a155f9892c8519a058dbf395d2d04b2c6769ffd2d68950
+          image: gcr.io/knative-releases/knative.dev/eventing/cmd/webhook@sha256:86ca0053073d92045175bfe0c6b0a55fee646431f3e36fa0e9cebe511f7fc239
           resources:
             requests:
               # taken from serving.
