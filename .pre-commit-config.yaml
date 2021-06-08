@@ -1,5 +1,5 @@
 ---
-exclude: ./examples/setup.conf
+exclude: ./examples/*
 repos:
     - repo: https://github.com/adrienverge/yamllint.git
       rev: v1.26.1
