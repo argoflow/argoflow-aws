@@ -9,7 +9,7 @@ data:
     {
       "DBConfig": {
         "Host": "<<__rds.host__>>",
-        "Port": "<<__rds.port__>>",
+        "Port": <<__rds.port__>>,
         "DriverName": "mysql",
         "DataSourceName": "",
         "DBName": "<<__rds.db_name.pipelines__>>",
