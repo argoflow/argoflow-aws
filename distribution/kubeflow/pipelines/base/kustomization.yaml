@@ -8,15 +8,31 @@ resources:
 - resources/rds-secret.yaml
 - resources/rds-configmap.yaml
 - resources/database-creation-job.yaml
+- resources/s3-configmap.yaml
+- resources/s3-secret.yaml
+- resources/ml-pipeline-viewer-template.yaml
+- resources/ml-pipeline-config.yaml
 
 patchesStrategicMerge:
+# patches
 - patches/cache-server.yaml
 - patches/metadata-grpc-deployment.yaml
+- patches/kubeflow-pipelines-profile-controller.yaml
 - patches/ml-pipeline.yaml
-- removals/mysql-resources.yaml
+- patches/ml-pipeline-ui.yaml
+- patches/ml-pipeline-viewer-template.yaml
+- patches/workflow-controller-configmap.yaml
 
-# commonAnnotations:
-#   eks.amazonaws.com/role-arn: <<__role_arn.pipelines__>>
+# removals
+- removals/mysql-resources.yaml
+- removals/minio-resources.yaml
+
+configMapGenerator:
+- name: kubeflow-pipelines-profile-controller-code
+  files:
+  - patches/sync_with_s3.py
+  behavior: replace
+
 
 images:
 - name: gcr.io/ml-pipeline/cache-deployer

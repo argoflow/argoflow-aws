@@ -11,6 +11,12 @@ data:
       endpoint: s3.amazonaws.com
       region: <<__aws_region__>>
       insecure: false
+      accessKeySecret:
+        name: pipelines-s3-secret
+        key: S3_ACCESSKEY
+      secretKeySecret:
+        name: pipelines-s3-secret
+        key: S3_SECRETKEY
   containerRuntimeExecutor: pns
   # namespace: kubeflow
   # executorImage: gcr.io/ml-pipeline/argoexec:v2.7.5-license-compliance
