@@ -7,7 +7,6 @@ spec:
     spec:
       containers:
       - name: ml-pipeline-api-server
-        image: public.ecr.aws/atcommons/pipelines/backend:latest   #For debugging only!
         env:
             # S3 params
         - name: OBJECTSTORECONFIG_BUCKETNAME
