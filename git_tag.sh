@@ -6,6 +6,6 @@ git push
 git tag v0.4 --delete
 git tag v0.4
 git push origin tag v0.4 --delete
-git push origin tag v.04
+git push origin tag v0.4
 
 echo 'released new version'
