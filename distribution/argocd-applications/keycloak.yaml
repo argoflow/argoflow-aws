@@ -9,6 +9,11 @@ spec:
     repoURL: https://charts.bitnami.com/bitnami
     targetRevision: 3.0.3
     chart: keycloak
+    env:
+      - name: KEYCLOAK_LOGLEVEL
+        value: DEBUG
+      - name: WILDFLY_LOGLEVEL
+        value: DEBUG
     helm:
      parameters:
       - name : auth.adminUser

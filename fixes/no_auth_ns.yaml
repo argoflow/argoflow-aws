@@ -1,0 +1,47 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+ name: allow-all
+ namespace: lars
+spec:
+  action: ALLOW
+  rules:
+  - {}
+
+
+---
+
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-all-istio
+  namespace: istio-system
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+  rules:
+  - {}
+---
+
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-all-knative
+  namespace: knative-serving
+spec:
+  action: ALLOW
+  rules:
+  - {}
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-all-kubeflow
+  namespace: kubeflow
+spec:
+  action: ALLOW
+  rules:
+  - {}
+---
