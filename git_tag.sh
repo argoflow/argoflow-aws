@@ -1,7 +1,9 @@
+read -p 'enter commit message: ' commit_message
+
 echo 'push changes to git repo with tag v0.4'
 
 git add .
-git commit -m 'debug changes'
+git commit -m '$commit_message'
 git push
 git tag v0.4 --delete
 git tag v0.4
