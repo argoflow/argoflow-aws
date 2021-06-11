@@ -41,9 +41,9 @@ spec:
         value: "8080"
       - name: service.httpsPort
         value: "8443"
-      - name: auth.KEYCLOAK_LOGLEVEL
+      - name: service.KEYCLOAK_LOGLEVEL
         value: DEBUG
-      - name: auth.WILDFLY_LOGLEVEL
+      - name: service.WILDFLY_LOGLEVEL
         value: DEBUG
       # - name: metrics.enabled
       #   value: "true"
