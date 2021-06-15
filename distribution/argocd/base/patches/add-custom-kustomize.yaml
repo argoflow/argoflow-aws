@@ -12,7 +12,7 @@ spec:
       # 2. Use an init container to download/copy custom binaries into the emptyDir
       initContainers:
       - name: download-tools
-        image: alpine:3.8
+        image: alpine:3.14
         command: [sh, -c]
         args:
         - wget -qO- https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.0.5/kustomize_v4.0.5_linux_amd64.tar.gz | tar -xvzf - && mv kustomize /custom-tools/kustomize_4_0_5
