@@ -1,0 +1,27 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+    name: ml
+    region: eu-west-1
+managedNodeGroups:
+- name: ng-8-gpu
+  spot: true
+  minSize: 0
+  maxSize: 5
+  instanceTypes: ["g4dn.metal"] 
+  desiredCapacity: 0
+  labels:
+    lifecycle: Ec2Spot
+    intent: apps
+    aws.amazon.com/spot: "true"
+    role: workers
+  iam:
+    withAddonPolicies:
+      autoScaler: true
+      cloudWatch: true
+      albIngress: true
+  tags:
+    k8s.io/cluster-autoscaler/node-template/label/lifecycle: Ec2Spot
+    k8s.io/cluster-autoscaler/node-template/label/intent: apps
+    k8s.io/cluster-autoscaler/node-template/label/aws.amazon.com/spot: "true"
+    k8s.io/cluster-autoscaler/node-template/taint/spotInstance: "true:PreferNoSchedule"
