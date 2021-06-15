@@ -7,9 +7,8 @@ spec:
     spec:
       containers:
       - name: ml-pipeline-api-server
-        image: public.ecr.aws/atcommons/pipelines/backend:latest   #For debugging only!
         env:
-            # RDS params
+        # RDS params
         - name: DBCONFIG_USER
           valueFrom:
             secretKeyRef:
@@ -35,3 +34,50 @@ spec:
             configMapKeyRef:
               name: pipelines-rds-config
               key: RDS_PORT
+
+
+        # S3 params
+        - name: OBJECTSTORECONFIG_BUCKETNAME
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-s3-config
+              key: BUCKET_NAME
+        - name: OBJECTSTORECONFIG_PIPELINEFOLDER
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-s3-config
+              key: PIPELINE_FOLDER
+        - name: OBJECTSTORECONFIG_PIPELINEPATH
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-s3-config
+              key: PIPELINE_PATH
+        - name: OBJECTSTORECONFIG_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: pipelines-s3-config
+              key: REGION
+        - name: OBJECTSTORECONFIG_ACCESSKEY
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-s3-secret
+              key: S3_ACCESSKEY
+        - name: OBJECTSTORECONFIG_SECRETACCESSKEY
+          valueFrom:
+            secretKeyRef:
+              name: pipelines-s3-secret
+              key: S3_SECRETKEY
+
+        volumeMounts:
+        - name: config-volume
+          mountPath: /config
+      volumes:
+      - name: config-volume
+        configMap:
+          name: ml-pipeline-config
+          items:
+            # Note that due to how the api-server has been set up, both config.json and sample_config.json must be mounted into the folder /config, even if no changes have been made to one of them
+          - key: config.json
+            path: config.json
+          - key: sample_config.json
+            path: sample_config.json

@@ -161,6 +161,18 @@ In addition, we need to grant each role limited access to secrets. We have chose
 - Policy:             [link](./docs/iam_policies/external-secrets_mlflow.json)
 
 
+
+---
+# AWS Users
+
+Unfortunately at the moment it is not possible to use IRSA in conjunction with Kubeflow Pipelines, which currently uses both the Minio Go and JavaScript clients. On both of those, additional work is needed to enable IRSA. Please see this tracking issue: https://github.com/kubeflow/pipelines/issues/3405
+
+For now, we use an IAM User in order to facilitate writing Pipeline artifacts to S3. The user's credentials are fetched from the AWS Secret Manager using and ExternalSecret. The relevant details for the IAM User are as follows
+
+- IAM Accesskey Placeholder:  `<<__external_secret_name.kubeflow.s3_accesskey__>>`
+- IAM SecretKey Placeholder:  `<<__external_secret_name.kubeflow.s3_secretkey__>>`
+- Policy:                     [link](./docs/iam_policies/pipelines-iam-user-s3-access.json)
+
 ---
 # Deployment
 
@@ -189,7 +201,7 @@ Optional (if using setup_credentials.sh to generate initial credentials as seale
 
 ## The `setup.conf` file and `setup_repo.sh` script
 
-This repository uses a very simple initialisation script, [./setup_repo.sh ](./setup_repo.sh) that takes a config file such as the example one, [./examples/setup.conf](./examples/setup.conf) and iterates over all lines therein. A single line would for example look as follows:
+This repository uses a very simple initialisation script, [./setup_repo.sh](./setup_repo.sh) that takes a config file such as the example one, [./examples/setup.conf](./examples/setup.conf) and iterates over all lines therein. A single line would for example look as follows:
 
 ```bash
 <<__role_arn.cluster_autoscaler__>>=arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-cluster-autoscaler
