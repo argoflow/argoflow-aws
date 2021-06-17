@@ -25,22 +25,21 @@ resources:
 - argocd-applications/central-dashboard.yaml
 - argocd-applications/profile-controller_access-management.yaml
 - argocd-applications/kubeflow-namespace.yaml
-- argocd-applications/kubeflow-profiles.yaml
 - argocd-applications/kubeflow-roles.yaml
-  # - argocd-applications/pipelines.yaml
-  # - argocd-applications/katib.yaml
-  # - argocd-applications/kfserving.yaml
-  # - argocd-applications/pod-defaults.yaml
-  # - argocd-applications/jupyter-web-app.yaml
-  # - argocd-applications/notebook-controller.yaml
-  # - argocd-applications/tensorboard-controller.yaml
-  # - argocd-applications/tensorboards-web-app.yaml
-  # - argocd-applications/volumes-web-app.yaml
-  # - argocd-applications/tensorflow-operator.yaml
-  # - argocd-applications/pytorch-operator.yaml
-  # - argocd-applications/mpi-operator.yaml
-  # - argocd-applications/mxnet-operator.yaml
-  # - argocd-applications/xgboost-operator.yaml
+- argocd-applications/pipelines.yaml
+- argocd-applications/katib.yaml
+# - argocd-applications/kfserving.yaml
+- argocd-applications/pod-defaults.yaml
+- argocd-applications/jupyter-web-app.yaml
+- argocd-applications/notebook-controller.yaml
+- argocd-applications/tensorboard-controller.yaml
+- argocd-applications/tensorboards-web-app.yaml
+- argocd-applications/volumes-web-app.yaml
+- argocd-applications/tensorflow-operator.yaml
+- argocd-applications/pytorch-operator.yaml
+- argocd-applications/mpi-operator.yaml
+- argocd-applications/mxnet-operator.yaml
+- argocd-applications/xgboost-operator.yaml
 
   ## System
   # - argocd-applications/aws-node-termination-handler.yaml
