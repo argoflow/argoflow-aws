@@ -22,7 +22,11 @@ resources:
 
 
   ## Kubeflow
-- argocd-applications/central-dashboard.yaml
+  # Pick *one* of the following applications:
+#- argocd-applications/central-dashboard.yaml
+- argocd-applications/central-dashboard-mlflow.yaml
+
+# Pick the ones you want here:
 - argocd-applications/profile-controller_access-management.yaml
 - argocd-applications/kubeflow-namespace.yaml
 - argocd-applications/kubeflow-roles.yaml
