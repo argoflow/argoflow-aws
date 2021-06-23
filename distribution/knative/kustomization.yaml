@@ -6,7 +6,7 @@ resources:
 - net-istio-v0_22_0.yaml
 - peerauthentication.yaml
 - allow-all-ns-knative-authorization-policy.yaml
-- eventing-core-v0_22_0.yaml # Eventing is optional
+# - eventing-core-v0_22_0.yaml # Eventing is optional
 
 # metrics server (needed for HPA)
 - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.5.0/components.yaml
