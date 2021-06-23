@@ -4,6 +4,9 @@ kind: Kustomization
 resources:
 - github.com/kubeflow/kfserving/config/overlays/kubeflow?ref=release-0.5
 
+patchesStrategicMerge:
+- patches/inferenceservice-config.yaml
+
 images:
 - name: gcr.io/kfserving/kfserving-controller
   newName: gcr.io/kfserving/kfserving-controller
