@@ -13,4 +13,4 @@ images:
   newTag: v1.3.0
 - name: public.ecr.aws/j1r0q0g6/notebooks/profile-controller
   newName: public.ecr.aws/j1r0q0g6/notebooks/profile-controller
-  newTag: master-c7ed4a32
+  newTag: master-e5c3c57d
