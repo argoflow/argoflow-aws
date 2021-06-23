@@ -11,3 +11,11 @@ data:
         "localGateway" : "knative-serving/knative-local-gateway",
         "localGatewayService" : "knative-local-gateway.istio-system.svc.cluster.local"
     }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kfserving-config
+  namespace: kubeflow
+data:
+  ingressGateway: kubeflow/kubeflow-gateway
