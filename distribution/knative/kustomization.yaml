@@ -16,6 +16,7 @@ patchesStrategicMerge:
 - patches/config-domain-template.yaml
 - patches/domain-config.yaml
 - patches/enable-istio-injection.yaml
+- patches/increase-deadline.yaml
 - patches/set-knative-gateways.yaml
 
 # removals
