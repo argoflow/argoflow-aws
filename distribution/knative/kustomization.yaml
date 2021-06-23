@@ -4,7 +4,19 @@ kind: Kustomization
 resources:
 - serving-core-v0_22_0.yaml
 - net-istio-v0_22_0.yaml
+- peerauthentication.yaml
+- allow-all-ns-knative-authorization-policy.yaml
 - eventing-core-v0_22_0.yaml # Eventing is optional
+
+patchesStrategicMerge:
+# patches
+- patches/config-domain-template.yaml
+- patches/domain-config.yaml
+- patches/enable-istio-injection.yaml
+- patches/set-knative-gateways.yaml
+
+# removals
+- removals/remove-knative-ingress-gateway.yaml
 
 images:
 - name: gcr.io/knative-releases/knative.dev/serving/cmd/activator
