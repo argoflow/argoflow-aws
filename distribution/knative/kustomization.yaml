@@ -8,6 +8,9 @@ resources:
 - allow-all-ns-knative-authorization-policy.yaml
 - eventing-core-v0_22_0.yaml # Eventing is optional
 
+# metrics server (needed for HPA)
+- https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.5.0/components.yaml
+
 patchesStrategicMerge:
 # patches
 - patches/config-domain-template.yaml
