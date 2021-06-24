@@ -15,8 +15,8 @@ resources:
 
 patchesStrategicMerge:
 # patches
-- patches/config-domain-template.yaml
 - patches/config-istio.yaml
+- patches/config-network.yaml
 - patches/domain-config.yaml
 - patches/enable-istio-injection.yaml
 - patches/increase-deadline.yaml

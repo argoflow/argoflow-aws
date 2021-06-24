@@ -4,4 +4,5 @@ metadata:
   name: config-network
   namespace: knative-serving
 data:
+  ingress.class: "istio.ingress.networking.knative.dev"
   domainTemplate: "{{.Name}}-{{.Namespace}}.{{.Domain}}"

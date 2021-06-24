@@ -6,4 +6,4 @@ metadata:
 data:
   gateway.kubeflow.kubeflow-gateway: "istio-ingressgateway.istio-system.svc.cluster.local"
   local-gateway.knative-serving.knative-local-gateway: "knative-local-gateway.istio-system.svc.cluster.local"
-  enable-virtualservice-status: "true"
+  # enable-virtualservice-status: "true"
