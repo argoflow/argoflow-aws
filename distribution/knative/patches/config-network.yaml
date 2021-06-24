@@ -6,3 +6,4 @@ metadata:
 data:
   ingress.class: "istio.ingress.networking.knative.dev"
   domainTemplate: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
+  httpProtocol: "Redirected"
