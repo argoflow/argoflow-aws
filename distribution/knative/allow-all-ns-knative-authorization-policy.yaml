@@ -9,11 +9,11 @@ metadata:
 spec:
   action: ALLOW
   rules:
-  - when:
-    - key: source.namespace
-      values:
-      - knative-serving
-  # - {}
+  - {}
+  # - when:
+  #   - key: source.namespace
+  #     values:
+  #     - knative-serving
   # - from:
   #   - source:
   #       namespaces:
