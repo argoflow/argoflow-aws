@@ -7,7 +7,7 @@ spec:
   gateways:
   - monitoring-gateway
   hosts:
-  - kubecost.abs-cloud.nl
+  - <<__subdomain_kubecost__>>.<<__domain__>>
   http:
   - route:
     - destination:
