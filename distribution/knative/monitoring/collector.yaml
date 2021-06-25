@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: otel-collector-config
-  namespace: metrics
+  namespace: monitoring
 data:
   collector.yaml: |
     receivers:
@@ -29,7 +29,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: otel-collector
-  namespace: metrics
+  namespace: monitoring
   labels:
     app: otel-collector
 spec:
@@ -73,7 +73,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: otel-collector
-  namespace: metrics
+  namespace: monitoring
 spec:
   selector:
     app: "otel-collector"
@@ -85,7 +85,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: otel-export
-  namespace: metrics
+  namespace: monitoring
   labels:
     app: otel-export
 spec:

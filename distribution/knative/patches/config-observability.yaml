@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-observability
+  namespace: knative-serving
+data:
+  metrics.backend-destination: opencensus
+  request-metrics-backend-destination: opencensus
+  metrics.opencensus-address: otel-collector.monitoring.svc.cluster.local:55678
