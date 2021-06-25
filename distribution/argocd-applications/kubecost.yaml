@@ -29,10 +29,12 @@ spec:
         value: kube-prometheus-stack-grafana.monitoring.svc.cluster.local
       - name: kubecostProductConfigs.grafanaURL
         value: https://<<__subdomain_grafana__>>.<<__domain__>>/grafana
+      - name: grafana.sidecar.dashboards.enabled
+        value: 'false'
         # Placing the dashboards into a folder is not working yet.
         # Dashboards are also slighlty broken so might be better to use versions we fixed
-      - name: grafana.sidecar.dashboards.annotations.k8s-sidecar-target-directory
-        value: /tmp/dashboards/KubeCost
+      # - name: grafana.sidecar.dashboards.annotations.k8s-sidecar-target-directory
+      #   value: /tmp/dashboards/KubeCost
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
