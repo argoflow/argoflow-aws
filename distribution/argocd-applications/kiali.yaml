@@ -31,7 +31,7 @@ spec:
         value: <<__subdomain_kiali__>>.<<__domain__>>
       - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].host
         value: <<__subdomain_kiali__>>.<<__domain__>>
-      - name: cr.spec.deployment.override_ingress_yaml.metadata.annotations.kubernetes\.io\/ingress.class
+      - name: cr.spec.deployment.override_ingress_yaml.spec.ingressClassName
         value: istio
       - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].path
         value: '/'

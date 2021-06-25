@@ -7,6 +7,7 @@ resources:
 - envoy-filter-kubeflow-userid.yaml
 - envoy-filter-proxy-protocol.yaml
 - gateway-authorizationpolicy.yaml
+- ingress-class.yaml
 - kubeflow-cluster-roles.yaml
 - kubeflow-gateway.yaml
 - monitoring/
