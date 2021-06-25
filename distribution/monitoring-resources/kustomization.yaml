@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
 - alertmanager-sidecar.yaml
 - allow-all-ns-mon-authorization-policy.yaml
-- grafana-admin-secret.yaml
+# - grafana-admin-secret.yaml
 - grafana-autorization-policy.yaml
 - grafana-virtual-service-kubeflow.yaml
 - grafana-virtual-service.yaml
