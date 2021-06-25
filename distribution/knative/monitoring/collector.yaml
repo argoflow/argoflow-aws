@@ -46,7 +46,7 @@ spec:
       - name: collector
         args:
         - --config=/conf/collector.yaml
-        image: otel/opentelemetry-collector:latest
+        image: otel/opentelemetry-collector:0.27.0
         resources:
           requests:  # Note: these are suitable for a small instance, but may need to be increased for a large instance.
             memory: 100Mi
