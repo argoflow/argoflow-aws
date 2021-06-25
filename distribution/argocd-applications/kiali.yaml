@@ -34,7 +34,7 @@ spec:
       - name: cr.spec.deployment.override_ingress_yaml.metadata.annotations.kubernetes\.io\/ingress.class
         value: istio
       - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].path
-        value: /
+        value: '/'
       - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].backend.serviceName
         value: kiali
       - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].backend.servicePort
