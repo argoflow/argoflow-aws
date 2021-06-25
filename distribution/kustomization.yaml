@@ -56,6 +56,7 @@ resources:
 - argocd-applications/kiali.yaml
 - argocd-applications/jaeger.yaml
 - argocd-applications/kubecost.yaml
+- argocd-applications/kubecost-resources.yaml
 
   ## Contrib
 # - argocd-applications/mlflow.yaml
