@@ -35,6 +35,8 @@ spec:
         value: istio
       - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].path
         value: '/'
+      - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].pathType
+        value: Prefix
       - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].backend.serviceName
         value: kiali
       - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].backend.servicePort
