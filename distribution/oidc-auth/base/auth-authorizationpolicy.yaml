@@ -18,6 +18,7 @@ spec:
         - <<__subdomain_dashboard__>>.<<__domain__>>   # needed for redirect after authentication
         - <<__subdomain_serving__>>.<<__domain__>>   # needed for redirect after authentication
         - '*.<<__subdomain_serving__>>.<<__domain__>>' # needed for redirect after authentication
+        - <<__subdomain_kubecost__>>.<<__domain__>> # needed for redirect after authentication
 ---
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
