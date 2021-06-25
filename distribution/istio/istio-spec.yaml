@@ -69,4 +69,4 @@ spec:
       # kube-prometheus-stack
       ## Admission Webhook jobs do not terminate as expected with istio-proxy
       - matchExpressions:
-        - {key: app, operator: In, values: [kube-prometheus-stack-admission-create, kube-prometheus-stack-admission-patch]}
+        - {key: app, operator: In, values: [kube-prometheus-stack-admission-create, kube-prometheus-stack-admission-patch, alertmanager]}
