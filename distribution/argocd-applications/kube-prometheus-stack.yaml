@@ -81,6 +81,8 @@ spec:
         value: 'false'
       - name: prometheus.prometheusSpec.ruleSelector
         value: ''
+      - name: alertmanager.alertmanagerSpec.listenLocal
+        value: 'true'
       - name: kubelet.serviceMonitor.cAdvisorMetricRelabelings[0].sourceLabels[0]
         value: container
       - name: kubelet.serviceMonitor.cAdvisorMetricRelabelings[0].regex
