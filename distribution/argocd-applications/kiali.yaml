@@ -28,7 +28,7 @@ spec:
       - name: cr.spec.deployment.override_ingress_yaml.spec.tls[0].hosts[0]
         value: <<__subdomain_kiali__>>.<<__domain__>>
       - name: cr.spec.deployment.override_ingress_yaml.spec.tls[0].secretName
-        value: <<__subdomain_kiali__>>.<<__domain__>>
+        value: monitoring-ingressgateway-certs
       - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].host
         value: <<__subdomain_kiali__>>.<<__domain__>>
       - name: cr.spec.deployment.override_ingress_yaml.spec.ingressClassName
