@@ -46,7 +46,7 @@ spec:
       - name: grafana.sidecar.dashboards.folderAnnotation
         value: k8s-sidecar-target-directory
       - name: grafana.sidecar.dashboards.annotations.k8s-sidecar-target-directory
-        value: /tmp/dashboards/kubernetes
+        value: /tmp/dashboards/Kubernetes
       # - name: grafana.grafana\.ini.auth\.anonymous.enabled
       #   value: "true"
       # - name: grafana.grafana\.ini.auth\.anonymous.org_name
