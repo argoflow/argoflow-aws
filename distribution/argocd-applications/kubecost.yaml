@@ -31,8 +31,8 @@ spec:
         value: https://<<__subdomain_grafana__>>.<<__domain__>>/grafana
         # Placing the dashboards into a folder is not working yet.
         # Dashboards are also slighlty broken so might be better to use versions we fixed
-      # - name: grafana.sidecar.dashboards.annotations.k8s-sidecar-target-directory
-      #   value: /tmp/dashboards/kubecost
+      - name: grafana.sidecar.dashboards.annotations.k8s-sidecar-target-directory
+        value: /tmp/dashboards/kubecost
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
