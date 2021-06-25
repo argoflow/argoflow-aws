@@ -10,6 +10,13 @@ spec:
   meshConfig:
     accessLogFile: /dev/stdout
     enablePrometheusMerge: true
+    enableTracing: true
+    defaultConfig:
+      tracing:
+        sampling: 100.0
+        max_path_tag_length: 256
+        zipkin:
+          address: jaeger-collector.istio-system.svc.cluster.local:9411
     extensionProviders:
     - name: oauth2-proxy
       envoyExtAuthzHttp:
@@ -53,6 +60,10 @@ spec:
           proxy.istio.io/config: '{"gatewayTopology" : { "numTrustedProxies": 2 } }'
           external-dns.alpha.kubernetes.io/hostname: <<__route53.hosted_zone_hostnames__>>
   values:
+    global:
+      tracer:
+        zipkin:
+          address: jaeger-collector.istio-system.svc.cluster.local:9411
     sidecarInjectorWebhook:
       neverInjectSelector:
       # kube-prometheus-stack

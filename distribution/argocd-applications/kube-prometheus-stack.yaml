@@ -11,10 +11,10 @@ spec:
     chart: kube-prometheus-stack
     helm:
       parameters:
-      - name: grafana.admin.existingSecret
-        value: grafana-admin-secret
+      # - name: grafana.admin.existingSecret
+      #   value: grafana-admin-secret
       - name: grafana.adminUser
-        value: ''
+        value: admin
       - name: grafana.adminPassword
         value: ''
       # - name : grafana.ingress.enabled

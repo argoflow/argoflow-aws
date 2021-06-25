@@ -42,7 +42,7 @@ resources:
 - argocd-applications/xgboost-operator.yaml
 
   ## System
-  # - argocd-applications/aws-node-termination-handler.yaml
+# - argocd-applications/aws-node-termination-handler.yaml
 - argocd-applications/cluster-autoscaler.yaml
 - argocd-applications/aws-load-balancer-controller.yaml
 - argocd-applications/external-dns.yaml
@@ -50,13 +50,14 @@ resources:
 - argocd-applications/sealed-secrets.yaml
 
   ## Monitoring
-  # - argocd-applications/monitoring-resources.yaml
-  # - argocd-applications/kube-prometheus-stack.yaml
-  # - argocd-applications/loki-stack.yaml
-  # - argocd-applications/kiali.yaml
+- argocd-applications/monitoring-resources.yaml
+- argocd-applications/kube-prometheus-stack.yaml
+- argocd-applications/loki-stack.yaml
+- argocd-applications/kiali.yaml
+- argocd-applications/jaeger.yaml
   # - argocd-applications/kubecost.yaml
 
   ## Contrib
-  # - argocd-applications/mlflow.yaml
-  # - argocd-applications/experimental-pvcviewer-controller.yaml
-  # - argocd-applications/experimental-volumes-web-app.yaml
+# - argocd-applications/mlflow.yaml
+# - argocd-applications/experimental-pvcviewer-controller.yaml
+# - argocd-applications/experimental-volumes-web-app.yaml
