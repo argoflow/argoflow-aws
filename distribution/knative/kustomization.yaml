@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
 # - serving-core-v0_22_0.yaml
 - serving-core-v0_23_1.yaml
+- monitoring/
 # - net-istio-v0_22_0.yaml
 - net-istio-v0_23_1.yaml
 # - peerauthentication.yaml

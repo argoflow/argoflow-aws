@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- namespace.yaml
+- knative-opentelemetry-service-monitor.yaml
+- knative-instances-service-monitor.yaml
+- collector.yaml
+- dashboards/knative-control-plane-efficiency-dashboard.yaml
+- dashboards/knative-reconciler-dashboard.yaml
+- dashboards/knative-resource-dashboard.yaml
+- dashboards/knative-revision-dashboard.yaml
+- dashboards/scaling-dashboard.yaml

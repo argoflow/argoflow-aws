@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: knative-instance-metrics
+  namespace: monitoring
+  labels:
+    app: otel-export
+spec:
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      networking.internal.knative.dev/serviceType: Private
+  endpoints:
+  - port: http-autometric
+    path: /metrics
+    interval: 5s
+  - port: http-usermetric
+    path: /metrics
+    interval: 5s

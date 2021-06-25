@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: knative-metrics
+  namespace: monitoring
+  labels:
+    app: otel-export
+spec:
+  namespaceSelector:
+    matchNames:
+      - metrics
+  selector:
+    matchLabels:
+      app: otel-export
+  endpoints:
+  - port: prom-export
+    path: /metrics
+    interval: 5s
