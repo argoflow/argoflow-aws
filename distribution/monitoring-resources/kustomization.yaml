@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
 - alertmanager-sidecar.yaml
 - allow-all-ns-mon-authorization-policy.yaml
-- fix-kube-proxy-bind-address.yaml
 # - grafana-admin-secret.yaml
 - grafana-autorization-policy.yaml
 - grafana-virtual-service-kubeflow.yaml

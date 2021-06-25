@@ -45,6 +45,7 @@ resources:
 # - argocd-applications/aws-node-termination-handler.yaml
 - argocd-applications/cluster-autoscaler.yaml
 - argocd-applications/aws-load-balancer-controller.yaml
+- argocd-applications/aws-eks-resources.yaml
 - argocd-applications/external-dns.yaml
 - argocd-applications/external-secrets.yaml
 - argocd-applications/sealed-secrets.yaml
