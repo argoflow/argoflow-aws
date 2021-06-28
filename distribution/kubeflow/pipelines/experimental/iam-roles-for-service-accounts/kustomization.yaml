@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: kubeflow
 
 resources:
-- ../base
+- ../../base
 
 patchesStrategicMerge:
 - patches/ml-pipeline-viewer-template.yaml

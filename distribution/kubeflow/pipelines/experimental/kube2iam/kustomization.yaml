@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: kubeflow
 
 resources:
-- ../base
+- ../../base
 - resources/kube2iam-clusterrole.yaml
 - resources/kube2iam-daemonset.yaml
 - resources/kube2iam-serviceaccount.yaml
