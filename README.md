@@ -66,7 +66,7 @@ Further down in this guide we explain how to initialise this repository. For now
 ---
 ### `aws-load-balancer-controller`
 
-Needs policies that allows it to schedule a NLB in specific subnests.
+Needs policies that allows it to provision a NLB in specific subnets.
 
 - Placeholder:      `<<__role_arn.aws_load_balancer_controller__>>`
 - Example ARN:      `arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-load-balancer-controller`
