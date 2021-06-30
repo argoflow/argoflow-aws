@@ -1,7 +1,7 @@
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: kfserving-models-web-app
+  name: central-dashboard
   namespace: kubeflow
 spec:
   action: ALLOW
