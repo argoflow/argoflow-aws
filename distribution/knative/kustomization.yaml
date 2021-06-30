@@ -9,7 +9,7 @@ resources:
 # - net-istio-v0_22_0.yaml
 # - net-istio-v0_23_1.yaml
 - net-istio-v0_24_0.yaml
-# - peerauthentication.yaml
+- peerauthentication.yaml
 - allow-all-ns-knative-authorization-policy.yaml
 # - eventing-core-v0_22_0.yaml # Eventing is optional
 
