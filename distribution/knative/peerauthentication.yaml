@@ -4,8 +4,8 @@ metadata:
   name: default
   namespace: knative-serving
   labels:
-    serving.knative.dev/release: v0.22.0
+    serving.knative.dev/release: v0.24.0
     networking.knative.dev/ingress-provider: istio
 spec:
   mtls:
-    mode: PERMISSIVE
+    mode: STRICT
