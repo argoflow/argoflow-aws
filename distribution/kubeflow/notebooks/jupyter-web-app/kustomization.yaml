@@ -5,6 +5,7 @@ resources:
 - github.com/kubeflow/kubeflow/components/crud-web-apps/jupyter/manifests/overlays/istio?ref=0e91a2b9cd0c3b6687692b1f1f09ac6070cc6c3e # tag=v1.3.0
 
 patchesStrategicMerge:
+- enable-sidecar.yaml
 - spawner_ui_config.yaml
 - logos-configmap.yaml
 
