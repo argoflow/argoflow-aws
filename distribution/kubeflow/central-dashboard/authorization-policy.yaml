@@ -11,5 +11,5 @@ spec:
   rules:
   - from:
     - source:
-        namespaces:
-        - istio-system
+        principals:
+        - cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account
