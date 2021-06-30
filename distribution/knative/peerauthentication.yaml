@@ -1,7 +1,7 @@
 apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
-  name: default
+  name: force-strict-mtls
   namespace: knative-serving
   labels:
     serving.knative.dev/release: v0.24.0
