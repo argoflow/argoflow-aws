@@ -23,6 +23,7 @@ patchesStrategicMerge:
 - patches/config-observability.yaml
 - patches/domain-config.yaml
 - patches/enable-istio-injection.yaml
+- patches/enable-sidecar-istio-controller.yaml
 - patches/increase-deadline.yaml
 
 # removals
