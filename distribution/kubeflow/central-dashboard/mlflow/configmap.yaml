@@ -69,7 +69,7 @@ data:
         },
         {
           "type": "item",
-          "link": "/mlflow",
+          "link": "/mlflow/{ns}/",
           "text": "MLFlow",
           "icon": "av:play-arrow"
         }
