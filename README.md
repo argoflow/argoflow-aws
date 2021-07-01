@@ -147,19 +147,24 @@ In addition, we need to grant each role limited access to secrets. We have chose
 - Policy:             [link](./docs/iam_policies/external-secrets_kubeflow.json)
 
 
-#### `ExternalSecret` for the `oauth2_proxy` namespace
-
-- Placeholder:        `<<__role_arn.external_secrets.oauth2_proxy__>>=`
-- Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_oauth2_proxy`
-- Policy:             [link](./docs/iam_policies/external-secrets_oauth2_proxy`.json)
-
-
 #### `ExternalSecret` for the `mlflow` namespace
 
 - Placeholder:        `<<__role_arn.external_secrets.mlflow__>>=`
 - Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_mlflow`
 - Policy:             [link](./docs/iam_policies/external-secrets_mlflow.json)
 
+#### `ExternalSecret` for the `auth` namespace
+
+- Placeholder:        `<<__role_arn.external_secrets.auth__>>=`
+- Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_auth`
+- Policy:             [link](./docs/iam_policies/external-secrets_auth.json)
+
+
+#### `ExternalSecret` for the `istio-system` namespace
+
+- Placeholder:        `<<__role_arn.external_secrets.auth__>>=`
+- Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_istio-system`
+- Policy:             [link](./docs/iam_policies/external-secrets_istio-system.json)
 
 
 ---
