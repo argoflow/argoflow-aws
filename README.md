@@ -64,13 +64,13 @@ For every IRSA Role you set up, you will need a trust relationship such as the o
 Further down in this guide we explain how to initialise this repository. For now, just take note that we use placeholder values such as `<<__role_arn.external_dns__>>` that will be replaced by the actual ARNs of the roles you wish to use. Below is a listing of all of the IRSA roles in use in this repository, along with links to JSON files with example policies. If you do a search on the whole "distribution" folder you find exactly where these placeholders are used.
 
 ---
-### `aws-loadbalancer-controller`
+### `aws-load-balancer-controller`
 
-Needs policies that allows it to schedule a NLB in specific subnests.
+Needs policies that allows it to provision a NLB in specific subnets.
 
-- Placeholder:      `<<__role_arn.loadbalancer_controller__>>`
-- Example ARN:      `arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-loadbalancer-controller`
-- Policy:           [link](./docs/iam_policies/aws-loadbalancer-controller.json)
+- Placeholder:      `<<__role_arn.aws_load_balancer_controller__>>`
+- Example ARN:      `arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-load-balancer-controller`
+- Policy:           [link](./docs/iam_policies/aws-load-balancer-controller.json)
 ---
 ### `cluster-autoscaler`
 
