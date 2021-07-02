@@ -78,7 +78,7 @@ Needs policies that allows it to automatically scale EC2 instances up/down.
 
 - Placeholder:      `<<__role_arn.cluster_autoscaler__>>`
 - Example ARN:      `arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-cluster-autoscaler`
-- Policy:           [link](./docs/iam_policies/aws-cluster-autoscaler.json)
+- Policy:           [link](./docs/iam_policies/cluster-autoscaler.json)
 
 
 ---
