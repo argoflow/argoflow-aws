@@ -283,7 +283,7 @@ Start up argocd:
   kustomize build distribution/argocd/base/ | kubectl apply -f -
   ```
 
-- If you are using a private repo (not that this will use an ExternalSecret to fetch git credentials from the AWS Secret Manager):
+- If you are using a private repo (note that this will use an ExternalSecret to fetch git credentials from the AWS Secret Manager):
 
   ```bash
   kustomize build distribution/argocd/overlays/private-repo/ | kubectl apply -f -
@@ -297,9 +297,17 @@ kubectl apply -f distribution/kubeflow.yaml
 
 If you wish, you may also set up ArgoCD to manage itself, as follows:
 
-```bash
-kubectl apply -f distribution/argocd-applications/argocd.yaml
-```
+- If you are using a public repo:
+
+  ```bash
+  kubectl apply -f distribution/argocd-applications/argocd.yaml
+  ```
+
+- If you are using a private repo:
+
+  ```bash
+  kubectl apply -f distribution/argocd-applications/argocd-private-repo.yaml
+  ```
 
 ## Customizing the Jupyter Web App
 
