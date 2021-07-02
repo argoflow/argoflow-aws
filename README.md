@@ -166,7 +166,13 @@ In addition, we need to grant each role limited access to secrets. We have chose
 - Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_istio-system`
 - Policy:             [link](./docs/iam_policies/external-secrets_istio-system.json)
 
+#### Backend types
 
+There are two supported AWS backend types:
+- [Secrets Manager](https://aws.amazon.com/secrets-manager/) is the default type set in [setup.conf](./examples/setup.conf).
+  - `<<__external_secrets.backend_type__>>=secretsManager`
+- [System Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) can be used instead by updating the following placeholder value in [setup.conf](./examples/setup.conf) to `systemManager`.
+  - `<<__external_secrets.backend_type__>>=systemManager`
 ---
 # AWS Users
 
