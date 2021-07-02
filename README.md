@@ -166,6 +166,12 @@ In addition, we need to grant each role limited access to secrets. We have chose
 - Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_istio-system`
 - Policy:             [link](./docs/iam_policies/external-secrets_istio-system.json)
 
+#### `ExternalSecret` for the `monitoring` namespace
+
+- Placeholder:        `<<__role_arn.external_secrets.monitoring__>>=`
+- Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_monitoring`
+- Policy:             [link](./docs/iam_policies/external-secrets_monitoring.json)
+
 #### Backend types
 
 There are two supported AWS backend types:
