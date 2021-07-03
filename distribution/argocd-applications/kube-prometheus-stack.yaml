@@ -81,6 +81,10 @@ spec:
         value: 'false'
       - name: prometheus.prometheusSpec.ruleSelector
         value: ''
+      - name: prometheus.prometheusSpec.probeSelectorNilUsesHelmValues
+        value: 'false'
+      - name: prometheus.prometheusSpec.probeSelector
+        value: ''
       - name: kubelet.serviceMonitor.cAdvisorMetricRelabelings[0].sourceLabels[0]
         value: container
       - name: kubelet.serviceMonitor.cAdvisorMetricRelabelings[0].regex
