@@ -25,22 +25,24 @@ spec:
         value: ibm.*
       - name: cr.spec.api.namespaces.exclude[4]
         value: kiali-operator
-      - name: cr.spec.deployment.override_ingress_yaml.spec.tls[0].hosts[0]
-        value: <<__subdomain_kiali__>>.<<__domain__>>
-      - name: cr.spec.deployment.override_ingress_yaml.spec.tls[0].secretName
-        value: monitoring-ingressgateway-certs
-      - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].host
-        value: <<__subdomain_kiali__>>.<<__domain__>>
-      - name: cr.spec.deployment.override_ingress_yaml.spec.ingressClassName
-        value: istio
-      - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].path
-        value: '/'
-      - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].pathType
-        value: Prefix
-      - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].backend.serviceName
-        value: kiali
-      - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].backend.servicePort
-        value: '20001'
+      - name: cr.spec.deployment.ingress_enabled
+        value: 'false'
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.tls[0].hosts[0]
+      #   value: <<__subdomain_kiali__>>.<<__domain__>>
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.tls[0].secretName
+      #   value: monitoring-ingressgateway-certs
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].host
+      #   value: <<__subdomain_kiali__>>.<<__domain__>>
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.ingressClassName
+      #   value: istio
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].path
+      #   value: '/'
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].pathType
+      #   value: Prefix
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].backend.serviceName
+      #   value: kiali
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].backend.servicePort
+      #   value: '20001'
       - name: cr.spec.external_services.prometheus.url
         value: http://kube-prometheus-stack-prometheus.monitoring:9090
       - name: cr.spec.external_services.tracing.use_grpc
