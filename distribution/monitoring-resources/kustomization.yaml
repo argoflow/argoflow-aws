@@ -8,6 +8,7 @@ resources:
 - grafana-autorization-policy.yaml
 - grafana-virtual-service-kubeflow.yaml
 - grafana-virtual-service.yaml
+- kiali-authorization-policy.yaml
 - monitoring-gateway.yaml
 - namespace.yaml
 - nvidia-dcgm-service-monitor.yaml
