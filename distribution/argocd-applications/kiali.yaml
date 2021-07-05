@@ -55,6 +55,8 @@ spec:
         value: "false" # we would actually want this to be true, but it doesn't work currently
       - name: cr.spec.external_services.tracing.in_cluster_url
         value: http://jaeger-query.istio-system
+      - name: cr.spec.external_services.grafana.auth.password
+        value: secret:kube-prometheus-stack-grafana:admin-password
       - name: cr.spec.external_services.grafana.url
         value: https://<<__subdomain_grafana__>>.<<__domain__>>/grafana
       - name: cr.spec.external_services.grafana.in_cluster_url
