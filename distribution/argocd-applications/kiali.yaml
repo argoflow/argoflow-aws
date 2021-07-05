@@ -30,7 +30,7 @@ spec:
       - name: cr.spec.deployment.namespace
         value: monitoring
       - name: cr.spec.deployment.pod_annotations.sidecar\.istio\.io\/inject
-        value: \"false\"
+        value: \'false\'
       - name: cr.spec.istio_namespace
         value: istio-system
       # - name: cr.spec.deployment.override_ingress_yaml.spec.tls[0].hosts[0]
