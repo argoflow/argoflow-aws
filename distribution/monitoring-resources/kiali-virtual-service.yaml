@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: kiali-virtualservice
-  namespace: istio-system
+  namespace: monitoring
 spec:
   gateways:
   - monitoring/monitoring-gateway
