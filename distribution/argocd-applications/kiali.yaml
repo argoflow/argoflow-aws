@@ -58,7 +58,7 @@ spec:
       - name: cr.spec.external_services.grafana.auth.password
         value: secret:kube-prometheus-stack-grafana:admin-password
       - name: cr.spec.external_services.grafana.auth.username
-        value: secret:kube-prometheus-stack-grafana:admin-user
+        value: admin
       - name: cr.spec.external_services.grafana.url
         value: https://<<__subdomain_grafana__>>.<<__domain__>>/grafana
       - name: cr.spec.external_services.grafana.in_cluster_url
