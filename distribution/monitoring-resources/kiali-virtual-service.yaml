@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   gateways:
-  - monitoring/monitoring-gateway
+  - monitoring-gateway
   hosts:
   - <<__subdomain_kiali__>>.<<__domain__>>
   http:
@@ -20,6 +20,6 @@ spec:
       uri: /
     route:
     - destination:
-        host: kiali.istio-system.svc.cluster.local
+        host: kiali.monitoring.svc.cluster.local
         port:
           number: 20001
