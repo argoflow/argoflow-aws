@@ -21,6 +21,7 @@ patchesStrategicMerge:
 - patches/enable-istio-injection.yaml
 - patches/enable-sidecar-istio-controller.yaml
 - patches/increase-deadline.yaml
+- patches/knative-local-gateway.yaml
 
 # removals
 - removals/remove-knative-ingress-gateway.yaml
