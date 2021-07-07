@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- deny-all-authorizationpolicy.yaml
 - envoy-filter-ingressgateway-settings.yaml
 - envoy-filter-kubeflow-userid.yaml
 - envoy-filter-proxy-protocol.yaml
@@ -11,3 +10,7 @@ resources:
 - kubeflow-cluster-roles.yaml
 - kubeflow-gateway.yaml
 - monitoring/
+
+# TODO switch these around again!
+# - deny-all-authorizationpolicy.yaml
+- DEBUGGING-allow-all-authorizationpolicy.yaml
