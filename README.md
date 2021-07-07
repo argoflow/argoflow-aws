@@ -231,7 +231,7 @@ You may add any additional placeholder/value pairs you want. The naming conventi
 ## The "setup_credentials.sh" script
 
 Finally, if you wish you can use the "setup_credentials.sh" script to generate [SealedSecrets](https://github.com/bitnami-labs/sealed-secrets) that will be used for access to "admin" applications, such as the ArgoCD dashboard
-(in the future), Grafana, Dex, Keycloak, the kubeflow admin user etc. This script will generate various random credentials and create a "sealed" representation that is safe to declare in your Git repository.
+(in the future), Dex, Keycloak, the kubeflow admin user etc. This script will generate various random credentials and create a "sealed" representation that is safe to declare in your Git repository.
 
 Run the following commands to install the kubeseal CLI on Linux:
 
