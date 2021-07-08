@@ -21,7 +21,6 @@ patchesStrategicMerge:
 - patches/config-observability.yaml
 - patches/domain-config.yaml
 - patches/increase-deadline.yaml
-- patches/knative-local-gateway.yaml
 
 # TODO add back in to make secure
 # - patches/enable-istio-injection.yaml
