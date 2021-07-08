@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- upstream/serving-core-v0_24_0.yaml
-- upstream/net-istio-v0_24_0.yaml
-# - upstream/eventing-core-v0_22_0.yaml # Eventing is optional
+- serving-core-v0_24_0.yaml
+- net-istio-v0_24_0.yaml
+# - eventing-core-v0_22_0.yaml # Eventing is optional
 - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.5.0/components.yaml # metrics server (needed for HPA)
 - monitoring/
 - allow-all-ns-knative-authorization-policy.yaml
