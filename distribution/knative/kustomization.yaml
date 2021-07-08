@@ -2,17 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- serving-core-v0_24_0.yaml
-- monitoring/
-- net-istio-v0_24_0.yaml
-- allow-all-ns-knative-authorization-policy.yaml
-# - eventing-core-v0_22_0.yaml # Eventing is optional
+- upstream/serving-core-v0_24_0.yaml
+- upstream/net-istio-v0_24_0.yaml
+# - upstream/eventing-core-v0_22_0.yaml # Eventing is optional
 - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.5.0/components.yaml # metrics server (needed for HPA)
-
-
-# TODO add back in to make secure
+- monitoring/
+- allow-all-ns-knative-authorization-policy.yaml
 # - peerauthentication.yaml
-
 
 patchesStrategicMerge:
 # patches
@@ -21,10 +17,8 @@ patchesStrategicMerge:
 - patches/config-observability.yaml
 - patches/domain-config.yaml
 - patches/increase-deadline.yaml
-
-# TODO add back in to make secure
-# - patches/enable-istio-injection.yaml
-# - patches/enable-sidecar-istio-controller.yaml
+- patches/enable-istio-injection.yaml
+- patches/enable-sidecar-istio-controller.yaml
 
 # removals
 - removals/remove-knative-ingress-gateway.yaml

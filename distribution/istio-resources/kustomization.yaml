@@ -12,8 +12,4 @@ resources:
 - monitoring/
 - cluster-local-gateway.yaml
 - cluster-local-gateway-authorizationpolicy.yaml
-
-# TODO switch these around again!
-# - deny-all-authorizationpolicy.yaml
-- DEBUGGING-allow-all-authorizationpolicy.yaml
-- DEBUGGING-allow-in-cluster-redirect.yaml
+- deny-all-authorizationpolicy.yaml
