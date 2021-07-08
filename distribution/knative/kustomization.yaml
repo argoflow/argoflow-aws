@@ -29,6 +29,7 @@ patchesStrategicMerge:
 
 # removals
 - removals/remove-knative-ingress-gateway.yaml
+- removals/remove-knative-local-gateway.yaml
 
 
 
