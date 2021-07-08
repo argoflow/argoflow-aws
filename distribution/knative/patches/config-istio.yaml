@@ -5,6 +5,6 @@ metadata:
   namespace: knative-serving
 data:
   gateway.kubeflow.kubeflow-gateway: istio-ingressgateway.istio-system.svc.cluster.local
-  local-gateway.knative-serving.knative-local-gateway: knative-local-gateway.istio-system.svc.cluster.local
+  local-gateway.knative-serving.knative-local-gateway: cluster-local-gateway.istio-system.svc.cluster.local
   # local-gateway.mesh: mesh
   # enable-virtualservice-status: "true"

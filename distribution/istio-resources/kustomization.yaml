@@ -10,6 +10,8 @@ resources:
 - kubeflow-cluster-roles.yaml
 - kubeflow-gateway.yaml
 - monitoring/
+- cluster-local-gateway.yaml
+- cluster-local-gateway-authorizationpolicy.yaml
 
 # TODO switch these around again!
 # - deny-all-authorizationpolicy.yaml
