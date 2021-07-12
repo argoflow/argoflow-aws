@@ -13,6 +13,7 @@ resources:
 patchesStrategicMerge:
 # patches
 - patches/config-istio.yaml
+- patches/config-logging.yaml
 - patches/config-network.yaml
 - patches/config-observability.yaml
 - patches/domain-config.yaml
