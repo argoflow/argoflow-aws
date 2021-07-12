@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-logging
+  namespace: knative-serving
+data:
+  loglevel.controller: info
+  loglevel.autoscaler: info
+  loglevel.queueproxy: debug
+  loglevel.webhook: info
+  loglevel.activator: debug
+  loglevel.hpaautoscaler: info
+  loglevel.net-certmanager-controller: info
+  loglevel.net-istio-controller: debug
+  loglevel.net-nscert-controller: info
