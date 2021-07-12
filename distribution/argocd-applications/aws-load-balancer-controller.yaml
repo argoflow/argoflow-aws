@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://aws.github.io/eks-charts
-    targetRevision: 1.2.2
+    targetRevision: 1.2.0
     chart: aws-load-balancer-controller
     helm:
       parameters:
