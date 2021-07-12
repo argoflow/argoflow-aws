@@ -64,13 +64,13 @@ For every IRSA Role you set up, you will need a trust relationship such as the o
 Further down in this guide we explain how to initialise this repository. For now, just take note that we use placeholder values such as `<<__role_arn.external_dns__>>` that will be replaced by the actual ARNs of the roles you wish to use. Below is a listing of all of the IRSA roles in use in this repository, along with links to JSON files with example policies. If you do a search on the whole "distribution" folder you find exactly where these placeholders are used.
 
 ---
-### `aws-loadbalancer-controller`
+### `aws-load-balancer-controller`
 
-Needs policies that allows it to schedule a NLB in specific subnests.
+Needs policies that allows it to provision a NLB in specific subnets.
 
-- Placeholder:      `<<__role_arn.loadbalancer_controller__>>`
-- Example ARN:      `arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-loadbalancer-controller`
-- Policy:           [link](./docs/iam_policies/aws-loadbalancer-controller.json)
+- Placeholder:      `<<__role_arn.aws_load_balancer_controller__>>`
+- Example ARN:      `arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-load-balancer-controller`
+- Policy:           [link](./docs/iam_policies/aws-load-balancer-controller.json)
 ---
 ### `cluster-autoscaler`
 
@@ -78,7 +78,7 @@ Needs policies that allows it to automatically scale EC2 instances up/down.
 
 - Placeholder:      `<<__role_arn.cluster_autoscaler__>>`
 - Example ARN:      `arn:aws:iam::123456789012:role/my-cluster_kube-system_aws-cluster-autoscaler`
-- Policy:           [link](./docs/iam_policies/aws-cluster-autoscaler.json)
+- Policy:           [link](./docs/iam_policies/cluster-autoscaler.json)
 
 
 ---
@@ -147,21 +147,32 @@ In addition, we need to grant each role limited access to secrets. We have chose
 - Policy:             [link](./docs/iam_policies/external-secrets_kubeflow.json)
 
 
-#### `ExternalSecret` for the `oauth2_proxy` namespace
-
-- Placeholder:        `<<__role_arn.external_secrets.oauth2_proxy__>>=`
-- Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_oauth2_proxy`
-- Policy:             [link](./docs/iam_policies/external-secrets_oauth2_proxy`.json)
-
-
 #### `ExternalSecret` for the `mlflow` namespace
 
 - Placeholder:        `<<__role_arn.external_secrets.mlflow__>>=`
 - Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_mlflow`
 - Policy:             [link](./docs/iam_policies/external-secrets_mlflow.json)
 
+#### `ExternalSecret` for the `auth` namespace
+
+- Placeholder:        `<<__role_arn.external_secrets.auth__>>=`
+- Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_auth`
+- Policy:             [link](./docs/iam_policies/external-secrets_auth.json)
 
 
+#### `ExternalSecret` for the `istio-system` namespace
+
+- Placeholder:        `<<__role_arn.external_secrets.auth__>>=`
+- Example ARN:        `arn:aws:iam::123456789012:role/my-cluster_istio-system`
+- Policy:             [link](./docs/iam_policies/external-secrets_istio-system.json)
+
+#### Backend types
+
+There are two supported AWS backend types:
+- [Secrets Manager](https://aws.amazon.com/secrets-manager/) is the default type set in [setup.conf](./examples/setup.conf).
+  - `<<__external_secrets.backend_type__>>=secretsManager`
+- [System Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) can be used instead by updating the following placeholder value in [setup.conf](./examples/setup.conf) to `systemManager`.
+  - `<<__external_secrets.backend_type__>>=systemManager`
 ---
 # AWS Users
 

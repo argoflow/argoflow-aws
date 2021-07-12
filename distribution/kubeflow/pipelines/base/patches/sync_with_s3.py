@@ -22,6 +22,7 @@ disable_istio_sidecar = os.environ.get("DISABLE_ISTIO_SIDECAR") == "true"
 secret_name_s3_accesskey = os.environ.get("SECRET_NAME_S3_ACCESSKEY")
 secret_name_s3_secretkey = os.environ.get("SECRET_NAME_S3_SECRETKEY")
 external_secret_role_arn = os.environ.get("EXTERNAL_SECRET_ROLE_ARN")
+external_secret_backend_type = os.environ.get("EXTERNAL_SECRET_BACKEND_TYPE")
 
 
 class Controller(BaseHTTPRequestHandler):
@@ -226,7 +227,7 @@ class Controller(BaseHTTPRequestHandler):
                     "namespace": namespace,
                 },
                 "spec": {
-                    "backendType": "secretsManager",
+                    "backendType": external_secret_backend_type,
                     "roleArn": external_secret_role_arn,
                     "data": [
                         {
