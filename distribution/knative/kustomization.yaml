@@ -3,28 +3,30 @@ kind: Kustomization
 
 resources:
 - serving-core-v0_24_0.yaml
-- monitoring/
 - net-istio-v0_24_0.yaml
-- peerauthentication.yaml
-- allow-all-ns-knative-authorization-policy.yaml
 # - eventing-core-v0_22_0.yaml # Eventing is optional
-
-# metrics server (needed for HPA)
-- https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.5.0/components.yaml
+- https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.5.0/components.yaml # metrics server (needed for HPA)
+- monitoring/
+- allow-all-ns-knative-authorization-policy.yaml
+- peerauthentication.yaml
 
 patchesStrategicMerge:
 # patches
 - patches/config-istio.yaml
+- patches/config-logging.yaml
 - patches/config-network.yaml
 - patches/config-observability.yaml
 - patches/domain-config.yaml
+- patches/increase-deadline.yaml
 - patches/enable-istio-injection.yaml
 - patches/enable-sidecar-istio-controller.yaml
-- patches/increase-deadline.yaml
-- patches/knative-local-gateway.yaml
 
 # removals
 - removals/remove-knative-ingress-gateway.yaml
+- removals/remove-knative-local-gateway.yaml
+
+
+
 
 # images:
 # - name: gcr.io/knative-releases/knative.dev/serving/cmd/activator

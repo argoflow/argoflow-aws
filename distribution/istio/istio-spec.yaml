@@ -47,18 +47,56 @@ spec:
           type: LoadBalancer
         serviceAnnotations:
           service.beta.kubernetes.io/aws-load-balancer-name: <<__aws_load_balancer.name__>>
-          # service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: "3"
-          # service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "3"
-          # service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "10"
-          #service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: "HTTP"
-          #service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "15021"
-          #service.beta.kubernetes.io/aws-load-balancer-healthcheck-path
           service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
           service.beta.kubernetes.io/aws-load-balancer-scheme: <<__aws_load_balancer.scheme__>>
           service.beta.kubernetes.io/aws-load-balancer-type: external
           service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: <<__aws_load_balancer.nlb_target_type__>>
           proxy.istio.io/config: '{"gatewayTopology" : { "numTrustedProxies": 2 } }'
           external-dns.alpha.kubernetes.io/hostname: <<__route53.hosted_zone_hostnames__>>
+    # Cluster-local gateway for KFServing
+    - enabled: true
+      name: cluster-local-gateway
+      # https://github.com/istio/istio/issues/19263#issuecomment-615833092
+      label:
+        app: cluster-local-gateway
+        istio: cluster-local-gateway
+      k8s:
+        env:
+        - name: ISTIO_META_ROUTER_MODE
+          value: sni-dnat
+        hpaSpec:
+          maxReplicas: 5
+          metrics:
+          - resource:
+              name: cpu
+              targetAverageUtilization: 80
+            type: Resource
+          minReplicas: 1
+          scaleTargetRef:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: cluster-local-gateway
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 1024Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        service:
+          type: ClusterIP
+          ports:
+          - name: status-port
+            port: 15020
+            targetPort: 15020
+          - name: http2
+            port: 80
+            targetPort: 8080
+
+    # Disable EgressGateway
+    egressGateways:
+    - enabled: false
+      name: istio-egressgateway
   values:
     global:
       tracer:
@@ -70,3 +108,10 @@ spec:
       ## Admission Webhook jobs do not terminate as expected with istio-proxy
       - matchExpressions:
         - {key: app, operator: In, values: [kube-prometheus-stack-admission-create, kube-prometheus-stack-admission-patch, alertmanager]}
+    # pilot:
+    #   autoscaleEnabled: true
+    #   autoscaleMax: 5
+    #   autoscaleMin: 1
+    #   configMap: true
+    #   cpu:
+    #     targetAverageUtilization: 80
