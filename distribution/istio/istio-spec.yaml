@@ -118,4 +118,4 @@ spec:
       cpu:
         targetAverageUtilization: 80
       env:
-      PILOT_ENABLE_STATUS: true # see https://istio.io/latest/docs/reference/config/config-status/
+        PILOT_ENABLE_STATUS: true # see https://istio.io/latest/docs/reference/config/config-status/
