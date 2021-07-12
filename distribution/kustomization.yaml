@@ -6,14 +6,14 @@ resources:
 - argocd-applications/istio-operator.yaml
 - argocd-applications/istio.yaml
 - argocd-applications/istio-resources.yaml
-  # - argocd-applications/knative.yaml
+- argocd-applications/knative.yaml
   # Pick *one* of the following applications
   # - argocd-applications/cert-manager-self-signing.yaml
 - argocd-applications/cert-manager-dns-01.yaml
 
   # Pick *one* of the following
-  # - argocd-applications/certificates.yaml
-- argocd-applications/certificates-imported.yaml
+- argocd-applications/certificates.yaml
+# - argocd-applications/certificates-imported.yaml
 
   # Pick *one* of the following applications:
   # - argocd-applications/oidc-auth-on-cluster-dex.yaml
@@ -32,7 +32,7 @@ resources:
 - argocd-applications/kubeflow-roles.yaml
 - argocd-applications/pipelines.yaml
 - argocd-applications/katib.yaml
-# - argocd-applications/kfserving.yaml
+- argocd-applications/kfserving.yaml
 - argocd-applications/pod-defaults.yaml
 - argocd-applications/jupyter-web-app.yaml
 - argocd-applications/notebook-controller.yaml
