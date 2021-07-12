@@ -102,16 +102,20 @@ spec:
       tracer:
         zipkin:
           address: jaeger-collector.istio-system.svc.cluster.local:9411
+      istiod:
+        enableAnalysis: true # see https://istio.io/latest/docs/reference/config/config-status/
     sidecarInjectorWebhook:
       neverInjectSelector:
       # kube-prometheus-stack
       ## Admission Webhook jobs do not terminate as expected with istio-proxy
       - matchExpressions:
         - {key: app, operator: In, values: [kube-prometheus-stack-admission-create, kube-prometheus-stack-admission-patch, alertmanager]}
-    # pilot:
-    #   autoscaleEnabled: true
-    #   autoscaleMax: 5
-    #   autoscaleMin: 1
-    #   configMap: true
-    #   cpu:
-    #     targetAverageUtilization: 80
+    pilot:
+      autoscaleEnabled: true
+      autoscaleMax: 5
+      autoscaleMin: 1
+      configMap: true
+      cpu:
+        targetAverageUtilization: 80
+      env:
+      PILOT_ENABLE_STATUS: true # see https://istio.io/latest/docs/reference/config/config-status/
