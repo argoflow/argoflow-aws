@@ -6,5 +6,5 @@ metadata:
 data:
   gateway.kubeflow.kubeflow-gateway: istio-ingressgateway.istio-system.svc.cluster.local
   local-gateway.istio-system.cluster-local-gateway: cluster-local-gateway.istio-system.svc.cluster.local
-  enable-virtualservice-status: 'true'
+  enable-virtualservice-status: 'false'
   # local-gateway.mesh: mesh
