@@ -8,9 +8,9 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - <<__subdomain_grafana__>>.<<__domain__>>
-    - <<__subdomain_kiali__>>.<<__domain__>>
-    - <<__subdomain_kubecost__>>.<<__domain__>>
+    - grafana.aim-city.pub.aws.mitre.org
+    - kiali.aim-city.pub.aws.mitre.org
+    - kubecost.aim-city.pub.aws.mitre.org
     port:
       name: http
       number: 80
@@ -19,9 +19,9 @@ spec:
     tls:
       httpsRedirect: true
   - hosts:
-    - <<__subdomain_grafana__>>.<<__domain__>>
-    - <<__subdomain_kiali__>>.<<__domain__>>
-    - <<__subdomain_kubecost__>>.<<__domain__>>
+    - grafana.aim-city.pub.aws.mitre.org
+    - kiali.aim-city.pub.aws.mitre.org
+    - kubecost.aim-city.pub.aws.mitre.org
     port:
       name: https
       number: 443

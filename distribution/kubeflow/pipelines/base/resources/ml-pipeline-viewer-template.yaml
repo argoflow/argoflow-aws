@@ -11,7 +11,7 @@ data:
                     "env": [
                         {
                             "name": "AWS_REGION",
-                            "value": "<<__aws_region__>>"
+                            "value": "us-east-1"
                         }
                     ]
                 }

@@ -10,4 +10,4 @@ spec:
       - name: centraldashboard
         env:
         - name: REGISTRATION_FLOW
-          value: <<__enable_registration_flow__>>
+          value: "true"

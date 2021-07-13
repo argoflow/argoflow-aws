@@ -7,7 +7,7 @@ spec:
   gateways:
   - monitoring-gateway
   hosts:
-  - <<__subdomain_grafana__>>.<<__domain__>>
+  - grafana.aim-city.pub.aws.mitre.org
   http:
   - route:
     - destination:

@@ -7,7 +7,7 @@ data:
     {
         "metadata": {
             "annotations": {
-                "iam.amazonaws.com/role": "<<__role_arn.kube2iam_pipelines__>>"
+                "iam.amazonaws.com/role": "arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines"
             }
         },
         "spec": {
@@ -16,7 +16,7 @@ data:
                     "env": [
                         {
                             "name": "AWS_REGION",
-                            "value": "<<__aws_region__>>"
+                            "value": "us-east-1"
                         }
                     ]
                 }

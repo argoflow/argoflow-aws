@@ -36,7 +36,7 @@ spec:
       - name: grafana.persistence.size
         value: 20Gi
       - name: grafana.grafana\.ini.server.root_url
-        value: https://<<__subdomain_grafana__>>.<<__domain__>>/grafana/
+        value: https://grafana.aim-city.pub.aws.mitre.org/grafana/
       - name: grafana.grafana\.ini.server.serve_from_sub_path
         value: 'true'
       - name: grafana.plugins[0]

@@ -17,5 +17,5 @@ spec:
   - to:
     - operation:
         hosts:
-        - <<__subdomain_dashboard__>>.<<__domain__>>
-        - <<__subdomain_serving__>>.<<__domain__>>
+        - kubeflow.aim-city.pub.aws.mitre.org
+        - serving.aim-city.pub.aws.mitre.org

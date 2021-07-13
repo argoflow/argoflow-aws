@@ -9,6 +9,6 @@ spec:
     name: gateways-issuer
     kind: ClusterIssuer
   dnsNames:
-  - <<__subdomain_grafana__>>.<<__domain__>>
-  - <<__subdomain_kiali__>>.<<__domain__>>
-  - <<__subdomain_kubecost__>>.<<__domain__>>
+  - grafana.aim-city.pub.aws.mitre.org
+  - kiali.aim-city.pub.aws.mitre.org
+  - kubecost.aim-city.pub.aws.mitre.org

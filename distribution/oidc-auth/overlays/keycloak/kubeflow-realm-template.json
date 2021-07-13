@@ -74,8 +74,8 @@
             "clientAuthenticatorType": "client-secret",
             "secret": "",
             "redirectUris": [
-                "https://<<__subdomain_dashboard__>>.<<__domain__>>",
-                "https://<<__subdomain_dashboard__>>.<<__domain__>>/oauth2/callback"
+                "https://kubeflow.aim-city.pub.aws.mitre.org",
+                "https://kubeflow.aim-city.pub.aws.mitre.org/oauth2/callback"
             ],
             "webOrigins": []
         }

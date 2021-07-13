@@ -12,7 +12,7 @@ spec:
     helm:
       parameters:
       - name: rbac.serviceAccount.annotations.eks\.amazonaws\.com/role-arn
-        value: <<__role_arn.cluster_autoscaler__>>
+        value: arn:aws:iam::177337816322:role/aim-city_kube-system_cluster-autoscaler
       - name: rbac.serviceAccount.create
         value: 'true'
       - name: rbac.create
@@ -26,11 +26,11 @@ spec:
       - name: image.tag
         value: v1.20.0
       - name: autoDiscovery.clusterName
-        value: <<__cluster_name__>>
+        value: aim-city
       - name: autoDiscovery.enabled
         value: 'true'
       - name: awsRegion
-        value: <<__aws_region__>>
+        value: us-east-1
       - name: extraArgs.balance-similar-node-groups
         value: 'true'
       - name: extraArgs.scale-down-enabled

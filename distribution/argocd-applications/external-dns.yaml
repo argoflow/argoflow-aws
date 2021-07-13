@@ -13,9 +13,9 @@ spec:
     helm:
       parameters:
       - name: aws.region
-        value: <<__aws_region__>>
+        value: us-east-1
       - name: domainFilters[0]
-        value: <<__route53.hosted_zone_domain__>>
+        value: aim-city.pub.aws.mitre.org
       - name: serviceAccount.create
         value: 'true'
       - name: rbac.create
@@ -37,9 +37,9 @@ spec:
       - name: sources[3]
         value: istio-virtualservice
       # - name: aws.assumeRolenArn
-      #   value: <<__role_arn.external_dns__>>
+      #   value: arn:aws:iam::177337816322:role/aim-city_kube-system_external-dns
       - name: serviceAccount.annotations.eks\.amazonaws\.com/role-arn
-        value: <<__role_arn.external_dns__>>
+        value: arn:aws:iam::177337816322:role/aim-city_kube-system_external-dns
     repoURL: https://charts.bitnami.com/bitnami
     targetRevision: 5.1.1
   syncPolicy:
