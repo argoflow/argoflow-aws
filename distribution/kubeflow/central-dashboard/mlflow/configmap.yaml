@@ -69,9 +69,15 @@ data:
         },
         {
           "type": "item",
+          "text": "Models",
+          "link": "/models/",
+          "icon": "editor:space-bar"
+        },
+        {
+          "type": "item",
           "link": "/mlflow/{ns}/",
           "text": "MLFlow",
-          "icon": "av:play-arrow"
+          "icon": "maps:layers"
         }
       ],
       "externalLinks": [ ],
