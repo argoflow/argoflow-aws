@@ -1,0 +1,265 @@
+apiVersion: kubeflow.org/v1beta1
+kind: Profile
+metadata:
+  name: my-username
+spec:
+  owner:
+    kind: User
+    name: my.username@mydomain.com
+  plugins:
+  - kind: AwsIamForServiceAccount
+    spec:
+      awsIamRole: arn:aws:iam::123456789012:role/my-cluster-merge_profile_my-username
+---
+apiVersion: kubeflow.org/v1alpha1
+kind: PodDefault
+metadata:
+  name: access-ml-pipeline
+  namespace: my-username
+spec:
+  desc: Allow access to Kubeflow Pipelines
+  selector:
+    matchLabels:
+      access-ml-pipeline: "true"
+  volumeMounts:
+  - mountPath: /var/run/secrets/ml-pipeline
+    name: volume-ml-pipeline-token
+    readOnly: true
+  volumes:
+  - name: volume-ml-pipeline-token
+    projected:
+      sources:
+      - serviceAccountToken:
+          path: token
+          expirationSeconds: 7200
+          audience: pipelines.kubeflow.org
+  env:
+  - name: ML_PIPELINE_SA_TOKEN_PATH
+    value: /var/run/secrets/ml-pipeline/token
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: force-strict
+  namespace: my-username
+spec:
+  mtls:
+    mode: STRICT
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-knative-traffic
+  namespace: my-username
+spec:
+ action: ALLOW
+ rules:
+ - from:
+   - source:
+      namespaces: ["knative-serving"]
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: mlflow-config
+  namespace: my-username
+data:
+  DB_NAME: mlflow_karl_schriek
+  RDS_HOST: my-cluster-merge-instance.c6e2xeayekua.eu-central-1.rds.amazonaws.com
+  RDS_PORT: "3306"
+  ARTIFACT_S3_BUCKET: 123456789012-my-cluster-merge-mlflow
+  ARTIFACT_S3_KEY_PREFIX: my-username
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-mlflow-database
+  namespace: my-username
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'false'
+    spec:
+      containers:
+      - name: create-mlflow-database
+        image: public.ecr.aws/atcommons/utils/mysql-db-creator:latest
+        env:
+        - name: HOST
+          valueFrom:
+            configMapKeyRef:
+              name: mlflow-config
+              key: RDS_HOST
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: mlflow-config
+              key: RDS_PORT
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mlflow-secret
+              key: RDS_USERNAME
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mlflow-secret
+              key: RDS_PASSWORD
+        - name: DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: mlflow-config
+              key: DB_NAME
+      restartPolicy: Never
+  backoffLimit: 5
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow
+  labels:
+    app: mlflow
+  namespace: my-username
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlflow
+  template:
+    metadata:
+      labels:
+        app: mlflow
+    spec:
+      serviceAccountName: mlflow
+      containers:
+      - name: mlflow
+        securityContext: {}
+        image: public.ecr.aws/atcommons/mlflow-server:1.18.0
+        imagePullPolicy: Always        
+        resources:
+          limits:
+            cpu: 500m
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 30Mi
+        envFrom:
+        - secretRef:
+            name: mlflow-secret
+        - configMapRef:
+            name: mlflow-config
+        ports:
+        - name: http
+          containerPort: 5000
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+        resources: {}
+---
+apiVersion: kubernetes-client.io/v1
+kind: ExternalSecret
+metadata:
+  name: mlflow-secret
+  namespace: my-username
+spec:
+  backendType: secretsManager
+  roleArn: arn:aws:iam::123456789012:role/my-cluster-merge_external_secret_mlflow
+  data:
+  - key: my-cluster-merge/mlflow/rds_username
+    name: RDS_USERNAME
+  - key: my-cluster-merge/mlflow/rds_password
+    name: RDS_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mlflow
+  namespace: my-username
+spec:
+  selector:
+    app: mlflow
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 5000
+---
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:  
+  name: mlflow
+  namespace: my-username  
+spec:
+  gateways:
+    - kubeflow/kubeflow-gateway
+  hosts:
+    - '*'
+  http:
+    - headers:
+        request:
+          add:
+            x-forwarded-prefix: /mlflow/my-username
+      match:
+        - uri:
+            prefix: /mlflow/my-username
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: mlflow.my-username.svc.cluster.local
+            port:
+              number: 80
+---
+kind: AuthorizationPolicy
+apiVersion: security.istio.io/v1beta1
+metadata:
+  name: mlflow
+  namespace: my-username
+spec:
+ rules:
+   - from:
+       - source:
+           namespaces:
+             - istio-system
+ selector:
+   matchLabels:
+     app: mlflow
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: mlflow
+  namespace: my-username  
+  labels:
+    app: mlflow
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/my-cluster-merge_my-username_mlflow
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  labels:
+    app: mlflow
+  name: mlflow
+  namespace: my-username
+rules: []
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  labels:
+    app: mlflow
+  name: mlflow
+  namespace: my-username
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: mlflow
+subjects:
+- kind: ServiceAccount
+  name: mlflow
