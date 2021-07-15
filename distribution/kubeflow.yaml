@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/ReggieCarey/argoflow-aws.git
-    targetRevision: 177337816322/aim-city.pub.aws.mitre.org
+    # targetRevision: 177337816322/aim-city.pub.aws.mitre.org
     path: ./distribution
     kustomize:
       version: v4.0.5
