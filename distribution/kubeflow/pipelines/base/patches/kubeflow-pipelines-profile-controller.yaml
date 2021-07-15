@@ -14,13 +14,13 @@ spec:
         command: [python, /hooks/sync_with_s3.py]
         env:
         - name: SECRET_NAME_S3_ACCESSKEY
-          value: aim-city/kubeflow/s3_accesskey
+          value: <<__external_secret_name.kubeflow.s3_accesskey__>>
         - name: SECRET_NAME_S3_SECRETKEY
-          value: aim-city/kubeflow/s3_secretkey
+          value: <<__external_secret_name.kubeflow.s3_secretkey__>>
         - name: EXTERNAL_SECRET_ROLE_ARN
-          value: arn:aws:iam::177337816322:role/aim-city_external_secret_kubeflow
+          value: <<__role_arn.external_secrets.kubeflow__>>
         - name: EXTERNAL_SECRET_BACKEND_TYPE
-          value: secretsManager
+          value: <<__external_secrets.backend_type__>>
 
         # remove minio-related params
         - $patch: delete

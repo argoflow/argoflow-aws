@@ -7,7 +7,7 @@ spec:
   gateways:
   - kubeflow/kubeflow-gateway
   hosts:
-  - kubeflow.aim-city.pub.aws.mitre.org
+  - <<__subdomain_dashboard__>>.<<__domain__>>
   http:
   - headers:
       request:

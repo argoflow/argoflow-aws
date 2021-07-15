@@ -26,9 +26,9 @@ spec:
         resources: {}
         env:
         - name: AWS_DEFAULT_REGION
-          value: us-east-1
+          value: <<__aws_region__>>
         - name: AWS_REGION
-          value: us-east-1
+          value: <<__aws_region__>>
         - name: LOG_LEVEL
           value: info
         - name: LOG_MESSAGE_KEY

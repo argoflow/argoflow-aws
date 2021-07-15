@@ -6,13 +6,13 @@ spec:
   selfSigned:
     $patch: delete
   acme:
-    email: rcarey@mitre.org
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: <<__cert_manager.email_user__>>@<<__cert_manager.email_domain__>>
+    server: <<__cert_manager.server__>>
     privateKeySecretRef:
       name: gateways-issuer-account-key
     solvers:
     - dns01:
         route53:
-          hostedZoneID: Z05295341EQEK44XS779A
-          region: us-east-1
-          # role: arn:aws:iam::177337816322:role/aim-city_cert-manager_cert-manager
+          hostedZoneID: <<__route53.hosted_zone_id__>>
+          region: <<__aws_region__>>
+          # role: <<__role_arn.cert_manager__>>

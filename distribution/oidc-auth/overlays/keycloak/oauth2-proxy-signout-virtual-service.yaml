@@ -7,7 +7,7 @@ spec:
   gateways:
   - kubeflow/kubeflow-gateway
   hosts:
-  - kubeflow.aim-city.pub.aws.mitre.org
+  - <<__subdomain_dashboard__>>.<<__domain__>>
   http:
   - match:
     - uri:
@@ -22,4 +22,4 @@ spec:
     headers:
       request:
         set:
-          X-Auth-Request-Redirect: https://auth.aim-city.pub.aws.mitre.org/auth/realms/kubeflow/protocol/openid-connect/logout?redirect_uri=https%%3A%%2F%%2Fkubeflow.aim-city.pub.aws.mitre.org
+          X-Auth-Request-Redirect: https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow/protocol/openid-connect/logout?redirect_uri=https%%3A%%2F%%2F<<__subdomain_dashboard__>>.<<__domain__>>

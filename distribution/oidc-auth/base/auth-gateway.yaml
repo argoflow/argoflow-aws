@@ -8,7 +8,7 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - auth.aim-city.pub.aws.mitre.org
+    - <<__subdomain_auth__>>.<<__domain__>>
     port:
       name: http
       number: 80
@@ -17,7 +17,7 @@ spec:
     tls:
       httpsRedirect: true
   - hosts:
-    - auth.aim-city.pub.aws.mitre.org
+    - <<__subdomain_auth__>>.<<__domain__>>
     port:
       name: https
       number: 443

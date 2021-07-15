@@ -40,15 +40,15 @@ spec:
       - name: extraArgs.skip-provider-button
         value: 'true'
       - name: extraArgs.cookie-domain
-        value: .aim-city.pub.aws.mitre.org
+        value: .<<__domain__>>
       - name: extraArgs.whitelist-domain
-        value: .aim-city.pub.aws.mitre.org
+        value: .<<__domain__>>
       - name: extraArgs.oidc-issuer-url
-        value: https://gitlab.my-company.com
+        value: <<__oidc.issuer__>>
       - name: extraArgs.scope
-        value: openid profile email
+        value: <<__oidc.scope__>>
       - name: extraArgs.user-id-claim
-        value: email
+        value: <<__oidc.user_id_claim__>>
       - name: serviceAccount.enabled
         value: 'false'   # we will create the ServiceAccount manually.
       - name: serviceAccount.name
@@ -58,7 +58,7 @@ spec:
       - name: sessionStorage.redis.standalone.clientType
         value: standalone
       - name: sessionStorage.redis.standalone.connectionUrl
-        value: redis://aim-city-redis.uk2cvk.ng.0001.use1.cache.amazonaws.com:6379
+        value: <<__oidc.redis.connection_url__>>
     repoURL: https://oauth2-proxy.github.io/manifests
     targetRevision: 3.3.2
   destination:

@@ -4,7 +4,7 @@ metadata:
   name: argocd-cm
 data:
   repositories: |
-    - url: https://github.com/ReggieCarey/argoflow-aws.git
+    - url: <<__git_repo.url__>>
       passwordSecret:
         name: git-repo-secret
         key: HTTPS_PASSWORD

@@ -13,4 +13,4 @@ spec:
   - to:
     - operation:
         hosts:
-        - grafana.aim-city.pub.aws.mitre.org
+        - <<__subdomain_grafana__>>.<<__domain__>>

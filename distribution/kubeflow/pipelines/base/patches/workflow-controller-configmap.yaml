@@ -6,10 +6,10 @@ data:
   artifactRepository: |
     archiveLogs: true
     s3:
-      bucket: 177337816322-aim-city-pipelines
-      keyPrefix: pipelines/artifacts
+      bucket: <<__s3.bucket.pipelines__>>
+      keyPrefix: <<__s3.key_prefix.pipelines__>>
       endpoint: s3.amazonaws.com
-      region: us-east-1
+      region: <<__aws_region__>>
       insecure: false
       accessKeySecret:
         name: pipelines-s3-secret

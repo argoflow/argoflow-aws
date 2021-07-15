@@ -8,6 +8,6 @@ spec:
   issuerRef:
     name: gateways-issuer
     kind: ClusterIssuer
-  commonName: auth.aim-city.pub.aws.mitre.org
+  commonName: <<__subdomain_auth__>>.<<__domain__>>
   dnsNames:
-  - auth.aim-city.pub.aws.mitre.org
+  - <<__subdomain_auth__>>.<<__domain__>>

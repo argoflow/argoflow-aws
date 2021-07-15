@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/ReggieCarey/argoflow-aws.git
-    targetRevision: 177337816322/aim-city.pub.aws.mitre.org
+    repoURL: <<__git_repo.url__>>
+    targetRevision: <<__git_repo.target_revision__>>
     path: distribution/argocd/overlays/private-repo
     kustomize:
       version: v4.0.5

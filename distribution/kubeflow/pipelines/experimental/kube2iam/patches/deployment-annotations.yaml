@@ -4,7 +4,7 @@ apiVersion: apps/v1
 metadata:
   name: cache-deployer-deployment
   annotations:
-    iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+    iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -14,7 +14,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -34,7 +34,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -44,7 +44,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -54,7 +54,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -64,7 +64,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -74,7 +74,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -84,7 +84,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -94,7 +94,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -104,7 +104,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -114,7 +114,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -124,4 +124,4 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+        iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>

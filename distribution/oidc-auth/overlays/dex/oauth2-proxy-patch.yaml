@@ -40,16 +40,16 @@ spec:
       - name: extraArgs.skip-provider-button
         value: 'true'
       - name: extraArgs.cookie-domain
-        value: .aim-city.pub.aws.mitre.org
+        value: .<<__domain__>>
       - name: extraArgs.whitelist-domain
-        value: .aim-city.pub.aws.mitre.org
+        value: .<<__domain__>>
       - name: extraArgs.oidc-issuer-url
-        value: https://auth.aim-city.pub.aws.mitre.org
+        value: https://<<__subdomain_auth__>>.<<__domain__>>
       - name: extraArgs.login-url
-        value: https://auth.aim-city.pub.aws.mitre.org/auth
+        value: https://<<__subdomain_auth__>>.<<__domain__>>/auth
       - name: extraArgs.oidc-jwks-url
-        value: https://auth.aim-city.pub.aws.mitre.org/keys
+        value: https://<<__subdomain_auth__>>.<<__domain__>>/keys
       - name: extraArgs.redeem-url
-        value: https://auth.aim-city.pub.aws.mitre.org/token
+        value: https://<<__subdomain_auth__>>.<<__domain__>>/token
       - name: extraArgs.skip-oidc-discovery
         value: 'true'

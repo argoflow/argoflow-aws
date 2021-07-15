@@ -8,21 +8,21 @@ data:
   config.json: |
     {
       "DBConfig": {
-        "Host": "aim-city-database.csaibgbahwy5.us-east-1.rds.amazonaws.com",
-        "Port": "3306",
+        "Host": "<<__rds.host__>>",
+        "Port": <<__rds.port__>>,
         "DriverName": "mysql",
         "DataSourceName": "",
-        "DBName": "mlpipeline",
+        "DBName": "<<__rds.db_name.pipelines__>>",
         "GroupConcatMaxLen": "4194304",
         "ConMaxLifeTimeSec": "120"
       },
       "ObjectStoreConfig": {
         "Host": "s3.amazonaws.com",
-        "Region": "us-east-1",
+        "Region": "<<__aws_region__>>",
         "Secure": true,
-        "BucketName": "177337816322-aim-city-pipelines",
-        "PipelineFolder": "pipelines",
-        "PipelinePath": "pipelines",
+        "BucketName": "<<__s3.bucket.pipelines__>>",
+        "PipelineFolder": "<<__s3.path.pipelines__>>",
+        "PipelinePath": "<<__s3.path.pipelines__>>",
         "AccessKey": "",
         "SecretAccessKey": ""
       },

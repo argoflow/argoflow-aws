@@ -35,9 +35,9 @@ spec:
         - name: ARGO_ARCHIVE_ARTIFACTORY
           value: s3
         - name: ARGO_ARCHIVE_BUCKETNAME
-          value: 177337816322-aim-city-pipelines
+          value: <<__s3.bucket.pipelines__>>
         - name: ARGO_ARCHIVE_PREFIX
-          value: pipelines/artifacts
+          value: <<__s3.key_prefix.pipelines__>>
         - name: VIEWER_TENSORBOARD_POD_TEMPLATE_SPEC_PATH
           value: /etc/config/viewer-tensorboard-template.json
         - name: METADATA_ENVOY_SERVICE_SERVICE_HOST

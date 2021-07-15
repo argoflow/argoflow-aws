@@ -9,7 +9,7 @@ spec:
   gateways:
   - auth-gateway
   hosts:
-  - auth.aim-city.pub.aws.mitre.org
+  - <<__subdomain_auth__>>.<<__domain__>>
   http:
   - route:
     - destination:

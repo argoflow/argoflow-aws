@@ -14,4 +14,4 @@ patchesStrategicMerge:
 - patches/deployment-annotations.yaml
 
 commonAnnotations:
-  iam.amazonaws.com/role: arn:aws:iam::177337816322:role/aim-city_kubeflow_kube2iam_pipelines
+  iam.amazonaws.com/role: <<__role_arn.kube2iam_pipelines__>>

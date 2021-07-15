@@ -8,6 +8,6 @@ spec:
   issuerRef:
     name: gateways-issuer
     kind: ClusterIssuer
-  commonName: kubeflow.aim-city.pub.aws.mitre.org
+  commonName: <<__subdomain_dashboard__>>.<<__domain__>>
   dnsNames:
-  - kubeflow.aim-city.pub.aws.mitre.org
+  - <<__subdomain_dashboard__>>.<<__domain__>>
