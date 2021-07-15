@@ -1,3 +1,4 @@
+---
 apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
@@ -20,7 +21,7 @@ spec:
   desc: Allow access to Kubeflow Pipelines
   selector:
     matchLabels:
-      access-ml-pipeline: "true"
+      access-ml-pipeline: 'true'
   volumeMounts:
   - mountPath: /var/run/secrets/ml-pipeline
     name: volume-ml-pipeline-token
@@ -52,11 +53,11 @@ metadata:
   name: allow-knative-traffic
   namespace: my-username
 spec:
- action: ALLOW
- rules:
- - from:
-   - source:
-      namespaces: ["knative-serving"]
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        namespaces: [knative-serving]
 ---
 kind: ConfigMap
 apiVersion: v1
@@ -66,7 +67,7 @@ metadata:
 data:
   DB_NAME: mlflow_karl_schriek
   RDS_HOST: my-cluster-merge-instance.c6e2xeayekua.eu-central-1.rds.amazonaws.com
-  RDS_PORT: "3306"
+  RDS_PORT: '3306'
   ARTIFACT_S3_BUCKET: 123456789012-my-cluster-merge-mlflow
   ARTIFACT_S3_KEY_PREFIX: my-username
 ---
@@ -135,10 +136,10 @@ spec:
       - name: mlflow
         securityContext: {}
         image: public.ecr.aws/atcommons/mlflow-server:1.18.0
-        imagePullPolicy: Always        
+        imagePullPolicy: Always
         resources:
           limits:
-            cpu: 500m
+            cpu: 100m
             memory: 100Mi
           requests:
             cpu: 10m
@@ -160,7 +161,6 @@ spec:
           httpGet:
             path: /
             port: http
-        resources: {}
 ---
 apiVersion: kubernetes-client.io/v1
 kind: ExternalSecret
@@ -191,29 +191,29 @@ spec:
 ---
 kind: VirtualService
 apiVersion: networking.istio.io/v1alpha3
-metadata:  
+metadata:
   name: mlflow
-  namespace: my-username  
+  namespace: my-username
 spec:
   gateways:
-    - kubeflow/kubeflow-gateway
+  - kubeflow/kubeflow-gateway
   hosts:
-    - '*'
+  - '*'
   http:
-    - headers:
-        request:
-          add:
-            x-forwarded-prefix: /mlflow/my-username
-      match:
-        - uri:
-            prefix: /mlflow/my-username
-      rewrite:
-        uri: /
-      route:
-        - destination:
-            host: mlflow.my-username.svc.cluster.local
-            port:
-              number: 80
+  - headers:
+      request:
+        add:
+          x-forwarded-prefix: /mlflow/my-username
+    match:
+    - uri:
+        prefix: /mlflow/my-username
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        host: mlflow.my-username.svc.cluster.local
+        port:
+          number: 80
 ---
 kind: AuthorizationPolicy
 apiVersion: security.istio.io/v1beta1
@@ -221,20 +221,20 @@ metadata:
   name: mlflow
   namespace: my-username
 spec:
- rules:
-   - from:
-       - source:
-           namespaces:
-             - istio-system
- selector:
-   matchLabels:
-     app: mlflow
+  rules:
+  - from:
+    - source:
+        namespaces:
+        - istio-system
+  selector:
+    matchLabels:
+      app: mlflow
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: mlflow
-  namespace: my-username  
+  namespace: my-username
   labels:
     app: mlflow
   annotations:
