@@ -17,7 +17,8 @@ spec:
       serviceAccountName: external-secrets
       containers:
       - name: kubernetes-external-secrets
-        image: ghcr.io/external-secrets/kubernetes-external-secrets:7.2.1
+        # image: ghcr.io/external-secrets/kubernetes-external-secrets:7.2.1
+        image: reggiecarey/external-secrets-kubernetes-external-secrets:7.2.1
         ports:
         - name: prometheus
           containerPort: 3001
