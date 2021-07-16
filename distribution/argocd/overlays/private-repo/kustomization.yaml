@@ -10,8 +10,10 @@ patchesStrategicMerge:
 - patches/configmap-patch.yaml
 
 images:
-- name: ghcr.io/dexidp/dex
-  newName: ghcr.io/dexidp/dex
+# - name: ghcr.io/dexidp/dex
+#   newName: ghcr.io/dexidp/dex
+- name: reggiecarey/dexidp-dex
+  newName: reggiecarey/dexidp-dex
   newTag: v2.27.0
   # digest: sha256:ff94efdd1ec68f43e01b39a2d11a73961b1cf73860515893118af731551f1939
 - name: quay.io/argoproj/argocd
