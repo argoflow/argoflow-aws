@@ -42,11 +42,11 @@ spec:
       - name: resources.limits.cpu
         value: 100m
       - name: resources.limits.memory
-        value: 300Mi
+        value: 800Mi
       - name: resources.requests.cpu
         value: 100m
       - name: resources.requests.memory
-        value: 300Mi
+        value: 600Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
