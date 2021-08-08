@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://aws.github.io/eks-charts
-    targetRevision: 0.15.1
+    targetRevision: 0.15.2
     chart: aws-node-termination-handler
     helm:
       parameters:
