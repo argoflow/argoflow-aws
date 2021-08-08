@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://kubernetes.github.io/autoscaler
-    targetRevision: 9.9.2
+    targetRevision: 9.10.4
     chart: cluster-autoscaler
     helm:
       parameters:
