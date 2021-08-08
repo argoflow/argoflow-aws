@@ -1,0 +1,15 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: central-dashboard
+  namespace: kubeflow
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app: centraldashboard
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account

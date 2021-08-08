@@ -7,14 +7,14 @@ spec:
   project: default
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 16.10.0
+    targetRevision: 16.11.0
     chart: kube-prometheus-stack
     helm:
       parameters:
-      - name: grafana.admin.existingSecret
-        value: grafana-admin-secret
+      # - name: grafana.admin.existingSecret
+      #   value: grafana-admin-secret
       - name: grafana.adminUser
-        value: ''
+        value: admin
       - name: grafana.adminPassword
         value: ''
       # - name : grafana.ingress.enabled
@@ -46,7 +46,7 @@ spec:
       - name: grafana.sidecar.dashboards.folderAnnotation
         value: k8s-sidecar-target-directory
       - name: grafana.sidecar.dashboards.annotations.k8s-sidecar-target-directory
-        value: /tmp/dashboards/kubernetes
+        value: /tmp/dashboards/Kubernetes
       # - name: grafana.grafana\.ini.auth\.anonymous.enabled
       #   value: "true"
       # - name: grafana.grafana\.ini.auth\.anonymous.org_name
@@ -80,6 +80,10 @@ spec:
       - name: prometheus.prometheusSpec.ruleSelectorNilUsesHelmValues
         value: 'false'
       - name: prometheus.prometheusSpec.ruleSelector
+        value: ''
+      - name: prometheus.prometheusSpec.probeSelectorNilUsesHelmValues
+        value: 'false'
+      - name: prometheus.prometheusSpec.probeSelector
         value: ''
       - name: kubelet.serviceMonitor.cAdvisorMetricRelabelings[0].sourceLabels[0]
         value: container

@@ -1,0 +1,14 @@
+---
+$patch: delete
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: knative-local-gateway
+  namespace: knative-serving
+---
+$patch: delete
+apiVersion: v1
+kind: Service
+metadata:
+  name: knative-local-gateway
+  namespace: istio-system

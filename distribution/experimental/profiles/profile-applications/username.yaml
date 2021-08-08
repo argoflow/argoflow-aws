@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: profile-my-username
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: <<__git_repo.url__>>
+    targetRevision: <<__git_repo.target_revision__>>
+    path: distribution/profiles/my-username
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

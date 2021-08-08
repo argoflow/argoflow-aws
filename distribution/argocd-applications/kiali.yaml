@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://kiali.org/helm-charts
-    targetRevision: 1.36.0
+    targetRevision: 1.34.1
     chart: kiali-operator
     helm:
       parameters:
@@ -25,22 +25,46 @@ spec:
         value: ibm.*
       - name: cr.spec.api.namespaces.exclude[4]
         value: kiali-operator
-      - name: cr.spec.deployment.override_ingress_yaml.spec.tls[0].hosts[0]
-        value: kiali.example.com
-      - name: cr.spec.deployment.override_ingress_yaml.spec.tls[0].secretName
-        value: kiali-abs-cloud-nl
-      - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].host
-        value: kiali.example.com
-      - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].path
-        value: /
-      - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].backend.serviceName
-        value: kiali
-      - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].backend.servicePort
-        value: '20001'
+      - name: cr.spec.deployment.ingress_enabled
+        value: 'false'
+      - name: cr.spec.deployment.namespace
+        value: monitoring
+      - name: cr.spec.deployment.pod_annotations.sidecar\.istio\.io\/inject
+        value: \'false\'
+      - name: cr.spec.istio_namespace
+        value: istio-system
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.tls[0].hosts[0]
+      #   value: <<__subdomain_kiali__>>.<<__domain__>>
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.tls[0].secretName
+      #   value: monitoring-ingressgateway-certs
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].host
+      #   value: <<__subdomain_kiali__>>.<<__domain__>>
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.ingressClassName
+      #   value: istio
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].path
+      #   value: '/'
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].pathType
+      #   value: Prefix
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].backend.serviceName
+      #   value: kiali
+      # - name: cr.spec.deployment.override_ingress_yaml.spec.rules[0].http.paths[0].backend.servicePort
+      #   value: '20001'
       - name: cr.spec.external_services.prometheus.url
         value: http://kube-prometheus-stack-prometheus.monitoring:9090
+      - name: cr.spec.external_services.tracing.use_grpc
+        value: "false" # we would actually want this to be true, but it doesn't work currently
+      - name: cr.spec.external_services.tracing.in_cluster_url
+        value: http://jaeger-query.istio-system
+      - name: cr.spec.external_services.grafana.auth.type
+        value: basic
+      - name: cr.spec.external_services.grafana.auth.password
+        value: secret:kube-prometheus-stack-grafana:admin-password
+      - name: cr.spec.external_services.grafana.auth.username
+        value: admin
+      - name: cr.spec.external_services.grafana.url
+        value: https://<<__subdomain_grafana__>>.<<__domain__>>/grafana
       - name: cr.spec.external_services.grafana.in_cluster_url
-        value: http://kube-prometheus-stack-grafana.monitoring:80
+        value: http://kube-prometheus-stack-grafana.monitoring:80/grafana
       - name: cr.spec.external_services.grafana.dashboards[0].name
         value: Istio Service Dashboard
       - name: cr.spec.external_services.grafana.dashboards[0].variables.namespace
