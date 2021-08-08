@@ -9,7 +9,7 @@ resources:
 - ingress-class.yaml
 - kubeflow-cluster-roles.yaml
 - kubeflow-gateway.yaml
-- monitoring/
 - cluster-local-gateway.yaml
 - cluster-local-gateway-authorizationpolicy.yaml
 - deny-all-authorizationpolicy.yaml
+# - monitoring/
