@@ -30,7 +30,7 @@ spec:
       - name: extraArgs.cookie-refresh
         value: 1h
       - name: extraArgs.cookie-expire
-        value: 4h
+        value: 168h
       - name: extraArgs.cookie-name
         value: _oauth2_proxy
       - name: extraArgs.email-domain
