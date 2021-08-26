@@ -8,7 +8,6 @@ resources:
 
 patchesStrategicMerge:
 - patches/configmap-patch.yaml
-- patches/add-custom-kustomize.yaml
 
 images:
 - name: ghcr.io/dexidp/dex
