@@ -13,4 +13,4 @@ images:
   newTag: v1.3.0
 - name: public.ecr.aws/j1r0q0g6/notebooks/profile-controller
   newName: davidspek/profile-controller
-  newTag: 0.1.9
+  newTag: 0.1.19
