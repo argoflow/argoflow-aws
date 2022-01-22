@@ -192,6 +192,26 @@ class Controller(BaseHTTPRequestHandler):
                                         "requests": {"cpu": "10m", "memory": "70Mi"},
                                         "limits": {"cpu": "100m", "memory": "500Mi"},
                                     },
+                                    "env": [
+                                        {
+                                            "name": "AWS_ACCESS_KEY_ID",
+                                            "valueFrom": {
+                                                "secretKeyRef": {
+                                                    "name": "pipelines-s3-secret",
+                                                    "key": "S3_ACCESSKEY"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "name": "AWS_SECRET_ACCESS_KEY",
+                                            "valueFrom": {
+                                                "secretKeyRef": {
+                                                    "name": "pipelines-s3-secret",
+                                                    "key": "S3_SECRETKEY"
+                                                }
+                                            }
+                                        }
+                                    ]
                                 }
                             ],
                             "serviceAccountName": "default-editor",
