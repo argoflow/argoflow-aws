@@ -1,7 +1,7 @@
 # Introduction
 
 This project offers a Kubeflow distribution that has the following characteristics:
-- It follows a fully declarative, GitOps approach using [ArgoCD](https://argoproj.github.io/argo-cd/). No other middleware is injected. All manifests are defined either as vanilla Kubernetes YAML specs, Kustomize specs, or Helm charts.
+- It follows a fully declarative, GitOps approach using [ArgoCD](https://argo-cd.readthedocs.io/en/stable/). No other middleware is injected. All manifests are defined either as vanilla Kubernetes YAML specs, Kustomize specs, or Helm charts.
 - Maximum integration with AWS managed services. We offload as much as possible to AWS, including database and artifact storage, identity management, load balancing, network routing and more! See below for a full listing of the currently supported AWS managed services
 - A very simple [init script](./setup_repo.sh) and accompanying [config file](./examples/setup.conf). We have intentionally kept this a simple "find-and-replace" script (in favour using using a stricter approach, such as encoding the entire distribution as a Helm chart) in order to make the repo easy to extend.
 - Currently we offer "Kubeflow 1.3", but with a few differences. We do not in all places follow the official [Kubeflow manifests](https://github.com/kubeflow/manifests), preferring instead to follow directly the (often much more recent) upstream distributions for both the core Kubeflow components (such as Pipelines, KFServing etc.) and free-standing applications (such as Istio, Certificate Manager, KNative etc.). As of the time of writing this, the difference is small, but over time (and until Kubeflow cuts its 1.4 release) it will become more significant.
