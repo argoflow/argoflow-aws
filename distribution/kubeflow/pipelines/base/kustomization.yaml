@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: kubeflow
 
 resources:
-- github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-multi-user-pns?ref=1c66f93f5149a8d5ed7f33895d3ebc01e662d837 # tag=1.6.0
+- github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic-multi-user-pns?ref=d5b428416871fdc17325b1f04674b5ac62f17894 # tag=1.8.2
 - resources/rds-secret.yaml
 - resources/rds-configmap.yaml
 - resources/database-creation-job.yaml
