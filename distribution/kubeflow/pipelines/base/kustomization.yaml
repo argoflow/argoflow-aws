@@ -49,7 +49,7 @@ images:
   # digest: sha256:af0c0dc833da73486fe5f12d4c13181f9cfed2abc2ae0b2ab905815b4f5c9971
 - name: gcr.io/tfx-oss-public/ml_metadata_store_server
   newName: gcr.io/tfx-oss-public/ml_metadata_store_server
-  newTag: 0.30.0
+  newTag: 1.9.0
   # digest: sha256:01691247116fe048e0761ae8033efaad3ddd82438d0198f2235afb37c1757d48
 - name: gcr.io/ml-pipeline/metadata-writer
   newName: gcr.io/ml-pipeline/metadata-writer
@@ -85,9 +85,9 @@ images:
   # digest: sha256:6b11817b99538e890f3632f3b0e7c69d8c40126c162449ff7710b32e7cf99499
 - name: gcr.io/ml-pipeline/mysql
   newName: gcr.io/ml-pipeline/mysql
-  newTag: '5.7'
+  newTag: '8.0'
   # digest: sha256:4056370ee427dc9ff2337884674d8ee35f5b236c543bb8446b8b0a3751f70349
 - name: gcr.io/ml-pipeline/workflow-controller
   newName: gcr.io/ml-pipeline/workflow-controller
-  newTag: v2.12.9-license-compliance
+  newTag: v3.2.3-license-compliance
   # digest: sha256:4f9d6feb608fc5a55cbae4f23b9489f63073ab06dd46d0e87fc5114cc01857e9
