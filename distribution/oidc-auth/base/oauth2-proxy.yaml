@@ -60,7 +60,7 @@ spec:
       - name: sessionStorage.redis.standalone.connectionUrl
         value: <<__oidc.redis.connection_url__>>
     repoURL: https://oauth2-proxy.github.io/manifests
-    targetRevision: 4.1.1
+    targetRevision: 4.2.2
   destination:
     namespace: auth
     server: https://kubernetes.default.svc
