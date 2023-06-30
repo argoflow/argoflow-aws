@@ -12,7 +12,7 @@ patchesStrategicMerge:
 images:
 - name: ghcr.io/dexidp/dex
   newName: ghcr.io/dexidp/dex
-  newTag: v2.27.0
+  newTag: v2.37.0
 - name: quay.io/argoproj/argocd
   newName: quay.io/argoproj/argocd
   newTag: v2.1.1
