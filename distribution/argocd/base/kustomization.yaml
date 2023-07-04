@@ -18,7 +18,7 @@ images:
   newTag: v2.1.1
 - name: haproxy
   newName: haproxy
-  newTag: 2.0.20-alpine
+  newTag: 2.8.1-alpine
 - name: redis
   newName: redis
   newTag: 6.2.4-alpine
