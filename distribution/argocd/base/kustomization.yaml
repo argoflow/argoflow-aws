@@ -21,4 +21,4 @@ images:
   newTag: 2.0.20-alpine
 - name: redis
   newName: redis
-  newTag: 6.2.4-alpine
+  newTag: 6.2.13-alpine
