@@ -1,4 +1,21 @@
-# Introduction
+# Argoflow-AWS
+
+<br>
+
+> ## ⚠️ Argoflow-AWS has been superseded by [deployKF](https://github.com/deployKF/deployKF) ⚠️
+> 
+> deployKF makes it easy to build reliable ML Platforms on Kubernetes and supports more than just Kubeflow!
+>
+> deployKF supports all Kubernetes distributions and has native integrations with AWS.
+> 
+>  - [deploykf.org](https://www.deploykf.org/)
+>  - [github.com/deployKF/deployKF](https://github.com/deployKF/deployKF)
+
+<br>
+
+---
+
+## Original README
 
 This project offers a Kubeflow distribution that has the following characteristics:
 - It follows a fully declarative, GitOps approach using [ArgoCD](https://argo-cd.readthedocs.io/en/stable/). No other middleware is injected. All manifests are defined either as vanilla Kubernetes YAML specs, Kustomize specs, or Helm charts.
