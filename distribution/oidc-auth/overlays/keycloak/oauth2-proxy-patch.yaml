@@ -57,3 +57,9 @@ spec:
         value: profile
       - name: extraArgs.scope
         value: openid
+      - name: extraArgs.extra-jwt-issuers
+        value: 'https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow=account'
+      - name: extraArgs.skip-jwt-bearer-tokens
+        value: <<__enable_jwt__auth>>
+      - name: extraArgs.oidc-issuer-url
+        value: 'https://<<__subdomain_auth__>>.<<__domain__>>/auth/realms/kubeflow'
